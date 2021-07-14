@@ -1,0 +1,5 @@
+rootProject.name = "Hydra"
+include ':app'
+include ':core'
+include ':test'
+include ':test1'
