@@ -1,6 +1,7 @@
 package knf.hydra.module.test.models
 
 import knf.hydra.core.models.SearchModel
+import knf.hydra.core.models.data.Category
 import knf.hydra.core.models.data.RankingData
 import org.jsoup.nodes.Element
 import pl.droidsonroids.jspoon.ElementConverter
@@ -17,6 +18,8 @@ class TestSearchModel: SearchModel() {
     override var imageLink: String? = ""
     @Selector("span.Type")
     override var type: String? = ""
+    @Selector("span.Type", converter = CategoryConverter::class)
+    override var category: Category = Category.UNKNOWN
     @Selector(":root", converter = RankingConverter::class)
     override var rankingData: RankingData? = null
 
@@ -24,6 +27,12 @@ class TestSearchModel: SearchModel() {
         override fun convert(node: Element, selector: Selector): RankingData {
             val stars = node.select("span.Vts.fa-star").text().toDouble()
             return RankingData(stars)
+        }
+    }
+
+    class CategoryConverter: ElementConverter<Category> {
+        override fun convert(node: Element, selector: Selector): Category {
+            return if (node.className().contains("movie")) Category.MOVIE else Category.ANIME
         }
     }
 }

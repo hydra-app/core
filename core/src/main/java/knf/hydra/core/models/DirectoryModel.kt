@@ -1,15 +1,20 @@
 package knf.hydra.core.models
 
 import androidx.recyclerview.widget.DiffUtil
+import knf.hydra.core.models.data.Category
 import knf.hydra.core.models.data.RankingData
 
 abstract class DirectoryModel {
     abstract var id: Int
     abstract var name: String
     abstract var seriesLink: String
+    abstract var category: Category
+    open var orientation: Orientation = Orientation.VERTICAL
     open var type: String? = null
     open var imageLink: String? = null
     open var rankingData: RankingData? = null
+
+    enum class Orientation { VERTICAL, HORIZONTAL }
 
     companion object{
         val DIFF = object : DiffUtil.ItemCallback<DirectoryModel>(){

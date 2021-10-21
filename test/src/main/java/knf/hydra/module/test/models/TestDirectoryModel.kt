@@ -4,6 +4,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import knf.hydra.core.models.DirectoryModel
+import knf.hydra.core.models.data.Category
 import knf.hydra.core.models.data.RankingData
 import org.jsoup.nodes.Element
 import pl.droidsonroids.jspoon.ElementConverter
@@ -22,6 +23,8 @@ class TestDirectoryModel: DirectoryModel() {
     override var imageLink: String? = ""
     @Selector("span.Type")
     override var type: String? = ""
+    @Selector("span.Type", converter = CategoryConverter::class)
+    override var category: Category = Category.UNKNOWN
     @Embedded
     @Selector(":root", converter = RankingConverter::class)
     override var rankingData: RankingData? = null
@@ -31,6 +34,12 @@ class TestDirectoryModel: DirectoryModel() {
         override fun convert(node: Element, selector: Selector): RankingData {
             val stars = node.select("span.Vts.fa-star").text().toDouble()
             return RankingData(stars)
+        }
+    }
+
+    class CategoryConverter: ElementConverter<Category> {
+        override fun convert(node: Element, selector: Selector): Category {
+            return if (node.className().contains("movie")) Category.MOVIE else Category.ANIME
         }
     }
 }

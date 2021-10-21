@@ -5,10 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import knf.hydra.core.models.ChapterMin
-import knf.hydra.core.models.ChapterModel
-import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.InfoModelMin
-import java.text.DecimalFormat
 
 @Entity
 data class DownloadInfo(
@@ -44,13 +41,14 @@ data class DownloadInfo(
 
         fun fromChapter(
             module: String,
+            path: String,
             info: InfoModelMin,
             chapter: ChapterMin,
             link: String,
             headers: Map<String, String>?
         ): DownloadInfo {
             return DownloadInfo(
-                "$module:${chapter.id}".hashCode(),
+                "$module:${chapter.id}:$path".hashCode(),
                 module,
                 link,
                 info,

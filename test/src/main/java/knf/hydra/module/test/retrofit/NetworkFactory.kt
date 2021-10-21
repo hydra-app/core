@@ -1,6 +1,5 @@
 package knf.hydra.module.test.retrofit
 
-import knf.hydra.core.models.InfoModel
 import knf.hydra.module.test.models.*
 import retrofit2.Call
 import retrofit2.http.*
@@ -23,5 +22,9 @@ interface NetworkFactory {
 
     @GET("/browse")
     fun getSearchPage(@Query("q") query: String,@Query("page") page: Int, @HeaderMap bypass: Map<String,String>): Call<SearchPage>
+
+    @FormUrlEncoded
+    @POST
+    fun postReview(@Field("rating") rating: Int, @Field("id") id: Int, @HeaderMap bypass: Map<String,String>, @Url url: String = "https://www3.animeflv.net/api/animes/rate"): Call<String>
 
 }

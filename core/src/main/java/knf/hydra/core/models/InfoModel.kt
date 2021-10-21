@@ -1,17 +1,16 @@
 package knf.hydra.core.models
 
-import androidx.annotation.FloatRange
-import androidx.annotation.IntRange
-import androidx.annotation.Size
-import androidx.paging.PagingData
+import android.os.Parcelable
 import androidx.room.Ignore
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import knf.hydra.core.models.data.Category
-import knf.hydra.core.models.data.ExtraData
+import knf.hydra.core.models.data.ExtraSection
+import knf.hydra.core.models.data.Music
 import knf.hydra.core.models.data.RankingData
-import kotlinx.coroutines.flow.Flow
+import kotlinx.parcelize.Parcelize
+import org.json.JSONObject
 
 
 abstract class InfoModel {
@@ -21,12 +20,16 @@ abstract class InfoModel {
     abstract var category: Category
 
     fun getMin() = InfoModelMin(id, name, link, category, coverImage)
+    fun isValid() = name.isNotBlank() && link.isNotBlank()
 
     @Ignore
-    open var chaptersPaging: Flow<PagingData<ChapterModel>>? = null
+    open var chaptersData: ChaptersData? = null
 
     @Ignore
     open var coverImage: String? = null
+
+    @Ignore
+    open var userData: UserData? = null
 
     @Ignore
     open var description: String? = null
@@ -38,10 +41,10 @@ abstract class InfoModel {
     open var state: StateData? = null
 
     @Ignore
-    open var genres: List<String>? = null
+    open var genres: List<Tag>? = null
 
     @Ignore
-    open var tags: List<String>? = null
+    open var tags: List<Tag>? = null
 
     @Ignore
     open var related: List<Related>? = null
@@ -50,19 +53,40 @@ abstract class InfoModel {
     open var ranking: RankingData? = null
 
     @Ignore
-    open var music: Flow<List<Music>?>? = null
+    open var extraSections: List<ExtraSection> = emptyList()
 
-    @Ignore
-    open var youtubeTrailer: String? = null
+    data class Tag(
+        val name: String,
+        val image: String? = null,
+        val payload: String? = null,
+        val tagListEnabled: Boolean = false
+    ) {
+        fun toJson(): String = JSONObject().apply {
+            put("name", name)
+            put("image", image.orEmpty())
+            put("payload", payload.orEmpty())
+            put("tagListEnabled", tagListEnabled)
+        }.toString()
 
-    @Ignore
-    open var extraData: List<ExtraData> = emptyList()
+        companion object{
+            fun fromJson(json: String): Tag {
+                val decoded = JSONObject(json)
+                return Tag(
+                    decoded.getString("name"),
+                    decoded.getString("image").ifBlank { null },
+                    decoded.getString("payload").ifBlank { null },
+                    decoded.getBoolean("tagListEnabled")
+                )
+            }
+        }
 
-    data class Music(
-        var title: String,
-        var link: String,
-        var subtitle: String? = null
-    )
+        sealed class ClickAction{
+            class Info(val infoLink: String): ClickAction()
+            class Web(val link: String): ClickAction()
+            class DirectoryList(val title: String, val payload: String): ClickAction()
+            class Clipboard(val text: String): ClickAction()
+        }
+    }
 
     abstract class Related {
         abstract var id: Int
@@ -71,6 +95,11 @@ abstract class InfoModel {
         open var image: String? = null
         open var relation: String? = null
         open var ranking: RankingData? = null
+    }
+
+    @Parcelize
+    data class UserData(val name: String? = null, val link: String? = null, val image: String? = null, val subText: String? = null): Parcelable {
+        fun isValid(): Boolean = !name.isNullOrBlank() && (link == null || link.isNotBlank())
     }
 
     data class StateData(val state: Type, val emissionDay: EmissionDay? = null) {
@@ -103,53 +132,53 @@ abstract class InfoModel {
             EMISSION(0), COMPLETED(1), HIATUS(2), UNKNOWN(3);
 
             companion object {
-                fun fromValue(value: Int) = values().find { it.value == value }?: UNKNOWN
+                fun fromValue(value: Int) = values().find { it.value == value } ?: UNKNOWN
             }
         }
     }
 
-    class Converters{
+    class Converters {
         @TypeConverter
         fun relatedToString(list: List<Related>?): String {
-            list?:return ""
+            list ?: return ""
             return Gson().toJson(list, object : TypeToken<List<Related>>() {}.type)
         }
 
         @TypeConverter
-        fun stringToRelated(json:String): List<Related>? {
+        fun stringToRelated(json: String): List<Related>? {
             if (json.isBlank()) return null
             return Gson().fromJson(json, object : TypeToken<List<Related>>() {}.type)
         }
 
         @TypeConverter
         fun musicToString(list: List<Music>?): String {
-            list?:return ""
+            list ?: return ""
             return Gson().toJson(list, object : TypeToken<List<Music>>() {}.type)
         }
 
         @TypeConverter
-        fun stringToMusic(json:String): List<Music>? {
+        fun stringToMusic(json: String): List<Music>? {
             if (json.isBlank()) return null
             return Gson().fromJson(json, object : TypeToken<List<Music>>() {}.type)
         }
 
         @TypeConverter
-        fun emissionDayToInt(day: StateData.EmissionDay): Int{
+        fun emissionDayToInt(day: StateData.EmissionDay): Int {
             return day.value
         }
 
         @TypeConverter
-        fun intToEmissionDay(value: Int): StateData.EmissionDay{
+        fun intToEmissionDay(value: Int): StateData.EmissionDay {
             return StateData.EmissionDay.fromValue(value)
         }
 
         @TypeConverter
-        fun emissionTypeToInt(type: StateData.Type): Int{
+        fun emissionTypeToInt(type: StateData.Type): Int {
             return type.value
         }
 
         @TypeConverter
-        fun intToEmissionType(value: Int): StateData.Type{
+        fun intToEmissionType(value: Int): StateData.Type {
             return StateData.Type.fromValue(value)
         }
 

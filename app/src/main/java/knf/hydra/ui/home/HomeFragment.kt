@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import knf.hydra.R
 import knf.hydra.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -24,7 +23,7 @@ class HomeFragment : Fragment() {
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         homeViewModel =
                 ViewModelProvider(this).get(HomeViewModel::class.java)
 

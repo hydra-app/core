@@ -50,7 +50,7 @@ class TestRecentModel : RecentModel() {
 
     class SeriesIdExtractor : ElementConverter<Int> {
         override fun convert(node: Element, selector: Selector): Int {
-            return node.attr("src").substringAfterLast("/").substringBeforeLast(".").toInt()
+            return try{  node.attr("src").substringAfterLast("/").substringBeforeLast(".").toInt() } catch (e:Exception) { -1 }
         }
     }
 
@@ -63,7 +63,7 @@ class TestRecentModel : RecentModel() {
 
     class ChapterImageExtractor : ElementConverter<String> {
         override fun convert(node: Element, selector: Selector): String {
-            val id = node.select("img").first().attr("src").substringAfterLast("/").substringBeforeLast(".").toInt()
+            val id = node.select("img").first().attr("src").substringAfterLast("/").substringBeforeLast(".")
             val number = node.select("span.Capi").text().substringAfterLast(" ").trim().toInt()
             return "https://cdn.animeflv.net/screenshots/$id/$number/th_3.jpg"
         }

@@ -23,7 +23,7 @@ abstract class RecentModel{
     @Ignore
     var isFavorite: Boolean? = null
 
-    fun createName(): String{
+    fun createChapter(): String{
         return if (type.contains("%s"))
             String.format(type, DecimalFormat("0.#").format(chapter))
         else

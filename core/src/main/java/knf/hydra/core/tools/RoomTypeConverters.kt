@@ -1,7 +1,6 @@
 package knf.hydra.core.tools
 
 import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 import com.dhh.gson.ktx.GSON
 import com.dhh.gson.ktx.toJson
 import knf.hydra.core.models.InfoModel

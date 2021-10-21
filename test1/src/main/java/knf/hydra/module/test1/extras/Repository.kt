@@ -1,16 +1,13 @@
 package knf.hydra.module.test1.extras
 
-import knf.hydra.core.HeadRepository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import knf.hydra.core.HeadRepository
 import knf.hydra.core.main.MainDbBridge
 import knf.hydra.core.models.BypassModel
-import knf.hydra.core.models.DirectoryModel
 import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.RecentModel
-import knf.hydra.core.models.data.FilterData
-import knf.hydra.core.models.data.FilterRequest
 import knf.hydra.core.models.data.SourceData
 import knf.hydra.module.test1.repository.RecentsSource
 import kotlinx.coroutines.flow.Flow
@@ -30,7 +27,7 @@ class Repository : HeadRepository(){
         return flow { emit(null) }
     }
 
-    override suspend fun recentsPager(bypassModel: BypassModel, bridge: MainDbBridge): Flow<PagingData<RecentModel>> {
+    override suspend fun recentsPager(bypassModel: BypassModel): Flow<PagingData<RecentModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 20,

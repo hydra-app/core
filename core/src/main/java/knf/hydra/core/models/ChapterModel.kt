@@ -9,12 +9,14 @@ abstract class ChapterModel {
     abstract var type: String
     abstract var number: Double
     abstract var chapterLink: String
+    open var chapterTitle: String? = null
     open var seriesLink: String? = null
     open var thumbnailLink: String? = null
+    open var commentsLink: String? = null
     var isChapterSeen: Boolean = false
     var chapterDownloadState: DownloadInfo.Light? = null
 
-    fun createName(): String{
+    fun createChapter(): String{
         return if (type.contains("%s"))
             String.format(type, DecimalFormat("0.#").format(number))
         else

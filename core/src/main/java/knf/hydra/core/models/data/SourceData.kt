@@ -12,6 +12,8 @@ class VideoSource(items: List<SourceItem>): SourceData(items)
 
 class GallerySource(items: List<SourceItem>, val headers: List<Map<String,String>?>? = null): SourceData(items)
 
+class WebSource(item: SourceItem): SourceData(listOf(item))
+
 abstract class VideoDecoder {
     abstract fun canDecode(link: String): Boolean
     abstract suspend fun decode(item: SourceItem): DecodeResult
