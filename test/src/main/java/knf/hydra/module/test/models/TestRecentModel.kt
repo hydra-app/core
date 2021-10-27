@@ -16,19 +16,19 @@ class TestRecentModel : RecentModel() {
     override var id: Int = Random.nextInt()
 
     @Selector("img", converter = SeriesIdExtractor::class)
-    override var seriesId: Int = Random.nextInt()
+    override var infoId: Int = Random.nextInt()
 
     @Selector("img", converter = ImageExtractor::class)
-    override var seriesImage: String? = null
+    override var infoImage: String? = null
 
     @Selector(":root", converter = ChapterImageExtractor::class)
-    override var chapterImage: String? = null
+    override var chapterThumbnail: String? = null
 
     @Selector("a", attr = "abs:href")
-    override var episodeLink: String = ""
+    override var link: String = ""
 
     @Selector("a", converter = SeriesLinkExtractor::class)
-    override var seriesLink: String = ""
+    override var infoLink: String = ""
 
     @Selector("strong.Title")
     override var name: String = ""

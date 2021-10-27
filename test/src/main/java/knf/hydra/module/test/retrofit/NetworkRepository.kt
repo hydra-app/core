@@ -31,7 +31,7 @@ object NetworkRepository {
 
     fun getRecents(bypassModel: BypassModel): List<TestRecentModel> {
         currentBypass = bypassModel
-        return factory.getRecents(bypassModel.asMap(defaultCookies)).execute().body()?.list?.filter { it.seriesId != -1 }?: emptyList()
+        return factory.getRecents(bypassModel.asMap(defaultCookies)).execute().body()?.list?.filter { it.infoId != -1 }?: emptyList()
     }
 
     fun getInfo(url: String, bypassModel: BypassModel, bridge: MainDbBridge): InfoModel?{

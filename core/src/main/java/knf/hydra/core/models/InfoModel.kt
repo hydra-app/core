@@ -5,10 +5,7 @@ import androidx.room.Ignore
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import knf.hydra.core.models.data.Category
-import knf.hydra.core.models.data.ExtraSection
-import knf.hydra.core.models.data.Music
-import knf.hydra.core.models.data.RankingData
+import knf.hydra.core.models.data.*
 import kotlinx.parcelize.Parcelize
 import org.json.JSONObject
 
@@ -19,8 +16,11 @@ abstract class InfoModel {
     abstract var link: String
     abstract var category: Category
 
-    fun getMin() = InfoModelMin(id, name, link, category, coverImage)
+    fun getMin() = InfoModelMin(id, name, link, category, layoutType, coverImage)
     fun isValid() = name.isNotBlank() && link.isNotBlank()
+
+    @Ignore
+    open var layoutType: LayoutType = if (category in listOf(Category.PORN, Category.MOVIE)) LayoutType.SINGLE else LayoutType.MULTIPLE
 
     @Ignore
     open var chaptersData: ChaptersData? = null
@@ -187,5 +187,11 @@ abstract class InfoModel {
 
         @TypeConverter
         fun intToCategory(value: Int): Category = Category.fromValue(value)
+
+        @TypeConverter
+        fun layoutTypeToInt(layoutType: LayoutType): Int = layoutType.value
+
+        @TypeConverter
+        fun intToLayoutType(value: Int): LayoutType = LayoutType.fromValue(value)
     }
 }

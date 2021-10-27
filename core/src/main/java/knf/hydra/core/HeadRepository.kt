@@ -20,7 +20,7 @@ abstract class HeadRepository {
     open suspend fun searchSuggestions(query: String, bypassModel: BypassModel): List<String>? = null
     open suspend fun calendarList(bypassModel: BypassModel, day: Int = -1): Flow<CalendarList?>? = null
     open suspend fun customHomeSections(bypassModel: BypassModel): List<SectionData> = emptyList()
-    open suspend fun analyticsRecommended(bypassModel: BypassModel, events: List<Analytics.Event>): List<DirectoryModel>? = null
+    open suspend fun analyticsRecommended(bypassModel: BypassModel, events: List<Analytics.Event>): Flow<List<DirectoryModel>>? = null
     open suspend fun sendReview(bypassModel: BypassModel, id: Int, reviewResult: ReviewResult):Boolean? = null
     open suspend fun tagPager(bypassModel: BypassModel, tag: InfoModel.Tag): Flow<PagingData<DirectoryModel>>? = null
     open suspend fun infoExtraDataDirectoryList(bypassModel: BypassModel, payload: String): Flow<PagingData<DirectoryModel>>? = null

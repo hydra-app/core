@@ -2,6 +2,7 @@ package knf.hydra.core.tools
 
 import androidx.room.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 object ModulePreferences {
@@ -29,6 +30,11 @@ object ModulePreferences {
             }
         }
     }
+
+    fun <T> getPreferenceBlocking(key: String, default: T): T = runBlocking { getPreference(key, default) }
+    fun <T> getPreferenceOrNullBlocking(key: String): T? = runBlocking { getPreferenceOrNull(key) }
+    fun <T> getPreferenceOrThrowBlocking(key: String): T = runBlocking { getPreferenceOrThrow(key) }
+    fun <T> setPreferenceBlocking(key: String, value: T?) = runBlocking { setPreference(key, value) }
 
     private fun <T> String.toType(type: T): Any? {
         return when (type) {

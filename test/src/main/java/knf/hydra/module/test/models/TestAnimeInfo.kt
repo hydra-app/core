@@ -10,12 +10,9 @@ import knf.hydra.core.models.data.*
 import knf.hydra.core.tools.ModulePreferences
 import knf.hydra.module.test.repository.ChaptersSource
 import knf.hydra.module.test.retrofit.NetworkRepository
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import kotlinx.coroutines.withTimeout
 import org.json.JSONArray
 import org.json.JSONObject
 import org.jsoup.Connection
@@ -45,6 +42,9 @@ class TestAnimeInfo : InfoModel() {
 
     override var category: Category = Category.ANIME
 
+    @Selector("span.Type", converter = LayoutConverter::class)
+    override var layoutType: LayoutType = LayoutType.UNKNOWN
+
     @Selector("div.Image img", attr = "abs:src")
     override var coverImage: String? = null
 
@@ -61,10 +61,6 @@ class TestAnimeInfo : InfoModel() {
     @Ignore
     @Selector(":root", converter = RelatedConverter::class)
     override var related: List<Related>? = null
-
-    /*@Ignore
-    @Selector(":root", converter = MusicConverter::class)
-    override var music: Flow<List<Music>?>? = null*/
 
     @Embedded(prefix = "state_")
     @Selector(":root", converter = StateConverter::class)
@@ -104,6 +100,13 @@ class TestAnimeInfo : InfoModel() {
             } catch (e: Exception) {
                 null
             }
+        }
+    }
+
+    @Keep
+    class LayoutConverter @Keep constructor() : ElementConverter<LayoutType> {
+        override fun convert(node: Element, selector: Selector): LayoutType {
+            return if (node.className().contains("movie")) LayoutType.SINGLE else LayoutType.MULTIPLE
         }
     }
 
@@ -175,10 +178,10 @@ class TestAnimeInfo : InfoModel() {
         }
         override fun convert(node: Element, selector: Selector): List<ExtraSection> {
             val sections = mutableListOf<ExtraSection>()
-            val isBasicDataEnabled = runBlocking { ModulePreferences.getPreference("mal_basic_data", false) }
-            val isStaffEnabled = runBlocking { ModulePreferences.getPreference("mal_staff", false) }
-            val isGalleryEnabled = runBlocking { ModulePreferences.getPreference("mal_gallery", false) }
-            val isMusicEnabled = runBlocking { ModulePreferences.getPreference("mal_music", false) }
+            val isBasicDataEnabled = ModulePreferences.getPreferenceBlocking("mal_basic_data", false)
+            val isStaffEnabled = ModulePreferences.getPreferenceBlocking("mal_staff", false)
+            val isGalleryEnabled = ModulePreferences.getPreferenceBlocking("mal_gallery", false)
+            val isMusicEnabled = ModulePreferences.getPreferenceBlocking("mal_music", false)
             if (!listOf(isBasicDataEnabled, isGalleryEnabled, isStaffEnabled, isMusicEnabled).any { it }){
                 return sections
             }
@@ -188,7 +191,7 @@ class TestAnimeInfo : InfoModel() {
                 sections.add(
                     ExtraSection(
                         "Nombres alternativos",
-                        TextData(names, ClickAction.Clipboard(names))
+                        TextData(names, ClickAction.Clipboard(names)).asFlow()
                     )
                 )
             }
@@ -206,17 +209,16 @@ class TestAnimeInfo : InfoModel() {
                     if (isBasicDataEnabled) {
                         try {
                             runBlocking(Dispatchers.IO) {
-                                withTimeout(2000) {
+                                withTimeout(5000) {
                                     val info = JSONObject(URL("https://api.jikan.moe/v3/anime/$id").readText())
                                     val aired = info.getJSONObject("aired")
                                     val type = info.getString("type")
                                     if (type == "Movie") {
-                                        sections.add(ExtraSection("Emisión", TextData(aired.getString("string"))))
+                                        sections.add(ExtraSection("Emisión", TextData(aired.getString("string")).asFlow()))
                                     } else {
-                                        sections.add(ExtraSection("Duración", TextData(aired.getString("string"))))
+                                        sections.add(ExtraSection("Duración", TextData(aired.getString("string")).asFlow()))
                                     }
-                                    sections.add(ExtraSection("Trailer", YoutubeData(info.getString("trailer_url").substringAfterLast("embed/").substringBeforeLast("?"))))
-
+                                    sections.add(ExtraSection("Trailer", YoutubeData(info.getString("trailer_url").substringAfterLast("embed/").substringBeforeLast("?")).asFlow()))
                                 }
                             }
                         } catch (e:Exception){
@@ -224,18 +226,19 @@ class TestAnimeInfo : InfoModel() {
                         }
                     }
                     if (isStaffEnabled) {
-                        try {
-                            val imageOrNull: (String) -> ImageItem? = {
-                                if (it.contains("questionmark_23.gif"))
-                                    null
-                                else
-                                    VerticalImageItem(it)
-                            }
-                            runBlocking(Dispatchers.IO) {
-                                withTimeout(2000) {
-                                    val charStaff = JSONObject(URL("https://api.jikan.moe/v3/anime/$id/characters_staff").readText())
-                                    try {
-                                        val characters = charStaff.getJSONArray("characters")
+                        val imageOrNull: (String) -> ImageItem? = {
+                            if (it.contains("questionmark_23.gif"))
+                                null
+                            else
+                                VerticalImageItem(it)
+                        }
+                        sections.add(ExtraSection("Personajes", flow {
+                            try {
+                                retry(3, 1000L) {
+                                    withTimeout(5000) {
+                                        val charStaff = JSONObject(URL("https://api.jikan.moe/v3/anime/$id/characters_staff").readText())
+                                        val characters =
+                                            charStaff.getJSONArray("characters")
                                         val charactersList = mutableListOf<CollectionItem>()
                                         for (i in 0 until characters.length()) {
                                             val character = characters.getJSONObject(i)
@@ -248,11 +251,19 @@ class TestAnimeInfo : InfoModel() {
                                                 )
                                             )
                                         }
-                                        sections.add(ExtraSection("Personajes", CollectionData(charactersList)))
-                                    }catch (e:Exception){
-                                        e.printStackTrace()
+                                        emit(CollectionData(charactersList))
                                     }
-                                    try {
+                                }
+                            }catch (e:Exception){
+                                e.printStackTrace()
+                                emit(null)
+                            }
+                        }))
+                        sections.add(ExtraSection("Staff", flow {
+                            try {
+                                retry(3, 1000L) {
+                                    withTimeout(5000) {
+                                        val charStaff = JSONObject(URL("https://api.jikan.moe/v3/anime/$id/characters_staff").readText())
                                         val staff = charStaff.getJSONArray("staff")
                                         val staffList = mutableListOf<CollectionItem>()
                                         for (i in 0 until staff.length()) {
@@ -260,80 +271,101 @@ class TestAnimeInfo : InfoModel() {
                                             staffList.add(
                                                 CollectionItem(
                                                     character.getString("name"),
-                                                    character.getJSONArray("positions").getString(0),
+                                                    character.getJSONArray("positions")
+                                                        .getString(0),
                                                     imageOrNull(character.getString("image_url")),
                                                     ClickAction.Web(character.getString("url"))
                                                 )
                                             )
                                         }
-                                        sections.add(ExtraSection("Staff", CollectionData(staffList)))
-                                    }catch (e:Exception){
-                                        e.printStackTrace()
+                                        emit(CollectionData(staffList))
                                     }
                                 }
+                            } catch (e:Exception) {
+                                e.printStackTrace()
+                                emit(null)
                             }
-                        }catch (e:Exception){
-                            e.printStackTrace()
-                        }
+                        }))
                     }
                     if (isGalleryEnabled) {
-                        val galleryList = mutableListOf<ImageItem>()
-                        try {
-                            runBlocking(Dispatchers.IO) {
-                                withTimeout(2000) {
-                                    val videos = JSONObject(URL("https://api.jikan.moe/v3/anime/$id/videos").readText()).getJSONArray("promo")
-                                    for (i in 0 until videos.length()){
-                                        galleryList.add(YoutubeItem(videos.getJSONObject(i).getString("video_url").substringAfterLast("embed/").substringBeforeLast("?")))
+                        sections.add(ExtraSection("Galería", flow {
+                            val galleryList = mutableListOf<ImageItem>()
+                            try {
+                                retry(3, 1000L) {
+                                    withTimeout(5000) {
+                                        val videos = JSONObject(URL("https://api.jikan.moe/v3/anime/$id/videos").readText()).getJSONArray("promo")
+                                        for (i in 0 until videos.length()) {
+                                            galleryList.add(
+                                                YoutubeItem(
+                                                    videos.getJSONObject(i)
+                                                        .getString("video_url")
+                                                        .substringAfterLast("embed/")
+                                                        .substringBeforeLast("?")
+                                                )
+                                            )
+                                        }
                                     }
                                 }
+                            }catch (e:Exception) {
+                                e.printStackTrace()
                             }
-
-                        }catch (e:Exception) {
-                            e.printStackTrace()
-                        }
-                        try {
-                            runBlocking(Dispatchers.IO) {
-                                withTimeout(2000) {
-                                    val pictures = JSONObject(URL("https://api.jikan.moe/v3/anime/$id/pictures").readText()).getJSONArray("pictures")
-                                    for (i in 0 until pictures.length()) {
-                                        galleryList.add(VerticalImageItem(pictures.getJSONObject(i).getString("large")))
+                            try {
+                                retry(3, 1000L) {
+                                    withTimeout(5000) {
+                                        val pictures = JSONObject(URL("https://api.jikan.moe/v3/anime/$id/pictures").readText()).getJSONArray("pictures")
+                                        for (i in 0 until pictures.length()) {
+                                            galleryList.add(
+                                                VerticalImageItem(
+                                                    pictures.getJSONObject(
+                                                        i
+                                                    ).getString("large")
+                                                )
+                                            )
+                                        }
                                     }
                                 }
+                            }catch (e:Exception){
+                                e.printStackTrace()
                             }
-
-                        }catch (e:Exception){
-                            e.printStackTrace()
-                        }
-                        if (galleryList.isNotEmpty()){
-                            sections.add(ExtraSection("Galería", GalleryData(galleryList)))
-                        }
+                            if (galleryList.isNotEmpty()){
+                                emit(GalleryData(galleryList))
+                            } else {
+                                emit(null)
+                            }
+                        }))
                     }
                     if (isMusicEnabled) {
-                        try {
-                            runBlocking(Dispatchers.IO) {
-                                withTimeout(2000) {
-                                    val music = JSONObject(URL("https://anusic-api.herokuapp.com/api/v1/anime/$id").readText()).getJSONObject("data").getJSONArray("collections")
+                        sections.add(ExtraSection("Música", flow {
+                            try {
+                                withTimeout(5000) {
+                                    val music =
+                                        JSONObject(URL("https://anusic-api.herokuapp.com/api/v1/anime/$id").readText()).getJSONObject(
+                                            "data"
+                                        ).getJSONArray("collections")
                                     val musicList = mutableListOf<Music>()
                                     for (a in 0 until music.length()) {
-                                        val themes = music.getJSONObject(a).getJSONArray("themes")
+                                        val themes =
+                                            music.getJSONObject(a).getJSONArray("themes")
                                         for (b in 0 until themes.length()) {
                                             val theme = themes.getJSONObject(b)
                                             val name = theme.getString("name")
                                             val type = theme.getInt("type")
                                             val typeName = if (type == 0) "OP" else "ED"
-                                            val link = theme.getJSONArray("sources").getJSONObject(0).getString("link")
+                                            val link = theme.getJSONArray("sources")
+                                                .getJSONObject(0).getString("link")
                                             musicList.add(Music(name, link, typeName))
                                         }
                                     }
                                     if (musicList.isNotEmpty()) {
-                                        sections.add(ExtraSection("Música", MusicData(musicList)))
+                                        emit(MusicData(musicList))
+                                    } else {
+                                        emit(null)
                                     }
                                 }
+                            }catch (e:Exception) {
+                                emit(null)
                             }
-
-                        }catch (e:Exception) {
-                            e.printStackTrace()
-                        }
+                        }))
                     }
                 }
             } catch (e: Exception) {
@@ -493,6 +525,22 @@ class TestAnimeInfo : InfoModel() {
                     }
                 ).flow)
             }
+        }
+    }
+
+    companion object {
+        suspend fun <T> retry(numOfRetries: Int, delay: Long = 0, block: suspend () -> T): T {
+            var throwable: Throwable? = null
+            (1..numOfRetries).forEach { _ ->
+                try {
+                    return block()
+                } catch (e: Throwable) {
+                    e.printStackTrace()
+                    throwable = e
+                    delay(delay)
+                }
+            }
+            throw throwable!!
         }
     }
 

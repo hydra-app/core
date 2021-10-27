@@ -267,7 +267,7 @@ class Repository : HeadRepository() {
                     list.forEach { item ->
                         try {
                             val doc =
-                                Jsoup.connect(item.seriesLink).headers(bypassModel.asMap(NetworkRepository.defaultCookies)).get()
+                                Jsoup.connect(item.infoLink).headers(bypassModel.asMap(NetworkRepository.defaultCookies)).get()
                             val html = doc.html()
                             val info =
                                 "anime_info = \\[(.*)\\];".toRegex()
@@ -312,13 +312,14 @@ class Repository : HeadRepository() {
             )
         }
 
+
     override suspend fun analyticsRecommended(
         bypassModel: BypassModel,
         events: List<Analytics.Event>
-    ): List<DirectoryModel> {
+    ): Flow<List<DirectoryModel>> = flow {
         val filter = FilterResult(FilterData("genre","",FilterData.Type.SINGLE, emptyList()), events.take(3).map { FilterItem(it.payload.orEmpty(),"") })
         val order = FilterResult(FilterData("order","",FilterData.Type.SINGLE, emptyList()), listOf(FilterItem("rating","")))
-        return NetworkRepository.getDirectoryPage(1, bypassModel, FilterRequest(listOf(filter, order)))
+        emit(NetworkRepository.getDirectoryPage(1, bypassModel, FilterRequest(listOf(filter, order))))
     }
 
     private fun createSection(

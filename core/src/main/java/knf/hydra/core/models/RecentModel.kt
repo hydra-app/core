@@ -3,19 +3,21 @@ package knf.hydra.core.models
 import androidx.recyclerview.widget.DiffUtil
 import androidx.room.Ignore
 import knf.hydra.core.models.data.Category
+import knf.hydra.core.models.data.LayoutType
 import java.text.DecimalFormat
 
 abstract class RecentModel{
     abstract var id: Int
-    abstract var seriesId: Int
+    abstract var infoId: Int
     abstract var name: String
     abstract var type: String
     abstract var chapter: Double
-    abstract var episodeLink: String
-    abstract var seriesLink: String
+    abstract var link: String
+    abstract var infoLink: String
     abstract var category: Category
-    open var seriesImage: String? = null
-    open var chapterImage: String? = null
+    open var infoImage: String? = null
+    open var chapterThumbnail: String? = null
+    open var infoLayoutType: LayoutType = if (category in listOf(Category.PORN, Category.MOVIE)) LayoutType.SINGLE else LayoutType.MULTIPLE
     @Ignore
     var isChapterSeen: Boolean = false
     @Ignore
