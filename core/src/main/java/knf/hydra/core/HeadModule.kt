@@ -9,6 +9,12 @@ import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.reflect.KClass
 
+
+/**
+ * Head module
+ *
+ * @constructor Create empty Head module
+ */
 abstract class HeadModule {
     private var internalContext: Context? = null
     val coreVersion = 1

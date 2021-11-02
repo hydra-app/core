@@ -3,10 +3,7 @@ package knf.hydra.core.tools.web
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.webkit.CookieManager
-import android.webkit.JavascriptInterface
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import androidx.annotation.Keep
 
 class WebJS(context: Context) {
@@ -26,10 +23,11 @@ class WebJS(context: Context) {
         val handler = Handler(Looper.getMainLooper())
         val runnable = {
             webView.loadUrl("javascript:myInterface.returnResult(eval('try{$js}catch(e){e}'));")
+            reset()
         }
         webView.settings.userAgentString = userAgent
         webView.settings.blockNetworkImage = true
-        webView.webViewClient = object : WebViewClient(){
+        webView.webViewClient = object : DefaultClient(){
             override fun onPageFinished(view: WebView?, url: String?) {
                 handler.removeCallbacks(runnable)
                 handler.postDelayed(runnable,timeout)
@@ -42,10 +40,11 @@ class WebJS(context: Context) {
         val handler = Handler(Looper.getMainLooper())
         val callback = {
             cookies(CookieManager.getInstance().getCookie(link))
+            reset()
         }
         webView.settings.userAgentString = userAgent
         webView.settings.blockNetworkImage = true
-        webView.webViewClient = object : WebViewClient(){
+        webView.webViewClient = object : DefaultClient(){
             override fun onPageFinished(view: WebView?, url: String?) {
                 handler.removeCallbacks(callback)
                 handler.postDelayed(callback,timeout)
@@ -56,6 +55,17 @@ class WebJS(context: Context) {
 
     fun evalJs(code: String, result: (String) -> Unit) {
         webView.evaluateJavascript(code, result)
+    }
+
+    private fun reset() {
+        webView.webViewClient = object : DefaultClient() {}
+        webView.loadUrl("about:blank")
+    }
+
+    private abstract class DefaultClient: WebViewClient() {
+        override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean = false
+
+        override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean = false
     }
 
     @Keep
