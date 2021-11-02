@@ -38,6 +38,10 @@ dokkaHtml.configure {
         named("main") {
             includes.from("README.md")
             noAndroidSdkLink.set(false)
+            sourceLink {
+                remoteUrl.set(java.net.URL("https://github.com/jordyamc/hydra_core/tree/master/core/src/main/java"))
+                remoteLineSuffix.set("#L")
+            }
         }
     }
 }
@@ -87,10 +91,13 @@ artifacts {
     archives dokkaHtmlJar
 }
 
-group = 'knf.hydra'
-
 afterEvaluate {
     publishing {
+        repositories {
+            maven {
+                url = uri("$buildDir/repository")
+            }
+        }
         publications {
             release(MavenPublication) {
                 from components.release
