@@ -87,6 +87,8 @@ artifacts {
     archives dokkaHtmlJar
 }
 
+group = 'knf.hydra'
+
 afterEvaluate {
     publishing {
         publications {
