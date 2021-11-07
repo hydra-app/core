@@ -648,8 +648,6 @@ $dokka.location:knf.hydra.core/HeadRepository/sourceData/#kotlin.String#knf.hydr
 $dokka.location:knf.hydra.core/HeadRepository/sourceDataType/#kotlin.String#knf.hydra.core.models.BypassModel/PointingToDeclaration/core/knf.hydra.core/-head-repository/source-data-type.html
 $dokka.location:knf.hydra.core/HeadRepository/tagPager/#knf.hydra.core.models.BypassModel#knf.hydra.core.models.InfoModel.Tag/PointingToDeclaration/core/knf.hydra.core/-head-repository/tag-pager.html
 $dokka.location:knf.hydra.core/HeadRepository/userProfile/#knf.hydra.core.models.BypassModel#knf.hydra.core.models.InfoModel.UserData/PointingToDeclaration/core/knf.hydra.core/-head-repository/user-profile.html
-$dokka.location:knf.hydra.core/VisibilityActivity///PointingToDeclaration/core/knf.hydra.core/-visibility-activity/index.html
-$dokka.location:knf.hydra.core/VisibilityActivity/VisibilityActivity/#/PointingToDeclaration/core/knf.hydra.core/-visibility-activity/-visibility-activity.html
 knf.hydra.core
 knf.hydra.core.main
 knf.hydra.core.models

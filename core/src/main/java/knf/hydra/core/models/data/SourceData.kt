@@ -4,6 +4,18 @@ sealed class SourceData(val items: List<SourceItem>){
     enum class Type{ VIDEO, GALLERY }
 }
 
+/**
+ * Source item
+ *
+ * @property name
+ * @property link
+ * @property type
+ * @property quality
+ * @property needDecoder Specify if this link needs to be processed before playing or it can be played instantly, default is **true**.
+ * @property canDownload
+ * @property payload
+ * @constructor Create empty Source item
+ */
 data class SourceItem(val name: String, val link: String, val type: String? = null, val quality: Quality? = null, val needDecoder: Boolean = true, val canDownload: Boolean = true, val payload: String? = null){
     enum class Quality{ HIGH_4K, HIGH, MEDIUM, LOW, MULTIPLE }
 }
