@@ -22,4 +22,3 @@
 
 -keep class * implements pl.droidsonroids.jspoon.ElementConverter
 -keep class * extends knf.hydra.core.**
--keep class knf.hydra.core.VisibilityActivity

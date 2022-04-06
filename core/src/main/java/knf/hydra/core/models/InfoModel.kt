@@ -5,104 +5,144 @@ import androidx.room.Ignore
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import knf.hydra.core.HeadRepository
 import knf.hydra.core.models.data.*
 import kotlinx.parcelize.Parcelize
-import org.json.JSONObject
 
-
+/** Represents the info of a directory item */
 abstract class InfoModel {
+    /** Unique id for the item, for example the hash of the [link] */
     abstract var id: Int
+
+    /** Item name */
     abstract var name: String
+
+    /** Item info link */
     abstract var link: String
+
+    /** Content category */
     abstract var category: Category
 
+    /** @suppress */
     fun getMin() = InfoModelMin(id, name, link, category, layoutType, coverImage)
+
+    /** @suppress */
     fun isValid() = name.isNotBlank() && link.isNotBlank()
 
     @Ignore
+    /**
+     * Layout type to be used when loading the info, [LayoutType.SINGLE] for single items like [Category.MOVIE], or [LayoutType.MULTIPLE]
+     * for multiple items like [Category.SERIES], by default the system uses the [category] to decide wich one to use
+     */
     open var layoutType: LayoutType = if (category in listOf(Category.PORN, Category.MOVIE)) LayoutType.SINGLE else LayoutType.MULTIPLE
 
     @Ignore
-    open var chaptersData: ChaptersData? = null
+    /** Data representing the content of this item */
+    open var contentData: ContentData? = null
 
     @Ignore
+    /** Optional cover image for this item */
     open var coverImage: String? = null
 
     @Ignore
-    open var userData: UserData? = null
+    /** Optional profile data to be shown */
+    open var profileData: ProfileData? = null
 
     @Ignore
+    /** Optional description for the item */
     open var description: String? = null
 
     @Ignore
+    /** Optional item type */
     open var type: String? = null
 
     @Ignore
+    /** Optional item state */
     open var state: StateData? = null
 
     @Ignore
+    /** Optional item genres */
     open var genres: List<Tag>? = null
 
     @Ignore
+    /** Optional item tags */
     open var tags: List<Tag>? = null
 
     @Ignore
+    /** Optional related items */
     open var related: List<Related>? = null
 
     @Ignore
+    /** Optional ranking data */
     open var ranking: RankingData? = null
 
     @Ignore
+    /** Optional extra sections */
     open var extraSections: List<ExtraSection> = emptyList()
 
+    /**
+     * Represents a tag
+     *
+     * @property name Tag name
+     * @property image Optional tag image
+     * @property payload Optional payload
+     * @property clickAction Optional click action
+     */
     data class Tag(
         val name: String,
         val image: String? = null,
         val payload: String? = null,
-        val tagListEnabled: Boolean = false
-    ) {
-        fun toJson(): String = JSONObject().apply {
-            put("name", name)
-            put("image", image.orEmpty())
-            put("payload", payload.orEmpty())
-            put("tagListEnabled", tagListEnabled)
-        }.toString()
+        val clickAction: ClickAction? = null
+    )
 
-        companion object{
-            fun fromJson(json: String): Tag {
-                val decoded = JSONObject(json)
-                return Tag(
-                    decoded.getString("name"),
-                    decoded.getString("image").ifBlank { null },
-                    decoded.getString("payload").ifBlank { null },
-                    decoded.getBoolean("tagListEnabled")
-                )
-            }
-        }
-
-        sealed class ClickAction{
-            class Info(val infoLink: String): ClickAction()
-            class Web(val link: String): ClickAction()
-            class DirectoryList(val title: String, val payload: String): ClickAction()
-            class Clipboard(val text: String): ClickAction()
-        }
-    }
-
+    /** Represents a related item */
     abstract class Related {
+        /** Unique id for the item, for example the hash of the [link] */
         abstract var id: Int
+
+        /** Item name */
         abstract var name: String
+
+        /** Optional info link used to open the [Info page][HeadRepository.infoPage] */
         open var link: String? = null
+
+        /** Optional related item image */
         open var image: String? = null
+
+        /** Optional relation subtext*/
         open var relation: String? = null
+
+        /** Optional ranking data */
         open var ranking: RankingData? = null
     }
 
+    /**
+     * Represents a profile data
+     *
+     * @property name Profile name
+     * @property link Profile link
+     * @property image Profile image
+     * @property subText Profile subtext
+     */
     @Parcelize
-    data class UserData(val name: String? = null, val link: String? = null, val image: String? = null, val subText: String? = null): Parcelable {
+    data class ProfileData(
+        val name: String? = null,
+        val link: String? = null,
+        val image: String? = null,
+        val subText: String? = null
+    ) : Parcelable {
+        /** @suppress */
         fun isValid(): Boolean = !name.isNullOrBlank() && (link == null || link.isNotBlank())
     }
 
+    /**
+     * Represents the item state
+     *
+     * @property state Item state
+     * @property emissionDay Optional release day
+     */
     data class StateData(val state: Type, val emissionDay: EmissionDay? = null) {
+        /** Day of emission */
         enum class EmissionDay(val value: Int) {
             SUNDAY(1),
             MONDAY(2),
@@ -114,6 +154,7 @@ abstract class InfoModel {
             UNKNOWN(0);
 
             companion object {
+                /** @suppress */
                 fun fromValue(value: Int) =
                     when (value) {
                         1 -> SUNDAY
@@ -128,6 +169,7 @@ abstract class InfoModel {
             }
         }
 
+        /** State type */
         enum class Type(val value: Int) {
             EMISSION(0), COMPLETED(1), HIATUS(2), UNKNOWN(3);
 
@@ -137,6 +179,7 @@ abstract class InfoModel {
         }
     }
 
+    /** @suppress */
     class Converters {
         @TypeConverter
         fun relatedToString(list: List<Related>?): String {

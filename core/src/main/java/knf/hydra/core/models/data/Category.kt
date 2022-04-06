@@ -1,5 +1,8 @@
 package knf.hydra.core.models.data
 
+/**
+ * Categories for items.
+ */
 enum class Category(val value: Int){
     UNKNOWN(-1),
     ANIME(0),

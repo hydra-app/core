@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 
 -keep public class * extends knf.hydra.core.*
+-keep class knf.hydra.core.VisibilityActivity

@@ -1,10 +1,10 @@
 package knf.hydra.core.tools
 
 import androidx.room.TypeConverter
-import com.dhh.gson.ktx.GSON
-import com.dhh.gson.ktx.toJson
 import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.data.ExtraData
+import knf.tools.gsonktx.GSON
+import knf.tools.gsonktx.toJson
 
 class RoomTypeConverters {
     @TypeConverter

@@ -4,7 +4,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import knf.hydra.core.HeadRepository
-import knf.hydra.core.main.MainDbBridge
 import knf.hydra.core.models.BypassModel
 import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.RecentModel
@@ -15,13 +14,11 @@ import kotlinx.coroutines.flow.flow
 
 class Repository : HeadRepository(){
 
-    override fun infoPage(link: String, bypassModel: BypassModel, bridge: MainDbBridge): Flow<InfoModel?> {
+    override fun infoPage(link: String, bypassModel: BypassModel): Flow<InfoModel?> {
         return flow {
-
+            emit(null)
         }
     }
-
-    override suspend fun sourceDataType(link: String, bypassModel: BypassModel): SourceData.Type = SourceData.Type.VIDEO
 
     override fun sourceData(link: String, bypassModel: BypassModel): Flow<SourceData?> {
         return flow { emit(null) }

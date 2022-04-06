@@ -1,6 +1,6 @@
 package knf.hydra.module.test.models
 
-import knf.hydra.core.models.SearchModel
+import knf.hydra.core.models.DirectoryModel
 import knf.hydra.core.models.data.Category
 import knf.hydra.core.models.data.LayoutType
 import knf.hydra.core.models.data.RankingData
@@ -8,7 +8,7 @@ import org.jsoup.nodes.Element
 import pl.droidsonroids.jspoon.ElementConverter
 import pl.droidsonroids.jspoon.annotation.Selector
 
-class TestSearchModel: SearchModel() {
+class TestSearchModel: DirectoryModel() {
     @Selector("img", attr = "src", regex = "/(\\d+)\\.")
     override var id: Int = 0
     @Selector("h3.Title")

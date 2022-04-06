@@ -4,7 +4,6 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import knf.hydra.core.HeadRepository
-import knf.hydra.core.main.MainDbBridge
 import knf.hydra.core.models.*
 import knf.hydra.core.models.analytics.Analytics
 import knf.hydra.core.models.data.*
@@ -38,12 +37,11 @@ class Repository : HeadRepository() {
 
     override fun infoPage(
         link: String,
-        bypassModel: BypassModel,
-        bridge: MainDbBridge
+        bypassModel: BypassModel
     ): Flow<InfoModel?> {
         return flow {
             emit(withContext(Dispatchers.IO) {
-                NetworkRepository.getInfo(link, bypassModel, bridge)
+                NetworkRepository.getInfo(link, bypassModel)
             })
         }
     }
@@ -68,9 +66,6 @@ class Repository : HeadRepository() {
         )
     }
 
-    override suspend fun sourceDataType(link: String, bypassModel: BypassModel): SourceData.Type =
-        SourceData.Type.VIDEO
-
     override fun sourceData(link: String, bypassModel: BypassModel): Flow<SourceData?> {
         return flow {
             val doc = Jsoup.connect(link).headers(bypassModel.asMap(NetworkRepository.defaultCookies)).get()
@@ -88,7 +83,7 @@ class Repository : HeadRepository() {
             }
             val jsonString = "videos = (\\{.*\\});".toRegex().find(data)?.destructured?.component1()
             if (jsonString != null) {
-                val items = mutableListOf<SourceItem>()
+                val items = mutableListOf<VideoItem>()
                 val json = JSONObject(jsonString)
                 val downloads = doc.select(".RTbl.Dwnl")
                 listOf("SUB", "LAT").forEach { lang ->
@@ -97,8 +92,7 @@ class Repository : HeadRepository() {
                         for (sub in 0 until array.length()) {
                             val subItem = array.getJSONObject(sub)
                             val sLink = subItem.getString("code")
-                            val canLinkDownload =
-                                !sLink.contains("mega.nz") && !sLink.contains("hqq.tv")
+                            val canLinkDownload = !sLink.containsAny("mega.nz", "hqq.tv")
                             val videoQuality = when {
                                 sLink.containsAny(
                                     "embedsito.com",
@@ -107,7 +101,7 @@ class Repository : HeadRepository() {
                                 else -> SourceItem.Quality.MEDIUM
                             }
                             items.add(
-                                SourceItem(
+                                VideoItem(
                                     subItem.getString("title"),
                                     sLink,
                                     type = lang,
@@ -129,13 +123,9 @@ class Repository : HeadRepository() {
                         }
                         when {
                             dLink.contains("mega.nz") -> {
-                                if (items.find {
-                                        it.link.substringAfterLast("#") == dLink.substringAfterLast(
-                                            "#"
-                                        )
-                                    } == null)
+                                if (items.find { it.link.substringAfterLast("#") == dLink.substringAfterLast("#") } == null)
                                     items.add(
-                                        SourceItem(
+                                        VideoItem(
                                             name,
                                             dLink,
                                             type = lang,
@@ -145,13 +135,9 @@ class Repository : HeadRepository() {
                                     )
                             }
                             else -> {
-                                if (items.find {
-                                        it.link.substringAfterLast("/") == dLink.substringAfterLast(
-                                            "/"
-                                        )
-                                    } == null)
+                                if (items.find { it.link.substringAfterLast("/") == dLink.substringAfterLast("/") } == null)
                                     items.add(
-                                        SourceItem(
+                                        VideoItem(
                                             name,
                                             dLink,
                                             type = lang,
@@ -214,7 +200,7 @@ class Repository : HeadRepository() {
         query: String?,
         bypassModel: BypassModel,
         filters: FilterRequest?
-    ): Flow<PagingData<SearchModel>> {
+    ): Flow<PagingData<DirectoryModel>> {
         return Pager(
             config = PagingConfig(
                 pageSize = 24,
@@ -226,29 +212,32 @@ class Repository : HeadRepository() {
 
     override suspend fun calendarList(bypassModel: BypassModel, day: Int): Flow<CalendarList> =
         flow {
-            if (DB.isActive() && DB.INSTANCE.calendarDao().countAll() > 0) {
-                val cachedMap = if (day != -1) {
-                    mapOf(day to DB.INSTANCE.calendarDao().getByDay(day))
-                } else {
-                    mapOf<Int, List<DirectoryModel>>(
-                        Calendar.SUNDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.SUNDAY),
-                        Calendar.MONDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.MONDAY),
-                        Calendar.TUESDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.TUESDAY),
-                        Calendar.WEDNESDAY to DB.INSTANCE.calendarDao()
-                            .getByDay(Calendar.WEDNESDAY),
-                        Calendar.THURSDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.THURSDAY),
-                        Calendar.FRIDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.FRIDAY),
-                        Calendar.SATURDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.SATURDAY)
+            try {
+                if (DB.isActive() && DB.INSTANCE.calendarDao().countAll() > 0) {
+                    val cachedMap = if (day != -1) {
+                        mapOf(day to DB.INSTANCE.calendarDao().getByDay(day))
+                    } else {
+                        mapOf<Int, List<DirectoryModel>>(
+                            Calendar.SUNDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.SUNDAY),
+                            Calendar.MONDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.MONDAY),
+                            Calendar.TUESDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.TUESDAY),
+                            Calendar.WEDNESDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.WEDNESDAY),
+                            Calendar.THURSDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.THURSDAY),
+                            Calendar.FRIDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.FRIDAY),
+                            Calendar.SATURDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.SATURDAY)
+                        )
+                    }
+                    emit(
+                        CalendarList(cachedMap.mapValues {
+                            Pager(
+                                config = PagingConfig(24),
+                                pagingSourceFactory = { CalendarSource(it.value) }
+                            ).flow
+                        })
                     )
                 }
-                emit(
-                    CalendarList(cachedMap.mapValues {
-                        Pager(
-                            config = PagingConfig(24),
-                            pagingSourceFactory = { CalendarSource(it.value) }
-                        ).flow
-                    })
-                )
+            }catch (e:Exception) {
+                e.printStackTrace()
             }
             val daysMap = mapOf<Int, MutableList<TestDirectoryModel>>(
                 Calendar.SUNDAY to mutableListOf(),
@@ -357,11 +346,8 @@ class Repository : HeadRepository() {
         }
     }
 
-    override suspend fun tagPager(
-        bypassModel: BypassModel,
-        tag: InfoModel.Tag
-    ): Flow<PagingData<DirectoryModel>> {
-        val filter = FilterResult(FilterData("genre","",FilterData.Type.SINGLE, emptyList()), listOf(FilterItem(tag.payload.orEmpty(),"")))
+    override suspend fun extraDirectoryPager(bypassModel: BypassModel, request: ExtraDirectoryRequest): Flow<PagingData<DirectoryModel>> {
+        val filter = FilterResult(FilterData("genre","",FilterData.Type.SINGLE, emptyList()), listOf(FilterItem(request.payload.orEmpty(),"")))
         val order = FilterResult(FilterData("order","",FilterData.Type.SINGLE, emptyList()), listOf(FilterItem("title","")))
         return Pager(
             config = PagingConfig(

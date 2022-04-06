@@ -1,7 +1,6 @@
 package knf.hydra.module.test.db
 
 import androidx.room.TypeConverter
-import androidx.room.TypeConverters
 
 class RoomTypeConverters {
     @TypeConverter

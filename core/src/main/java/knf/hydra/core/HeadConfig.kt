@@ -72,6 +72,11 @@ abstract class HeadConfig /** @suppress */ constructor() {
     var isNotifyRecentsEnabled = false
 
     /**
+     * Enable cast feature if your module uses direct video links.
+     */
+    var isCastEnabled = false
+
+    /**
      * Enable the review feature in the information page, you can decide to request a star based
      * review, a written review, or both.
      *
@@ -109,6 +114,8 @@ abstract class HeadConfig /** @suppress */ constructor() {
     /**
      * Change the behavior and look of the Cloudflare bypass system, default is [BypassBehavior.Default].
      *
+     * You can disable the bypass for your module using [BypassBehavior.Disabled].
+     *
      * @see BypassBehavior
      */
     var bypassBehavior: BypassBehavior = BypassBehavior.Default()
@@ -122,7 +129,7 @@ abstract class HeadConfig /** @suppress */ constructor() {
      *
      * @see Analytics
      */
-    var analyticsOptions: Analytics.Options? = null
+    var analyticsSettings: Analytics.Settings? = null
 
     /**
      * Specify if the directory style needs to be [VERTICAL][DirectoryModel.Orientation.VERTICAL] for portraits,

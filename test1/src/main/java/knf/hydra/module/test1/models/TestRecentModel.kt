@@ -12,6 +12,6 @@ class TestRecentModel: RecentModel() {
     override var infoLink: String = "test link"
     override var name: String = "Test item 1"
     override var type: String = "Chapter %s"
-    override var chapter: Double = 0.0
+    override var number: Double = 0.0
     override var category: Category = Category.UNKNOWN
 }

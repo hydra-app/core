@@ -4,9 +4,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import knf.hydra.core.models.ChapterMin
+import knf.hydra.core.models.ContentItemMin
 import knf.hydra.core.models.InfoModelMin
 
+/** @suppress */
 @Entity
 data class DownloadInfo(
     @PrimaryKey
@@ -15,18 +16,22 @@ data class DownloadInfo(
     val url: String,
     @Embedded(prefix = "info_")
     val info: InfoModelMin,
-    @Embedded(prefix = "chapter_")
-    val chapter: ChapterMin,
+    @Embedded(prefix = "content_")
+    val contentItem: ContentItemMin,
     val headers: Map<String, String>?,
     var progress: Int = 0,
     var state: Int = STATE_PENDING
 ) {
+    /** @suppress */
     data class Light(val id: Int, val progress: Int, val state: Int)
     companion object {
+        /** @suppress */
         const val STATE_PENDING = 0
+        /** @suppress */
         const val STATE_DOWNLOADING = 1
+        /** @suppress */
         const val STATE_COMPLETED = 2
-
+        /** @suppress */
         val DIFF = object : DiffUtil.ItemCallback<DownloadInfo>(){
             override fun areItemsTheSame(oldItem: DownloadInfo, newItem: DownloadInfo): Boolean {
                 return oldItem.id == newItem.id
@@ -39,20 +44,21 @@ data class DownloadInfo(
             override fun getChangePayload(oldItem: DownloadInfo, newItem: DownloadInfo): Any = true
         }
 
-        fun fromChapter(
+        /** @suppress */
+        fun fromContent(
             module: String,
             path: String,
             info: InfoModelMin,
-            chapter: ChapterMin,
+            contentItem: ContentItemMin,
             link: String,
             headers: Map<String, String>?
         ): DownloadInfo {
             return DownloadInfo(
-                "$module:${chapter.id}:$path".hashCode(),
+                "$module:${contentItem.id}:$path".hashCode(),
                 module,
                 link,
                 info,
-                chapter,
+                contentItem,
                 headers
             )
         }

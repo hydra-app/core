@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import knf.hydra.core.main.MainDbBridge
 import knf.hydra.core.models.BypassModel
-import knf.hydra.core.models.RecentModel
 import knf.hydra.core.models.data.GallerySource
 import knf.hydra.core.models.data.VideoSource
+import knf.hydra.core.models.data.WebSource
 import knf.hydra.module.test.extras.Repository
 import knf.tools.bypass.startBypass
 import kotlinx.coroutines.Dispatchers
@@ -40,25 +39,15 @@ class MainTest: AppCompatActivity() {
                                     Log.e("Source", it.link)
                                 }
                             }
+                            is WebSource -> {
+                                sourceData.items.forEach {
+                                    Log.e("Source", it.link)
+                                }
+                            }
                         }
                     }
                 }
             }
-        }
-    }
-
-    class EmptyDB: MainDbBridge(){
-
-        override fun getLastRecent(module: String): RecentModel.Notify? {
-            return null
-        }
-
-        override fun saveLastRecent(model: RecentModel.Notify) {
-
-        }
-
-        override fun isChapterSeen(id: Int, module: String): Boolean {
-            return false
         }
     }
 }

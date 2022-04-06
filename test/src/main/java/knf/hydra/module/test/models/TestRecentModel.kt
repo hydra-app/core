@@ -22,7 +22,7 @@ class TestRecentModel : RecentModel() {
     override var infoImage: String? = null
 
     @Selector(":root", converter = ChapterImageExtractor::class)
-    override var chapterThumbnail: String? = null
+    override var contentThumbnail: String? = null
 
     @Selector("a", attr = "abs:href")
     override var link: String = ""
@@ -34,7 +34,7 @@ class TestRecentModel : RecentModel() {
     override var name: String = ""
 
     @Selector("span.Capi", converter = ChapterExtractor::class)
-    override var chapter: Double = 0.0
+    override var number: Double = 0.0
 
     override var category: Category = Category.ANIME
 

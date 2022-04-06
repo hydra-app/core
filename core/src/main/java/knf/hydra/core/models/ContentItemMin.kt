@@ -3,8 +3,9 @@ package knf.hydra.core.models
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
+/** @suppress */
 @Parcelize
-data class ChapterMin(
+data class ContentItemMin(
     var id: Int = 0,
     var name: String = "",
     var number: Double = 0.0,

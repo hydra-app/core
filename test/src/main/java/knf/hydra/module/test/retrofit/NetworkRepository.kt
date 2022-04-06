@@ -1,6 +1,5 @@
 package knf.hydra.module.test.retrofit
 
-import knf.hydra.core.main.MainDbBridge
 import knf.hydra.core.models.BypassModel
 import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.data.FilterRequest
@@ -18,7 +17,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 object NetworkRepository {
     val defaultCookies = mapOf("device" to "Computer")
     lateinit var currentBypass: BypassModel
-    lateinit var currentDbBridge: MainDbBridge
 
     private val factory by lazy {
         Retrofit.Builder()
@@ -34,9 +32,8 @@ object NetworkRepository {
         return factory.getRecents(bypassModel.asMap(defaultCookies)).execute().body()?.list?.filter { it.infoId != -1 }?: emptyList()
     }
 
-    fun getInfo(url: String, bypassModel: BypassModel, bridge: MainDbBridge): InfoModel?{
+    fun getInfo(url: String, bypassModel: BypassModel): InfoModel?{
         currentBypass = bypassModel
-        currentDbBridge = bridge
         return try {
             factory.getInfo(url,bypassModel.asMap(defaultCookies)).execute().body()
         }catch (e:Exception){

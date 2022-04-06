@@ -6,6 +6,7 @@ import knf.hydra.core.models.data.LayoutType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
+/** @suppress */
 data class InfoModelMin(
     var id: Int = 0,
     var name: String = "",

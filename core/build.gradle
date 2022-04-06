@@ -8,11 +8,11 @@ plugins {
 }
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 32
 
     defaultConfig {
         minSdkVersion 21
-        targetSdkVersion 31
+        targetSdkVersion 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -49,15 +49,16 @@ dokkaHtml.configure {
 dependencies {
     //dokkaHtmlPlugin 'org.jetbrains.dokka:kotlin-as-java-plugin:1.5.30'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    api 'androidx.paging:paging-runtime-ktx:3.0.1'
-    api 'androidx.room:room-runtime:2.3.0'
-    api 'androidx.room:room-ktx:2.3.0'
-    kapt 'androidx.room:room-compiler:2.3.0'
-    api 'androidx.preference:preference-ktx:1.1.1'
+    api 'com.github.jordyamc:Cloudflare-Bypasser:1.0.17'
+    api 'androidx.paging:paging-runtime-ktx:3.1.1'
+    api 'androidx.room:room-runtime:2.4.2'
+    api 'androidx.room:room-ktx:2.4.2'
+    kapt 'androidx.room:room-compiler:2.4.2'
+    api 'androidx.preference:preference-ktx:1.2.0'
     api 'androidx.annotation:annotation:1.3.0'
-    api 'com.google.code.gson:gson:2.8.6'
-    api 'com.dhh:gson-ktx:1.0.3'
-    api 'de.prosiebensat1digital.oasis-jsbridge-android:oasis-jsbridge-quickjs:0.14.2'
+    api 'com.google.code.gson:gson:2.8.9'
+    api 'com.github.jordyamc:Gson-ktx:1.0'
+    api 'de.prosiebensat1digital.oasis-jsbridge-android:oasis-jsbridge-quickjs:0.14.5'
 }
 
 task dokkaJavadocJar(type: Jar) {

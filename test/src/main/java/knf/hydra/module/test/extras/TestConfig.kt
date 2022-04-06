@@ -25,7 +25,7 @@ class TestConfig : HeadConfig() {
             useDialog = true,
             dialogStyle = DialogStyle.CLASSIC
         )
-        analyticsOptions = Analytics.defaultOptions(Analytics.Type.TAG)
+        analyticsSettings = Analytics.defaultSettings(Analytics.Type.TAG)
         customDecoders = listOf(
             GoCDN()
         )

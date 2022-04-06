@@ -3,9 +3,6 @@ package knf.hydra.core
 import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import knf.hydra.core.tools.web.WebTools
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
 import kotlin.reflect.KClass
 
@@ -35,6 +32,7 @@ import kotlin.reflect.KClass
  * use this name internally, instead it will use the name provided in the [moduleName] implementation.
  */
 abstract class HeadModule /** @suppress */ constructor(){
+    /** @suppress */
     private var internalContext: Context? = null
 
     /** The module version code, usually **BuildConfig.VERSION_CODE** for easier implementation */
@@ -78,7 +76,6 @@ abstract class HeadModule /** @suppress */ constructor(){
 
     /** @suppress */
     suspend fun initModule(context: Context){
-        withContext(Dispatchers.Main){ WebTools.init(context) }
         internalContext = context
         withTimeoutOrNull(1000){
             try {

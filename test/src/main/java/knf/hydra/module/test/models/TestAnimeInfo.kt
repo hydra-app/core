@@ -4,7 +4,7 @@ import androidx.annotation.Keep
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.*
-import knf.hydra.core.models.ChaptersData
+import knf.hydra.core.models.ContentData
 import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.data.*
 import knf.hydra.core.tools.ModulePreferences
@@ -71,7 +71,7 @@ class TestAnimeInfo : InfoModel() {
 
     @Ignore
     @Selector(":root", converter = ChaptersConverter::class)
-    override var chaptersData: ChaptersData? = null
+    override var contentData: ContentData? = null
 
     @Embedded(prefix = "data_")
     @Selector(":root", converter = ExtraDataConverter::class)
@@ -81,10 +81,11 @@ class TestAnimeInfo : InfoModel() {
     class GenresConverter @Keep constructor() : ElementConverter<List<Tag>> {
         override fun convert(node: Element, selector: Selector): List<Tag> {
             return node.select("a").map {
+                val payload = it.attr("href").substringAfterLast("=")
                 Tag(
                     name = it.text(),
-                    payload = it.attr("href").substringAfterLast("="),
-                    tagListEnabled = true
+                    payload = payload,
+                    clickAction = ClickAction.ExtraDirectory(it.text(), payload)
                 )
             }
         }
@@ -226,7 +227,7 @@ class TestAnimeInfo : InfoModel() {
                         }
                     }
                     if (isStaffEnabled) {
-                        val imageOrNull: (String) -> ImageItem? = {
+                        val mediaOrNull: (String) -> ImageMediaItem? = {
                             if (it.contains("questionmark_23.gif"))
                                 null
                             else
@@ -246,7 +247,7 @@ class TestAnimeInfo : InfoModel() {
                                                 CollectionItem(
                                                     character.getString("name"),
                                                     character.getString("role"),
-                                                    imageOrNull(character.getString("image_url")),
+                                                    mediaOrNull(character.getString("image_url")),
                                                     ClickAction.Web(character.getString("url"))
                                                 )
                                             )
@@ -273,7 +274,7 @@ class TestAnimeInfo : InfoModel() {
                                                     character.getString("name"),
                                                     character.getJSONArray("positions")
                                                         .getString(0),
-                                                    imageOrNull(character.getString("image_url")),
+                                                    mediaOrNull(character.getString("image_url")),
                                                     ClickAction.Web(character.getString("url"))
                                                 )
                                             )
@@ -289,7 +290,7 @@ class TestAnimeInfo : InfoModel() {
                     }
                     if (isGalleryEnabled) {
                         sections.add(ExtraSection("Galería", flow {
-                            val galleryList = mutableListOf<ImageItem>()
+                            val galleryList = mutableListOf<MediaItem>()
                             try {
                                 retry(3, 1000L) {
                                     withTimeout(5000) {
@@ -478,8 +479,8 @@ class TestAnimeInfo : InfoModel() {
     }
 
     @Keep
-    class ChaptersConverter @Keep constructor() : ElementConverter<ChaptersData?> {
-        override fun convert(node: Element, selector: Selector): ChaptersData? {
+    class ChaptersConverter @Keep constructor() : ElementConverter<ContentData?> {
+        override fun convert(node: Element, selector: Selector): ContentData? {
             val isMovie = node.select("span.Type").first().classNames().contains("movie")
             val id = node.select(".Strs.RateIt").attr("data-id")
             val link = node.select("link[rel=canonical]").attr("href")
@@ -493,8 +494,8 @@ class TestAnimeInfo : InfoModel() {
             return if (isMovie) {
                 val chapter = chapList.first()
                 val formatted = DecimalFormat("0.#").format(chapter.toDouble())
-                ChaptersData.Single(
-                    TestChapterModel(
+                ContentData.Single(
+                    TestContentItemModel(
                         id,
                         link,
                         chapLinkBase + formatted,
@@ -506,7 +507,7 @@ class TestAnimeInfo : InfoModel() {
             } else {
                 val disqusVersion =
                     Regex("load\\.(\\w+)\\.js").find(URL("https://https-animeflv-net.disqus.com/embed.js").readText())?.destructured?.component1()
-                ChaptersData.Multiple(Pager(
+                ContentData.Multiple(Pager(
                     config = PagingConfig(
                         pageSize = 10,
                         enablePlaceholders = false
@@ -520,7 +521,7 @@ class TestAnimeInfo : InfoModel() {
                                 chapLinkBase,
                                 thumbLinkBase,
                                 chapList
-                            ), NetworkRepository.currentDbBridge
+                            )
                         )
                     }
                 ).flow)
