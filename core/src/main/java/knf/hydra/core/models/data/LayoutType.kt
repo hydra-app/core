@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 17:34
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 17:33
  */
 
 package knf.hydra.core.models.data
@@ -14,6 +14,7 @@ package knf.hydra.core.models.data
 enum class LayoutType(val value: Int) {
     SINGLE(0), MULTIPLE(1), UNKNOWN(2);
     companion object {
+        /** @suppress */
         fun fromValue(value: Int) = values().find { it.value == value }?: UNKNOWN
     }
 }

@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 17:34
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 17:30
  */
 
 package knf.hydra.core
@@ -37,7 +37,7 @@ import kotlin.reflect.KClass
  * for the users (e.g., Hydra Module: My module name) in case of a manual uninstall, the app won't
  * use this name internally, instead it will use the name provided in the [moduleName] implementation.
  */
-abstract class HeadModule /** @suppress */ constructor(){
+abstract class HeadModule {
     /** @suppress */
     private var internalContext: Context? = null
 
