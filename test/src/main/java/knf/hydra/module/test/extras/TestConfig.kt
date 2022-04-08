@@ -12,7 +12,8 @@ class TestConfig : HeadConfig() {
         isSearchAvailable = true
         isCalendarEnabled = true
         isNotifyRecentsEnabled = true
-        searchBarText = "Search animes"
+        isCastEnabled = true
+        searchBarText = "Buscar animes"
         reviewConfig = ReviewConfig(
             starsState = ReviewConfig.State.REQUIRED,
             commentaryState = ReviewConfig.State.DISABLED,

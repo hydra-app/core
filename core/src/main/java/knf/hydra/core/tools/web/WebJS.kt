@@ -6,6 +6,11 @@ import android.os.Looper
 import android.webkit.*
 import androidx.annotation.Keep
 
+/**
+ * Convenience class to eval js on web pages
+ *
+ * @param context Context to create webview
+ */
 class WebJS(context: Context) {
     private val webView = WebView(context)
     val defaultUserAgent: String = webView.settings.userAgentString

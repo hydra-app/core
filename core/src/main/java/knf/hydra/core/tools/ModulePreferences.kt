@@ -1,20 +1,33 @@
 package knf.hydra.core.tools
 
 import androidx.room.*
+import knf.hydra.core.HeadConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
+/** Object used to access the module preferences defined in [HeadConfig.settingsPage] */
 object ModulePreferences {
+    /** @suppress */
     private lateinit var manager: ModulePreferenceDao
-    lateinit var pkg: String
-
-    fun init(db: ModulePreferenceDB) {
+    /** @suppress */
+    private lateinit var pkg: String
+    /** @suppress */
+    fun init(db: ModulePreferenceDB, currentPkg: String?) {
         manager = db.dao()
+        pkg = currentPkg ?: "dummy"
     }
-
+    /** @suppress */
     private fun createKey(key: String) = "${pkg.replace(".","|")}:$key"
 
+    /**
+     * Get preference or
+     *
+     * @param T
+     * @param key
+     * @param default
+     * @return
+     */
     suspend fun <T> getPreference(key: String, default: T): T = withContext(Dispatchers.IO) { (manager.findPreference(createKey(key))?.value?.toType(default) as? T) ?: default }
     suspend fun <T> getPreferenceOrNull(key: String): T? = withContext(Dispatchers.IO) { manager.findPreference(createKey(key))?.asType() as? T }
     suspend fun <T> getPreferenceOrThrow(key: String): T = withContext(Dispatchers.IO) { manager.findPreference(createKey(key))?.asType() as T }
@@ -79,7 +92,7 @@ object ModulePreferences {
     }
 }
 
-@Database(entities = [ModulePreference::class], version = 1)
+@Database(entities = [ModulePreference::class], version = 1, exportSchema = false)
 abstract class ModulePreferenceDB: RoomDatabase() {
     abstract fun dao(): ModulePreferenceDao
 }

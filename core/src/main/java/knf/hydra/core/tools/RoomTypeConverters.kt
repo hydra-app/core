@@ -6,6 +6,7 @@ import knf.hydra.core.models.data.ExtraData
 import knf.tools.gsonktx.GSON
 import knf.tools.gsonktx.toJson
 
+/** @suppress */
 class RoomTypeConverters {
     @TypeConverter
     fun stringListToString(list: List<String>?): String? = list?.joinToString { ":,:" }
