@@ -164,7 +164,6 @@ $dokka.location:knf.hydra.core.models.data/LoginData///PointingToDeclaration/co
 $dokka.location:knf.hydra.core.models.data/LoginData/LoginData/#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/core/knf.hydra.core.models.data/-login-data/-login-data.html
 $dokka.location:knf.hydra.core.models.data/LoginData/baseUrl/#/PointingToDeclaration/core/knf.hydra.core.models.data/-login-data/base-url.html
 $dokka.location:knf.hydra.core.models.data/LoginData/desiredCookie/#/PointingToDeclaration/core/knf.hydra.core.models.data/-login-data/desired-cookie.html
-$dokka.location:knf.hydra.core.models.data/LoginData/isValid/#/PointingToDeclaration/core/knf.hydra.core.models.data/-login-data/is-valid.html
 $dokka.location:knf.hydra.core.models.data/LoginData/loginUrl/#/PointingToDeclaration/core/knf.hydra.core.models.data/-login-data/login-url.html
 $dokka.location:knf.hydra.core.models.data/MediaItem///PointingToDeclaration/core/knf.hydra.core.models.data/-media-item/index.html
 $dokka.location:knf.hydra.core.models.data/MediaItem/imageLink/#/PointingToDeclaration/core/knf.hydra.core.models.data/-media-item/image-link.html
