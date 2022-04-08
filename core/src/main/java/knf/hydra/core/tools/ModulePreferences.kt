@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 18:05
+ * Created by @UnbarredStream on 08/04/22 18:10
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:58
+ * Last modified 08/04/22 18:08
  */
 
 package knf.hydra.core.tools
@@ -161,8 +161,10 @@ abstract class ModulePreferenceDB: RoomDatabase() {
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
 @Dao
 interface ModulePreferenceDao{
+    /** @suppress */
     @Query("SELECT * FROM modulepreference WHERE `key` = :key")
     fun findPreference(key: String): ModulePreference?
+    /** @suppress */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(preference: ModulePreference)
 }
@@ -171,6 +173,7 @@ interface ModulePreferenceDao{
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
 @Entity
 data class ModulePreference(@PrimaryKey val key: String, val value: String?, val type: Int){
+    /** @suppress */
     fun asType(): Any?{
         return when(type) {
             0 -> value

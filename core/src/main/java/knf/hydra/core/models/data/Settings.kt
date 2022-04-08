@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:10
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 18:08
  */
 
 package knf.hydra.core.models.data
@@ -114,6 +114,7 @@ data class ChoiceItem(val name: String, val value: String)
  */
 @Parcelize
 class LoginData(var baseUrl: String = "", var loginUrl: String = "", var desiredCookie: String = ""): Parcelable{
+    /** @suppress */
     fun isValid() = baseUrl.isNotBlank() && loginUrl.isNotBlank() && desiredCookie.isNotBlank()
 }
 

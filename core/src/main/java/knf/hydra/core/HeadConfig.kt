@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:10
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 18:08
  */
 
 package knf.hydra.core
@@ -29,7 +29,7 @@ import knf.hydra.core.models.data.VideoDecoder
  * }
  * ```
  **/
-abstract class HeadConfig /** @suppress */ constructor() {
+abstract class HeadConfig {
 
     /**
      * Enable the recents feature, this will call [HeadRepository.recentsPager] in order to get the
