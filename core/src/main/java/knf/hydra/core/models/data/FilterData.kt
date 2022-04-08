@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 17:51
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 17:41
  */
 
 package knf.hydra.core.models.data
@@ -15,6 +15,9 @@ package knf.hydra.core.models.data
  * @property items The list of options for the filter
  */
 class FilterData(val key: String, val name: String, val filterType: Type, val items: List<FilterItem>){
+    /**
+     * Filter selection type, [SINGLE]/[MULTIPLE]
+     */
     enum class Type{
         SINGLE,MULTIPLE
     }
