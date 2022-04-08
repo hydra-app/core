@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:05
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 18:02
  */
 
 package knf.hydra.core.models.data
@@ -9,6 +9,7 @@ package knf.hydra.core.models.data
 import knf.hydra.core.HeadConfig
 import knf.hydra.core.HeadRepository
 import knf.hydra.core.models.data.ReviewConfig.State
+import knf.hydra.core.models.data.ReviewConfig.State.*
 
 
 /**
@@ -24,6 +25,7 @@ import knf.hydra.core.models.data.ReviewConfig.State
  * @see HeadConfig.reviewConfig
  */
 data class ReviewConfig(val starsState: State, val commentaryState: State, val singleReview: Boolean, val minRating: Double = 0.0, val commentaryMaxLength: Int = 150){
+    /** State of review section, [DISABLED]/[OPTIONAL]/[REQUIRED] */
     enum class State{
         DISABLED, OPTIONAL, REQUIRED
     }

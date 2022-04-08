@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:05
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 17:56
  */
 
 package knf.hydra.core.models.data
@@ -20,6 +20,7 @@ enum class Category(val value: Int){
     MANGA(6),
     BOOK(7);
     companion object {
+        /** @suppress */
         fun fromValue(value: Int) = values().find { it.value == value }?: UNKNOWN
     }
 }

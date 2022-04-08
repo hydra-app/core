@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:05
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 17:59
  */
 
 package knf.hydra.core.models
@@ -44,6 +44,7 @@ data class BypassModel(@PrimaryKey val baseUrl: String, val userAgent: String, v
     })
 
     companion object{
+        /** Generates an empty model with the given [url] */
         fun generateDefault(url: String) = BypassModel(url, System.getProperty("http.agent")?:"default", "")
     }
 }

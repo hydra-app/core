@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:05
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 18:03
  */
 
 package knf.hydra.core.tools.web
@@ -106,6 +106,7 @@ class WebJS(context: Context) {
     /** @suppress */
     @Keep
     class JSInterface(private val callback: (String) -> Unit){
+        /** @suppress */
         @JavascriptInterface
         fun returnResult(result: String){
             callback(result)

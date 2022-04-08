@@ -50,7 +50,6 @@ $dokka.location:knf.hydra.core.models.data/BypassBehavior/useLastUA/#/PointingTo
 $dokka.location:knf.hydra.core.models.data/Category.ANIME///PointingToDeclaration/core/knf.hydra.core.models.data/-category/-a-n-i-m-e/index.html
 $dokka.location:knf.hydra.core.models.data/Category.BOOK///PointingToDeclaration/core/knf.hydra.core.models.data/-category/-b-o-o-k/index.html
 $dokka.location:knf.hydra.core.models.data/Category.Companion///PointingToDeclaration/core/knf.hydra.core.models.data/-category/-companion/index.html
-$dokka.location:knf.hydra.core.models.data/Category.Companion/fromValue/#kotlin.Int/PointingToDeclaration/core/knf.hydra.core.models.data/-category/-companion/from-value.html
 $dokka.location:knf.hydra.core.models.data/Category.HENTAI///PointingToDeclaration/core/knf.hydra.core.models.data/-category/-h-e-n-t-a-i/index.html
 $dokka.location:knf.hydra.core.models.data/Category.MANGA///PointingToDeclaration/core/knf.hydra.core.models.data/-category/-m-a-n-g-a/index.html
 $dokka.location:knf.hydra.core.models.data/Category.MOVIE///PointingToDeclaration/core/knf.hydra.core.models.data/-category/-m-o-v-i-e/index.html
@@ -357,7 +356,6 @@ $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay///Pointing
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay/value/#/PointingToDeclaration/core/knf.hydra.core.models/-info-model/-state-data/-emission-day/value.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.COMPLETED///PointingToDeclaration/core/knf.hydra.core.models/-info-model/-state-data/-type/-c-o-m-p-l-e-t-e-d/index.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.Companion///PointingToDeclaration/core/knf.hydra.core.models/-info-model/-state-data/-type/-companion/index.html
-$dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.Companion/fromValue/#kotlin.Int/PointingToDeclaration/core/knf.hydra.core.models/-info-model/-state-data/-type/-companion/from-value.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.EMISSION///PointingToDeclaration/core/knf.hydra.core.models/-info-model/-state-data/-type/-e-m-i-s-s-i-o-n/index.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.HIATUS///PointingToDeclaration/core/knf.hydra.core.models/-info-model/-state-data/-type/-h-i-a-t-u-s/index.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.UNKNOWN///PointingToDeclaration/core/knf.hydra.core.models/-info-model/-state-data/-type/-u-n-k-n-o-w-n/index.html

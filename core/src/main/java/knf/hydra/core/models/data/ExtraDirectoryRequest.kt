@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:05
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 18:02
  */
 
 package knf.hydra.core.models.data
@@ -20,6 +20,7 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class ExtraDirectoryRequest(val title: String, val payload: String?): Parcelable{
     companion object {
+        /** Converts the given [tag] into an [ExtraDirectoryRequest] */
         fun from(tag: InfoModel.Tag) = ExtraDirectoryRequest(tag.name, tag.payload)
     }
 }

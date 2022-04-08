@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:05
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 17:58
  */
 
 package knf.hydra.core.tools
@@ -113,9 +113,13 @@ object ModulePreferences {
     class Sealed(private val pkg: String) {
         private fun createKey(key: String) = "${pkg.replace(".","|")}:$key"
 
+        /** @suppress */
         suspend fun <T> getPreference(key: String, default: T): T = withContext(Dispatchers.IO) { (manager.findPreference(createKey(key))?.value?.toType(default) as? T) ?: default }
+        /** @suppress */
         suspend fun <T> getPreferenceOrNull(key: String): T? = withContext(Dispatchers.IO) { manager.findPreference(createKey(key))?.asType() as? T }
+        /** @suppress */
         suspend fun <T> getPreferenceOrThrow(key: String): T = withContext(Dispatchers.IO) { manager.findPreference(createKey(key)).also { if (it == null) throwNotFound(key)  }?.asType() as T }
+        /** @suppress */
         suspend fun <T> setPreference(key: String, value: T?) = withContext(Dispatchers.IO) {
             when (value) {
                 is String -> manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_STRING))

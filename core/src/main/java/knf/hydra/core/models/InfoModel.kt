@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 08/04/22 18:05
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 08/04/22 17:56
  */
 
 package knf.hydra.core.models
@@ -180,6 +180,7 @@ abstract class InfoModel {
             EMISSION(0), COMPLETED(1), HIATUS(2), UNKNOWN(3);
 
             companion object {
+                /** @suppress */
                 fun fromValue(value: Int) = values().find { it.value == value } ?: UNKNOWN
             }
         }
@@ -187,59 +188,71 @@ abstract class InfoModel {
 
     /** @suppress */
     class Converters {
+        /** @suppress */
         @TypeConverter
         fun relatedToString(list: List<Related>?): String {
             list ?: return ""
             return Gson().toJson(list, object : TypeToken<List<Related>>() {}.type)
         }
 
+        /** @suppress */
         @TypeConverter
         fun stringToRelated(json: String): List<Related>? {
             if (json.isBlank()) return null
             return Gson().fromJson(json, object : TypeToken<List<Related>>() {}.type)
         }
 
+        /** @suppress */
         @TypeConverter
         fun musicToString(list: List<Music>?): String {
             list ?: return ""
             return Gson().toJson(list, object : TypeToken<List<Music>>() {}.type)
         }
 
+        /** @suppress */
         @TypeConverter
         fun stringToMusic(json: String): List<Music>? {
             if (json.isBlank()) return null
             return Gson().fromJson(json, object : TypeToken<List<Music>>() {}.type)
         }
 
+        /** @suppress */
         @TypeConverter
         fun emissionDayToInt(day: StateData.EmissionDay): Int {
             return day.value
         }
 
+        /** @suppress */
         @TypeConverter
         fun intToEmissionDay(value: Int): StateData.EmissionDay {
             return StateData.EmissionDay.fromValue(value)
         }
 
+        /** @suppress */
         @TypeConverter
         fun emissionTypeToInt(type: StateData.Type): Int {
             return type.value
         }
 
+        /** @suppress */
         @TypeConverter
         fun intToEmissionType(value: Int): StateData.Type {
             return StateData.Type.fromValue(value)
         }
 
+        /** @suppress */
         @TypeConverter
         fun categoryToInt(category: Category): Int = category.value
 
+        /** @suppress */
         @TypeConverter
         fun intToCategory(value: Int): Category = Category.fromValue(value)
 
+        /** @suppress */
         @TypeConverter
         fun layoutTypeToInt(layoutType: LayoutType): Int = layoutType.value
 
+        /** @suppress */
         @TypeConverter
         fun intToLayoutType(value: Int): LayoutType = LayoutType.fromValue(value)
     }
