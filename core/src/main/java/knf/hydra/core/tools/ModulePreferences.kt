@@ -1,5 +1,6 @@
 package knf.hydra.core.tools
 
+import androidx.annotation.RestrictTo
 import androidx.room.*
 import knf.hydra.core.HeadConfig
 import kotlinx.coroutines.Dispatchers
@@ -8,29 +9,44 @@ import kotlinx.coroutines.withContext
 
 /** Object used to access the module preferences defined in [HeadConfig.settingsPage] */
 object ModulePreferences {
-    /** @suppress */
     private lateinit var manager: ModulePreferenceDao
-    /** @suppress */
     private lateinit var pkg: String
     /** @suppress */
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
     fun init(db: ModulePreferenceDB, currentPkg: String?) {
         manager = db.dao()
         pkg = currentPkg ?: "dummy"
     }
-    /** @suppress */
     private fun createKey(key: String) = "${pkg.replace(".","|")}:$key"
 
     /**
-     * Get preference or
+     * Get preference value by [key] or [default] suspending coroutine
      *
-     * @param T
-     * @param key
-     * @param default
-     * @return
+     * @param key Preference key
+     * @param default Default value
+     * @return The value of the preference or [default] if not found or is null
      */
     suspend fun <T> getPreference(key: String, default: T): T = withContext(Dispatchers.IO) { (manager.findPreference(createKey(key))?.value?.toType(default) as? T) ?: default }
+    /**
+     * Get preference value by [key] or null suspending coroutine
+     *
+     * @param key Preference key
+     * @return The value of the preference or null if not found
+     */
     suspend fun <T> getPreferenceOrNull(key: String): T? = withContext(Dispatchers.IO) { manager.findPreference(createKey(key))?.asType() as? T }
-    suspend fun <T> getPreferenceOrThrow(key: String): T = withContext(Dispatchers.IO) { manager.findPreference(createKey(key))?.asType() as T }
+    /**
+     * Get preference value by [key] or throw suspending coroutine
+     *
+     * @param key Preference key
+     * @return The value of the preference or throw if not found
+     */
+    suspend fun <T> getPreferenceOrThrow(key: String): T = withContext(Dispatchers.IO) { manager.findPreference(createKey(key)).also { if (it == null) throwNotFound(key)  }?.asType() as T }
+    /**
+     * Set preference value by [key] suspending coroutine
+     *
+     * @param key Preference key
+     * @param value The value of the preference
+     */
     suspend fun <T> setPreference(key: String, value: T?) = withContext(Dispatchers.IO) {
         when (value) {
             is String -> manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_STRING))
@@ -43,11 +59,37 @@ object ModulePreferences {
             }
         }
     }
-
+    /**
+     * Get preference value by [key] or [default] blocking the thread
+     *
+     * @param key Preference key
+     * @param default Default value
+     * @return The value of the preference or [default] if not found or is null
+     */
     fun <T> getPreferenceBlocking(key: String, default: T): T = runBlocking { getPreference(key, default) }
+    /**
+     * Get preference value by [key] or null blocking the thread
+     *
+     * @param key Preference key
+     * @return The value of the preference or null if not found
+     */
     fun <T> getPreferenceOrNullBlocking(key: String): T? = runBlocking { getPreferenceOrNull(key) }
+    /**
+     * Get preference value by [key] or throw blocking the thread
+     *
+     * @param key Preference key
+     * @return The value of the preference or throw if not found
+     */
     fun <T> getPreferenceOrThrowBlocking(key: String): T = runBlocking { getPreferenceOrThrow(key) }
+    /**
+     * Set preference value by [key] blocking the thread
+     *
+     * @param key Preference key
+     * @param value The value of the preference
+     */
     fun <T> setPreferenceBlocking(key: String, value: T?) = runBlocking { setPreference(key, value) }
+
+    private fun throwNotFound(key: String): Nothing = throw PreferenceNotFoundException(key)
 
     private fun <T> String.toType(type: T): Any? {
         return when (type) {
@@ -60,12 +102,14 @@ object ModulePreferences {
         }
     }
 
+    /** @suppress */
+    @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
     class Sealed(private val pkg: String) {
         private fun createKey(key: String) = "${pkg.replace(".","|")}:$key"
 
         suspend fun <T> getPreference(key: String, default: T): T = withContext(Dispatchers.IO) { (manager.findPreference(createKey(key))?.value?.toType(default) as? T) ?: default }
         suspend fun <T> getPreferenceOrNull(key: String): T? = withContext(Dispatchers.IO) { manager.findPreference(createKey(key))?.asType() as? T }
-        suspend fun <T> getPreferenceOrThrow(key: String): T = withContext(Dispatchers.IO) { manager.findPreference(createKey(key))?.asType() as T }
+        suspend fun <T> getPreferenceOrThrow(key: String): T = withContext(Dispatchers.IO) { manager.findPreference(createKey(key)).also { if (it == null) throwNotFound(key)  }?.asType() as T }
         suspend fun <T> setPreference(key: String, value: T?) = withContext(Dispatchers.IO) {
             when (value) {
                 is String -> manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_STRING))
@@ -92,11 +136,19 @@ object ModulePreferences {
     }
 }
 
+/** @suppress */
+@RestrictTo(RestrictTo.Scope.LIBRARY)
+class PreferenceNotFoundException(key: String): Exception("Preference with key $key not found or is null")
+
+/** @suppress */
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
 @Database(entities = [ModulePreference::class], version = 1, exportSchema = false)
 abstract class ModulePreferenceDB: RoomDatabase() {
     abstract fun dao(): ModulePreferenceDao
 }
 
+/** @suppress */
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
 @Dao
 interface ModulePreferenceDao{
     @Query("SELECT * FROM modulepreference WHERE `key` = :key")
@@ -105,6 +157,8 @@ interface ModulePreferenceDao{
     fun insert(preference: ModulePreference)
 }
 
+/** @suppress */
+@RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
 @Entity
 data class ModulePreference(@PrimaryKey val key: String, val value: String?, val type: Int){
     fun asType(): Any?{
