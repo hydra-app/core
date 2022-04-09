@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 18:37
+ * Created by @UnbarredStream on 08/04/22 19:10
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 18:13
+ * Last modified 08/04/22 18:50
  */
 
 package knf.hydra.core.tools
@@ -45,7 +45,7 @@ object ModulePreferences {
      *
      * @param key Preference key
      * @return The value of the preference or throw if not found
-     * @throws PreferenceNotFoundException When the preference is not found or is null
+     * @throws PreferenceNotFoundException If the preference is not found or is null
      */
     suspend fun <T> getPreferenceOrThrow(key: String): T = withContext(Dispatchers.IO) { manager.findPreference(createKey(key)).also { if (it == null) throwNotFound(key)  }?.asType() as T }
     /**
@@ -86,7 +86,7 @@ object ModulePreferences {
      *
      * @param key Preference key
      * @return The value of the preference or throw if not found
-     * @throws PreferenceNotFoundException When the preference is not found or is null
+     * @throws PreferenceNotFoundException If the preference is not found or is null
      */
     fun <T> getPreferenceOrThrowBlocking(key: String): T = runBlocking { getPreferenceOrThrow(key) }
     /**

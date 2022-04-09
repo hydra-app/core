@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:34
+ * Created by @UnbarredStream on 08/04/22 19:10
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:30
+ * Last modified 08/04/22 19:06
  */
 
 package knf.hydra.core
@@ -36,6 +36,8 @@ import kotlin.reflect.KClass
  * The name of the application doesn't need any requirements, but it can be a little descriptive
  * for the users (e.g., Hydra Module: My module name) in case of a manual uninstall, the app won't
  * use this name internally, instead it will use the name provided in the [moduleName] implementation.
+ *
+ * @sample knf.hydra.samples.Samples.module
  */
 abstract class HeadModule {
     /** @suppress */
