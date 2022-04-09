@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 19:10
+ * Created by @UnbarredStream on 08/04/22 19:35
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 19:08
+ * Last modified 08/04/22 19:17
  */
 
 plugins {
@@ -45,7 +45,6 @@ tasks.dokkaHtml.configure {
         named("main") {
             includes.from("README.md")
             noAndroidSdkLink.set(false)
-            samples.from("src/samples")
             sourceLink {
                 remoteUrl.set(java.net.URL("https://github.com/jordyamc/hydra_core/tree/master/core/src/main/java"))
                 remoteLineSuffix.set("#L")

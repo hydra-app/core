@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 18:05
+ * Created by @UnbarredStream on 08/04/22 19:35
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:56
+ * Last modified 08/04/22 19:33
  */
 
 package knf.hydra.core
@@ -17,6 +17,33 @@ import java.util.*
 /**
  * Module repository, it contains all the methods required for the Main app to get data from the Module,
  * abstract functions [infoPage] and [sourceData] are **required**, all other functions are **optional**.
+ *
+ * <b>Sample usage</b>
+ *
+ * ```kotlin
+ * class Repository : HeadRepository(){
+ *
+ *    override fun infoPage(link: String, bypassModel: BypassModel): Flow<InfoModel?> {
+ *        return flow {
+ *            emit(null)
+ *        }
+ *    }
+ *
+ *    override fun sourceData(link: String, bypassModel: BypassModel): Flow<SourceData?> {
+ *        return flow { emit(null) }
+ *    }
+ *
+ *    override suspend fun recentsPager(bypassModel: BypassModel): Flow<PagingData<RecentModel>> {
+ *        return Pager(
+ *            config = PagingConfig(
+ *                pageSize = 20,
+ *                enablePlaceholders = false
+ *            ),
+ *            pagingSourceFactory = { RecentsSource() }
+ *        ).flow
+ *    }
+ * }
+ * ```
  */
 abstract class HeadRepository {
     /**

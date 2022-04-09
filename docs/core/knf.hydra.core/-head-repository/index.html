@@ -1,7 +1,7 @@
 <!--
-  ~ Created by @UnbarredStream on 08/04/22 19:10
+  ~ Created by @UnbarredStream on 08/04/22 19:35
   ~ Copyright (c) 2022 . All rights reserved.
-  ~ Last modified 08/04/22 19:07
+  ~ Last modified 08/04/22 19:34
   -->
 
 <html>
@@ -32,7 +32,7 @@ if(savedDarkMode === true){
           <div class="breadcrumbs"><a href="../../../index.html">core</a>/<a href="../index.html">knf.hydra.core</a>/<a href="index.html">HeadRepository</a></div>
           <div class="cover ">
             <h1 class="cover"><span>Head</span><wbr></wbr><span><span>Repository</span></span></h1>
-            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">HeadRepository</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Module repository, it contains all the methods required for the Main app to get data from the Module, abstract functions <a href="info-page.html">infoPage</a> and <a href="source-data.html">sourceData</a> are <strong>required</strong>, all other functions are <strong>optional</strong>.</p></div></div>
+            <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-depenent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">HeadRepository</a><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div><p class="paragraph">Module repository, it contains all the methods required for the Main app to get data from the Module, abstract functions <a href="info-page.html">infoPage</a> and <a href="source-data.html">sourceData</a> are <strong>required</strong>, all other functions are <strong>optional</strong>.</p><p class="paragraph"><b>Sample usage</b></p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">class Repository : HeadRepository(){<br><br>   override fun infoPage(link: String, bypassModel: BypassModel): Flow&lt;InfoModel?&gt; {<br>       return flow {<br>           emit(null)<br>       }<br>   }<br><br>   override fun sourceData(link: String, bypassModel: BypassModel): Flow&lt;SourceData?&gt; {<br>       return flow { emit(null) }<br>   }<br><br>   override suspend fun recentsPager(bypassModel: BypassModel): Flow&lt;PagingData&lt;RecentModel&gt;&gt; {<br>       return Pager(<br>           config = PagingConfig(<br>               pageSize = 20,<br>               enablePlaceholders = false<br>           ),<br>           pagingSourceFactory = { RecentsSource() }<br>       ).flow<br>   }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
           </div>
           <div class="tabbedcontent">
             <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="Constructors">Constructors</button><button class="section-tab" data-togglable="Functions">Functions</button></div>

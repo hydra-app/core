@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 19:10
+ * Created by @UnbarredStream on 08/04/22 19:35
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 19:06
+ * Last modified 08/04/22 19:33
  */
 
 package knf.hydra.core
@@ -37,7 +37,18 @@ import kotlin.reflect.KClass
  * for the users (e.g., Hydra Module: My module name) in case of a manual uninstall, the app won't
  * use this name internally, instead it will use the name provided in the [moduleName] implementation.
  *
- * @sample knf.hydra.samples.Samples.module
+ * <b>Sample usage</b>
+ *
+ * ```kotlin
+ * class Module: HeadModule() {
+ *      override val moduleVersionCode: Int = BuildConfig.VERSION_CODE
+ *      override val moduleVersionName: String = BuildConfig.VERSION_NAME
+ *      override val baseUrl: String = "https://empty.com"
+ *      override val moduleName: String = "Test Module"
+ *      override val dataRepository: HeadRepository = Repository()
+ *      override val config: HeadConfig = TestConfig()
+ *  }
+ * ```
  */
 abstract class HeadModule {
     /** @suppress */

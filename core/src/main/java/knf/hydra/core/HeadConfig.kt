@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 18:10
+ * Created by @UnbarredStream on 08/04/22 19:35
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 18:08
+ * Last modified 08/04/22 19:33
  */
 
 package knf.hydra.core
@@ -17,7 +17,9 @@ import knf.hydra.core.models.data.VideoDecoder
  * Module configuration, enable and modify the behaviour of some features.
  *
  * To use this class you need to create a new class and extend [HeadConfig] or use a [kotlin object](https://kotlinlang.org/docs/object-declarations.html),
- * then modify the required variables in **init**, for example:
+ * then modify the required variables in **init**.
+ *
+ * <b>Sample usage</b>
  *
  * ```kotlin
  * object: HeadConfig() {
