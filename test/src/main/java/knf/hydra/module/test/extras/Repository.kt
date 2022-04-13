@@ -1,3 +1,9 @@
+/*
+ * Created by @UnbarredStream on 13/04/22 11:59
+ * Copyright (c) 2022 . All rights reserved.
+ * Last modified 12/04/22 2:59
+ */
+
 package knf.hydra.module.test.extras
 
 import androidx.paging.Pager
@@ -66,92 +72,94 @@ class Repository : HeadRepository() {
         )
     }
 
-    override fun sourceData(link: String, bypassModel: BypassModel): Flow<SourceData?> {
-        return flow {
-            val doc = Jsoup.connect(link).headers(bypassModel.asMap(NetworkRepository.defaultCookies)).get()
-            val scripts = doc.select("script[type]:not([src])")
-            val data = scripts.let { elements ->
-                elements.forEach { element ->
-                    element.dataNodes().forEach {
-                        val subData = it.wholeData
-                        if (subData.contains("var videos =")) {
-                            return@let subData
+    override suspend fun sourceData(content: ContentItemMin, bypassModel: BypassModel): SourceData {
+        return VideoSource(
+            flow {
+                val doc = Jsoup.connect(content.link).headers(bypassModel.asMap(NetworkRepository.defaultCookies)).get()
+                val scripts = doc.select("script[type]:not([src])")
+                val data = scripts.let { elements ->
+                    elements.forEach { element ->
+                        element.dataNodes().forEach {
+                            val subData = it.wholeData
+                            if (subData.contains("var videos =")) {
+                                return@let subData
+                            }
                         }
                     }
+                    return@let ""
                 }
-                return@let ""
-            }
-            val jsonString = "videos = (\\{.*\\});".toRegex().find(data)?.destructured?.component1()
-            if (jsonString != null) {
-                val items = mutableListOf<VideoItem>()
-                val json = JSONObject(jsonString)
-                val downloads = doc.select(".RTbl.Dwnl")
-                listOf("SUB", "LAT").forEach { lang ->
-                    if (json.has(lang)) {
-                        val array = json.getJSONArray(lang)
-                        for (sub in 0 until array.length()) {
-                            val subItem = array.getJSONObject(sub)
-                            val sLink = subItem.getString("code")
-                            val canLinkDownload = !sLink.containsAny("mega.nz", "hqq.tv")
+                val jsonString = "videos = (\\{.*\\});".toRegex().find(data)?.destructured?.component1()
+                if (jsonString != null) {
+                    val items = mutableListOf<VideoItem>()
+                    val json = JSONObject(jsonString)
+                    val downloads = doc.select(".RTbl.Dwnl")
+                    listOf("SUB", "LAT").forEach { lang ->
+                        if (json.has(lang)) {
+                            val array = json.getJSONArray(lang)
+                            for (sub in 0 until array.length()) {
+                                val subItem = array.getJSONObject(sub)
+                                val sLink = subItem.getString("code")
+                                val canLinkDownload = !sLink.containsAny("mega.nz", "hqq.tv")
+                                val videoQuality = when {
+                                    sLink.containsAny(
+                                        "embedsito.com",
+                                        "ok.ru"
+                                    ) -> VideoItem.Quality.MULTIPLE
+                                    else -> VideoItem.Quality.MEDIUM
+                                }
+                                items.add(
+                                    VideoItem(
+                                        subItem.getString("title"),
+                                        sLink,
+                                        type = lang,
+                                        quality = videoQuality,
+                                        canDownload = canLinkDownload
+                                    )
+                                )
+                            }
+                        }
+                        downloads.select("tr:contains($lang)").forEach { element ->
+                            val name = element.select("td").first().text()
+                            val dLink = element.select("a").attr("href")
                             val videoQuality = when {
-                                sLink.containsAny(
+                                dLink.containsAny(
                                     "embedsito.com",
                                     "ok.ru"
-                                ) -> SourceItem.Quality.MULTIPLE
-                                else -> SourceItem.Quality.MEDIUM
+                                ) -> VideoItem.Quality.MULTIPLE
+                                else -> VideoItem.Quality.MEDIUM
                             }
-                            items.add(
-                                VideoItem(
-                                    subItem.getString("title"),
-                                    sLink,
-                                    type = lang,
-                                    quality = videoQuality,
-                                    canDownload = canLinkDownload
-                                )
-                            )
-                        }
-                    }
-                    downloads.select("tr:contains($lang)").forEach { element ->
-                        val name = element.select("td").first().text()
-                        val dLink = element.select("a").attr("href")
-                        val videoQuality = when {
-                            dLink.containsAny(
-                                "embedsito.com",
-                                "ok.ru"
-                            ) -> SourceItem.Quality.MULTIPLE
-                            else -> SourceItem.Quality.MEDIUM
-                        }
-                        when {
-                            dLink.contains("mega.nz") -> {
-                                if (items.find { it.link.substringAfterLast("#") == dLink.substringAfterLast("#") } == null)
-                                    items.add(
-                                        VideoItem(
-                                            name,
-                                            dLink,
-                                            type = lang,
-                                            quality = videoQuality,
-                                            canDownload = false
+                            when {
+                                dLink.contains("mega.nz") -> {
+                                    if (items.find { it.link.substringAfterLast("#") == dLink.substringAfterLast("#") } == null)
+                                        items.add(
+                                            VideoItem(
+                                                name,
+                                                dLink,
+                                                type = lang,
+                                                quality = videoQuality,
+                                                canDownload = false
+                                            )
                                         )
-                                    )
-                            }
-                            else -> {
-                                if (items.find { it.link.substringAfterLast("/") == dLink.substringAfterLast("/") } == null)
-                                    items.add(
-                                        VideoItem(
-                                            name,
-                                            dLink,
-                                            type = lang,
-                                            quality = videoQuality
+                                }
+                                else -> {
+                                    if (items.find { it.link.substringAfterLast("/") == dLink.substringAfterLast("/") } == null)
+                                        items.add(
+                                            VideoItem(
+                                                name,
+                                                dLink,
+                                                type = lang,
+                                                quality = videoQuality
+                                            )
                                         )
-                                    )
+                                }
                             }
                         }
                     }
-                }
-                emit(VideoSource(items))
-            } else
-                emit(null)
-        }
+                    emit(items)
+                } else
+                    emit(emptyList())
+            }
+        )
     }
 
     override suspend fun directoryFilters(bypassModel: BypassModel): List<FilterData> {

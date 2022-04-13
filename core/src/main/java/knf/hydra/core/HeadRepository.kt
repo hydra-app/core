@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 19:35
+ * Created by @UnbarredStream on 13/04/22 11:59
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 19:33
+ * Last modified 13/04/22 11:54
  */
 
 package knf.hydra.core
@@ -66,13 +66,12 @@ abstract class HeadRepository {
      * This function is called when loading the sources for a [ContentItemModel] it can be a [VideoSource],
      * [GallerySource] or a [WebSource].
      *
-     * @param link The link from [ContentItemModel.itemLink] declared in [InfoModel.contentData]
+     * @param content The minimized version en the [ContentItemModel] declared in [InfoModel.contentData]
      * @param bypassModel Cloudflare bypass information extracted by the Main app, if your module
      * doesn't require a bypass you can disable it in [HeadConfig.bypassBehavior].
-     * @return A [flow](https://developer.android.com/kotlin/flow#create) containing the [SourceData]
-     * for this [link] or null if there was an error.
+     * @return A [SourceData] declaring the data type for this [content] or null if there was an error.
      */
-    abstract fun sourceData(link: String, bypassModel: BypassModel): Flow<SourceData?>
+    abstract suspend fun sourceData(content: ContentItemMin, bypassModel: BypassModel): SourceData?
 
     /**
      * This function is called only if [HeadConfig.isRecentsAvailable] is enabled, it's used for

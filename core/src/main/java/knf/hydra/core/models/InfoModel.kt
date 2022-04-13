@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 18:05
+ * Created by @UnbarredStream on 13/04/22 11:59
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:56
+ * Last modified 11/04/22 23:32
  */
 
 package knf.hydra.core.models
@@ -29,6 +29,9 @@ abstract class InfoModel {
     /** Content category */
     abstract var category: Category
 
+    /** Data representing the content of this item */
+    abstract var contentData: ContentData?
+
     /** @suppress */
     fun getMin() = InfoModelMin(id, name, link, category, layoutType, coverImage)
 
@@ -41,10 +44,6 @@ abstract class InfoModel {
      * for multiple items like [Category.SERIES], by default the system uses the [category] to decide wich one to use
      */
     open var layoutType: LayoutType = if (category in listOf(Category.PORN, Category.MOVIE)) LayoutType.SINGLE else LayoutType.MULTIPLE
-
-    @Ignore
-    /** Data representing the content of this item */
-    open var contentData: ContentData? = null
 
     @Ignore
     /** Optional cover image for this item */

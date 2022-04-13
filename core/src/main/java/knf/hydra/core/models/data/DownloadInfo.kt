@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 13/04/22 11:59
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 11/04/22 23:41
  */
 
 package knf.hydra.core.models.data
@@ -53,14 +53,13 @@ data class DownloadInfo(
         /** @suppress */
         fun fromContent(
             module: String,
-            path: String,
             info: InfoModelMin,
             contentItem: ContentItemMin,
             link: String,
             headers: Map<String, String>?
         ): DownloadInfo {
             return DownloadInfo(
-                "$module:${contentItem.id}:$path".hashCode(),
+                "$module:${contentItem.id}".hashCode(),
                 module,
                 link,
                 info,

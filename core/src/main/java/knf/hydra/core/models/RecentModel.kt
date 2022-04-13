@@ -1,13 +1,11 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 13/04/22 11:59
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 10/04/22 20:29
  */
 
 package knf.hydra.core.models
 
-import androidx.recyclerview.widget.DiffUtil
-import androidx.room.Ignore
 import knf.hydra.core.HeadRepository
 import knf.hydra.core.models.data.Category
 import knf.hydra.core.models.data.LayoutType
@@ -46,18 +44,6 @@ abstract class RecentModel {
     open var infoLayoutType: LayoutType = if (category in listOf(Category.PORN, Category.MOVIE)) LayoutType.SINGLE else LayoutType.MULTIPLE
 
     /** @suppress */
-    @Ignore
-    var isContentSeen: Boolean = false
-
-    /** @suppress */
-    @Ignore
-    var isContentDownloaded: Boolean = false
-
-    /** @suppress */
-    @Ignore
-    var isFavorite: Boolean? = null
-
-    /** @suppress */
     fun createSubtitle(): String {
         return if (type.contains("%s"))
             String.format(type, DecimalFormat("0.#").format(number))
@@ -77,17 +63,6 @@ abstract class RecentModel {
         companion object {
             /** @suppress */
             fun fromRecent(module: String, model: RecentModel): Notify = Notify(module, System.currentTimeMillis(), model)
-        }
-    }
-
-    companion object {
-        /** @suppress */
-        val DIFF = object : DiffUtil.ItemCallback<RecentModel>() {
-            override fun areItemsTheSame(p0: RecentModel, p1: RecentModel): Boolean =
-                p0.id == p1.id
-
-            override fun areContentsTheSame(p0: RecentModel, p1: RecentModel): Boolean =
-                p0.isContentSeen == p1.isContentSeen && p0.isContentDownloaded == p1.isContentDownloaded
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 19:10
+ * Created by @UnbarredStream on 13/04/22 11:59
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 18:50
+ * Last modified 09/04/22 2:22
  */
 
 package knf.hydra.core.tools
@@ -10,6 +10,8 @@ import androidx.annotation.RestrictTo
 import androidx.room.*
 import knf.hydra.core.HeadConfig
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
@@ -134,6 +136,19 @@ object ModulePreferences {
                 }
             }
         }
+        /** @suppress */
+        fun listenAll(list: List<ModulePreference>): Flow<List<ModulePreference>> {
+            var currentList = list
+            return manager.listenAll(pkg.replace(".","|")).map { nList ->
+                nList.mapNotNull { nItem ->
+                    val found = currentList.find { it.key == nItem.key }
+                    if (found != null && found.value == nItem.value && found.type == nItem.type)
+                        null
+                    else
+                        nItem
+                }.also { currentList = nList }
+            }
+        }
 
         private fun <T> String.toType(type: T): Any? {
             return when (type) {
@@ -169,6 +184,9 @@ interface ModulePreferenceDao{
     /** @suppress */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(preference: ModulePreference)
+    /** @suppress */
+    @Query("SELECT * FROM modulepreference WHERE `key` LIKE :pkg + ':%'")
+    fun listenAll(pkg: String): Flow<List<ModulePreference>>
 }
 
 /** @suppress */

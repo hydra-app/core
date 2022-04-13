@@ -1,10 +1,15 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 13/04/22 11:59
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 12/04/22 1:03
  */
 
 package knf.hydra.core.models.data
+
+import knf.hydra.core.models.data.DecodeResult.Failed
+import knf.hydra.core.models.data.DecodeResult.Success
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
 
 
 /**
@@ -14,21 +19,16 @@ package knf.hydra.core.models.data
  * @see GallerySource
  * @see WebSource
  */
-sealed class SourceData(val items: List<SourceItem>)
+sealed class SourceData(val itemsFlow: Flow<List<SourceItem>>)
 
 /**
  * Base source item
  *
  * @see VideoItem
- * @see ImageItem
+ * @see GalleryItem
  * @see WebItem
  */
-sealed class SourceItem(val name: String, val link: String, val type: String? = null, val quality: Quality? = null, val needDecoder: Boolean = true, val canDownload: Boolean = true, val payload: String? = null){
-    /**
-     * Represents the quality of the item
-     */
-    enum class Quality{ HIGH_4K, HIGH, MEDIUM, LOW, MULTIPLE }
-}
+sealed class SourceItem(val name: String, val link: String)
 
 /**
  * Represents a video item in the source
@@ -41,7 +41,12 @@ sealed class SourceItem(val name: String, val link: String, val type: String? = 
  * @param canDownload Specify if this link can be downloaded
  * @param payload Optional payload for custom decoders
  */
-class VideoItem(name: String, link: String, type: String? = null, quality: Quality? = null, needDecoder: Boolean = true, canDownload: Boolean = true, payload: String? = null): SourceItem(name, link, type, quality, needDecoder, canDownload, payload)
+class VideoItem(name: String, link: String, val type: String? = null, val quality: Quality? = null, val needDecoder: Boolean = true, val canDownload: Boolean = true, val payload: String? = null): SourceItem(name, link) {
+    /**
+     * Represents the quality of the video item
+     */
+    enum class Quality{ HIGH_4K, HIGH, MEDIUM, LOW, MULTIPLE }
+}
 
 /**
  * Represents an item in the gallery
@@ -66,14 +71,14 @@ class WebItem(name: String, link: String): SourceItem(name, link)
  *
  * @param items Video items
  */
-class VideoSource(items: List<VideoItem>): SourceData(items)
+class VideoSource(items: Flow<List<VideoItem>>): SourceData(items)
 
 /**
  * Represents a gallery with media
  *
  * @param items Gallery items
  */
-class GallerySource(items: List<GalleryItem>): SourceData(items)
+class GallerySource(items: Flow<List<GalleryItem>>): SourceData(items)
 
 /**
  * Represents a web page source
@@ -81,7 +86,7 @@ class GallerySource(items: List<GalleryItem>): SourceData(items)
  * @param name Screen title
  * @param link Web link to be used
  */
-class WebSource(name: String, link: String): SourceData(listOf(WebItem(name, link)))
+class WebSource(name: String, link: String): SourceData(flowOf(listOf(WebItem(name, link))))
 
 /**
  * Represents a video decoder
@@ -136,4 +141,4 @@ sealed class DecodeResult(val list: List<Option>, val isSuccessful: Boolean = tr
  * @property quality Optional display quality
  * @property headers Optional headers for this option
  */
-class Option(val directLink: String, val name: String? = null, val quality: SourceItem.Quality? = null, val headers: Map<String,String>? = null)
+class Option(val directLink: String, val name: String? = null, val quality: VideoItem.Quality? = null, val headers: Map<String,String>? = null)
