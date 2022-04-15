@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 13/04/22 11:59
+ * Created by @UnbarredStream on 14/04/22 19:45
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 12/04/22 2:59
+ * Last modified 14/04/22 0:17
  */
 
 package knf.hydra.module.test.extras
@@ -72,7 +72,7 @@ class Repository : HeadRepository() {
         )
     }
 
-    override suspend fun sourceData(content: ContentItemMin, bypassModel: BypassModel): SourceData {
+    override suspend fun sourceData(content: ContentItemMin, bypassModel: BypassModel): SourceData<*> {
         return VideoSource(
             flow {
                 val doc = Jsoup.connect(content.link).headers(bypassModel.asMap(NetworkRepository.defaultCookies)).get()

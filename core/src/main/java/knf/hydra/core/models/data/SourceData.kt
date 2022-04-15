@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 13/04/22 11:59
+ * Created by @UnbarredStream on 14/04/22 19:45
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 12/04/22 1:03
+ * Last modified 14/04/22 0:17
  */
 
 package knf.hydra.core.models.data
@@ -19,7 +19,7 @@ import kotlinx.coroutines.flow.flowOf
  * @see GallerySource
  * @see WebSource
  */
-sealed class SourceData(val itemsFlow: Flow<List<SourceItem>>)
+sealed class SourceData<T: SourceItem>(val itemsFlow: Flow<List<T>>)
 
 /**
  * Base source item
@@ -71,14 +71,16 @@ class WebItem(name: String, link: String): SourceItem(name, link)
  *
  * @param items Video items
  */
-class VideoSource(items: Flow<List<VideoItem>>): SourceData(items)
+class VideoSource(items: Flow<List<VideoItem>>): SourceData<VideoItem>(items) {
+
+}
 
 /**
  * Represents a gallery with media
  *
  * @param items Gallery items
  */
-class GallerySource(items: Flow<List<GalleryItem>>): SourceData(items)
+class GallerySource(items: Flow<List<GalleryItem>>): SourceData<GalleryItem>(items)
 
 /**
  * Represents a web page source
@@ -86,7 +88,7 @@ class GallerySource(items: Flow<List<GalleryItem>>): SourceData(items)
  * @param name Screen title
  * @param link Web link to be used
  */
-class WebSource(name: String, link: String): SourceData(flowOf(listOf(WebItem(name, link))))
+class WebSource(name: String, link: String): SourceData<WebItem>(flowOf(listOf(WebItem(name, link))))
 
 /**
  * Represents a video decoder

@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 13/04/22 11:59
+ * Created by @UnbarredStream on 14/04/22 19:45
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 13/04/22 11:54
+ * Last modified 14/04/22 0:17
  */
 
 package knf.hydra.core
@@ -71,7 +71,7 @@ abstract class HeadRepository {
      * doesn't require a bypass you can disable it in [HeadConfig.bypassBehavior].
      * @return A [SourceData] declaring the data type for this [content] or null if there was an error.
      */
-    abstract suspend fun sourceData(content: ContentItemMin, bypassModel: BypassModel): SourceData?
+    abstract suspend fun sourceData(content: ContentItemMin, bypassModel: BypassModel): SourceData<*>?
 
     /**
      * This function is called only if [HeadConfig.isRecentsAvailable] is enabled, it's used for
