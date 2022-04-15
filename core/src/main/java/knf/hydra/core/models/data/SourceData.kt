@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 14/04/22 19:45
+ * Created by @UnbarredStream on 14/04/22 20:00
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 14/04/22 0:17
+ * Last modified 14/04/22 19:59
  */
 
 package knf.hydra.core.models.data
@@ -71,9 +71,7 @@ class WebItem(name: String, link: String): SourceItem(name, link)
  *
  * @param items Video items
  */
-class VideoSource(items: Flow<List<VideoItem>>): SourceData<VideoItem>(items) {
-
-}
+class VideoSource(items: Flow<List<VideoItem>>): SourceData<VideoItem>(items)
 
 /**
  * Represents a gallery with media
