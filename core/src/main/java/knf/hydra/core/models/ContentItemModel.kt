@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 18/04/22 19:39
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 18/04/22 17:00
  */
 
 package knf.hydra.core.models
@@ -9,6 +9,7 @@ package knf.hydra.core.models
 import androidx.recyclerview.widget.DiffUtil
 import knf.hydra.core.HeadRepository
 import knf.hydra.core.models.data.DownloadInfo
+import knf.hydra.core.models.data.LinkData
 import java.text.DecimalFormat
 
 /**
@@ -22,7 +23,13 @@ abstract class ContentItemModel {
     /** Item number, this will be used for sorting and sometimes for display purposes */
     abstract var number: Double
     /** Item link, this will be used to create the sources in [HeadRepository.sourceData] */
-    abstract var itemLink: String
+    abstract var itemLink: LinkData
+    /**
+     * Limit the interactions the user can use with this content.
+     *
+     * If the item is not media, the comments and import/export features will be disabled.
+     */
+    abstract var isMedia: Boolean
     /** Optional content title */
     open var itemTitle: String? = null
     /** Optional thumbnail image link */

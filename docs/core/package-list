@@ -160,6 +160,11 @@ $dokka.location:knf.hydra.core.models.data/LayoutType.SINGLE///PointingToDeclara
 $dokka.location:knf.hydra.core.models.data/LayoutType.UNKNOWN///PointingToDeclaration/core/knf.hydra.core.models.data/-layout-type/-u-n-k-n-o-w-n/index.html
 $dokka.location:knf.hydra.core.models.data/LayoutType///PointingToDeclaration/core/knf.hydra.core.models.data/-layout-type/index.html
 $dokka.location:knf.hydra.core.models.data/LayoutType/value/#/PointingToDeclaration/core/knf.hydra.core.models.data/-layout-type/value.html
+$dokka.location:knf.hydra.core.models.data/LinkData///PointingToDeclaration/core/knf.hydra.core.models.data/-link-data/index.html
+$dokka.location:knf.hydra.core.models.data/LinkData/LinkData/#kotlin.String#kotlin.Boolean/PointingToDeclaration/core/knf.hydra.core.models.data/-link-data/-link-data.html
+$dokka.location:knf.hydra.core.models.data/LinkData/isOpenable/#/PointingToDeclaration/core/knf.hydra.core.models.data/-link-data/is-openable.html
+$dokka.location:knf.hydra.core.models.data/LinkData/isUserOpenable/#/PointingToDeclaration/core/knf.hydra.core.models.data/-link-data/is-user-openable.html
+$dokka.location:knf.hydra.core.models.data/LinkData/link/#/PointingToDeclaration/core/knf.hydra.core.models.data/-link-data/link.html
 $dokka.location:knf.hydra.core.models.data/LoginData///PointingToDeclaration/core/knf.hydra.core.models.data/-login-data/index.html
 $dokka.location:knf.hydra.core.models.data/LoginData/LoginData/#kotlin.String#kotlin.String#kotlin.String/PointingToDeclaration/core/knf.hydra.core.models.data/-login-data/-login-data.html
 $dokka.location:knf.hydra.core.models.data/LoginData/baseUrl/#/PointingToDeclaration/core/knf.hydra.core.models.data/-login-data/base-url.html
@@ -304,8 +309,9 @@ $dokka.location:knf.hydra.core.models/ContentData.Single/Single/#knf.hydra.core.
 $dokka.location:knf.hydra.core.models/ContentData.Single/model/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/model.html
 $dokka.location:knf.hydra.core.models/ContentData///PointingToDeclaration/core/knf.hydra.core.models/-content-data/index.html
 $dokka.location:knf.hydra.core.models/ContentItemMin///PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/index.html
-$dokka.location:knf.hydra.core.models/ContentItemMin/ContentItemMin/#kotlin.Int#kotlin.String#kotlin.Double#kotlin.String#kotlin.String?/PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/-content-item-min.html
+$dokka.location:knf.hydra.core.models/ContentItemMin/ContentItemMin/#kotlin.Int#kotlin.String#kotlin.Double#kotlin.String#kotlin.Boolean#kotlin.String?/PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/-content-item-min.html
 $dokka.location:knf.hydra.core.models/ContentItemMin/id/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/id.html
+$dokka.location:knf.hydra.core.models/ContentItemMin/isMedia/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/is-media.html
 $dokka.location:knf.hydra.core.models/ContentItemMin/link/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/link.html
 $dokka.location:knf.hydra.core.models/ContentItemMin/name/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/name.html
 $dokka.location:knf.hydra.core.models/ContentItemMin/number/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/number.html
@@ -315,6 +321,7 @@ $dokka.location:knf.hydra.core.models/ContentItemModel///PointingToDeclaration/
 $dokka.location:knf.hydra.core.models/ContentItemModel/ContentItemModel/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/-content-item-model.html
 $dokka.location:knf.hydra.core.models/ContentItemModel/commentsLink/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/comments-link.html
 $dokka.location:knf.hydra.core.models/ContentItemModel/id/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/id.html
+$dokka.location:knf.hydra.core.models/ContentItemModel/isMedia/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/is-media.html
 $dokka.location:knf.hydra.core.models/ContentItemModel/itemLink/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/item-link.html
 $dokka.location:knf.hydra.core.models/ContentItemModel/itemTitle/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/item-title.html
 $dokka.location:knf.hydra.core.models/ContentItemModel/number/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/number.html
@@ -428,6 +435,7 @@ $dokka.location:knf.hydra.core.models/RecentModel/infoId/#/PointingToDeclaration
 $dokka.location:knf.hydra.core.models/RecentModel/infoImage/#/PointingToDeclaration/core/knf.hydra.core.models/-recent-model/info-image.html
 $dokka.location:knf.hydra.core.models/RecentModel/infoLayoutType/#/PointingToDeclaration/core/knf.hydra.core.models/-recent-model/info-layout-type.html
 $dokka.location:knf.hydra.core.models/RecentModel/infoLink/#/PointingToDeclaration/core/knf.hydra.core.models/-recent-model/info-link.html
+$dokka.location:knf.hydra.core.models/RecentModel/isMedia/#/PointingToDeclaration/core/knf.hydra.core.models/-recent-model/is-media.html
 $dokka.location:knf.hydra.core.models/RecentModel/link/#/PointingToDeclaration/core/knf.hydra.core.models/-recent-model/link.html
 $dokka.location:knf.hydra.core.models/RecentModel/name/#/PointingToDeclaration/core/knf.hydra.core.models/-recent-model/name.html
 $dokka.location:knf.hydra.core.models/RecentModel/number/#/PointingToDeclaration/core/knf.hydra.core.models/-recent-model/number.html

@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 13/04/22 11:59
+ * Created by @UnbarredStream on 18/04/22 19:39
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 13/04/22 11:43
+ * Last modified 18/04/22 18:06
  */
 
 package knf.hydra.core.models
@@ -16,6 +16,7 @@ import kotlinx.parcelize.Parcelize
  * @property name [ContentItemModel] name created with the [type][ContentItemModel.type]
  * @property number [ContentItemModel number][ContentItemModel.number]
  * @property link [ContentItemModel link][ContentItemModel.itemLink]
+ * @property isMedia [ContentItemModel isMedia][ContentItemModel.isMedia]
  * @property thumbnailLink [ContentItemModel thumbnail][ContentItemModel.thumbnailLink]
  */
 @Parcelize
@@ -24,5 +25,6 @@ data class ContentItemMin(
     var name: String = "",
     var number: Double = 0.0,
     var link: String = "",
+    var isMedia: Boolean = true,
     var thumbnailLink: String? = null
 ): Parcelable

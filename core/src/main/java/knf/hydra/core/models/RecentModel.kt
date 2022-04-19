@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 13/04/22 11:59
+ * Created by @UnbarredStream on 18/04/22 19:39
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 10/04/22 20:29
+ * Last modified 18/04/22 18:28
  */
 
 package knf.hydra.core.models
@@ -33,6 +33,12 @@ abstract class RecentModel {
     abstract var infoLink: String
     /** Content category */
     abstract var category: Category
+    /**
+     * Limit the interactions the user can use with this content.
+     *
+     * If the item is not media, the comments and import/export features will be disabled.
+     */
+    abstract var isMedia: Boolean
     /** Optional cover image for this item */
     open var infoImage: String? = null
     /** Optional thumbnail image for this item content */

@@ -1,3 +1,9 @@
+/*
+ * Created by @UnbarredStream on 18/04/22 19:39
+ * Copyright (c) 2022 . All rights reserved.
+ * Last modified 18/04/22 18:30
+ */
+
 package knf.hydra.module.test1.models
 
 import knf.hydra.core.models.RecentModel
@@ -14,4 +20,5 @@ class TestRecentModel: RecentModel() {
     override var type: String = "Chapter %s"
     override var number: Double = 0.0
     override var category: Category = Category.UNKNOWN
+    override var isMedia: Boolean = false
 }
