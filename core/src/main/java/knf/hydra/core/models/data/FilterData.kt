@@ -1,13 +1,15 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:51
+ * Created by @UnbarredStream on 20/04/22 13:10
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:41
+ * Last modified 20/04/22 12:50
  */
 
 package knf.hydra.core.models.data
 
 /**
- * Represents a filter section
+ * Represents a filter section, each one contains a list of [options][FilterItem], the behavior is controlled by the [filterType]
+ * which change the options between a list of checkboxes and radio buttons, when the filters are applied by the user the app will
+ * detect the differences between the filters and will return only the changed sections.
  *
  * @property key The key that identifies the filter
  * @property name The name of the filter
