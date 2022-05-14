@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 14/04/22 19:45
+ * Created by @UnbarredStream on 13/05/22 19:01
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 14/04/22 0:17
+ * Last modified 13/05/22 18:59
  */
 
 package knf.hydra.core
@@ -167,16 +167,17 @@ abstract class HeadRepository {
     open suspend fun searchSuggestions(query: String, bypassModel: BypassModel): List<String>? = null
 
     /**
-     * This function is called only if [HeadConfig.isCalendarEnabled] is enabled, it's used to create a weekly base calendar.
+     * This function is called only if [HeadConfig.isCalendarEnabled] is enabled, it's used to create a daily calendar.
      *
      * If the calendar is enabled home will try to load a "Today" list calling this function with the current [day] as parameter.
      *
      * @param bypassModel Cloudflare bypass information extracted by the Main app, if your module
      * doesn't require a bypass you can disable it in [HeadConfig.bypassBehavior].
-     * @param day The day requested by the main app using [Calendar.DAY_OF_WEEK], or -1 if loading the full list.
-     * @return A [flow](https://developer.android.com/kotlin/flow#create) containing a [CalendarList] object.
+     * @param day The day requested by the main app using [Calendar.DAY_OF_WEEK].
+     * @return A [PagingData flow](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingdata-stream)
+     * for the items in the request.
      */
-    open suspend fun calendarList(bypassModel: BypassModel, day: Int = -1): Flow<CalendarList?>? = null
+    open suspend fun calendarDay(bypassModel: BypassModel, day: Int): Flow<PagingData<DirectoryModel>>? = null
 
     /**
      * Declare custom Home sections

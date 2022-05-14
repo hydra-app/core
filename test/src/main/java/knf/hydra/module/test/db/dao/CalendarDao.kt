@@ -1,3 +1,9 @@
+/*
+ * Created by @UnbarredStream on 13/05/22 19:01
+ * Copyright (c) 2022 . All rights reserved.
+ * Last modified 13/05/22 18:59
+ */
+
 package knf.hydra.module.test.db.dao
 
 import androidx.room.Dao
@@ -9,7 +15,7 @@ import knf.hydra.module.test.models.TestDirectoryModel
 @Dao
 interface CalendarDao {
     @Query("SELECT * FROM calendar WHERE releaseDay = :day ORDER BY name")
-    fun getByDay(day: Int): List<TestDirectoryModel>
+    suspend fun getByDay(day: Int): List<TestDirectoryModel>
 
     @Query("SELECT COUNT(*) FROM calendar")
     fun countAll(): Int

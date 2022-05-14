@@ -494,7 +494,7 @@ $dokka.location:knf.hydra.core/HeadModule/onModuleInitialize/#/PointingToDeclara
 $dokka.location:knf.hydra.core/HeadRepository///PointingToDeclaration/core/knf.hydra.core/-head-repository/index.html
 $dokka.location:knf.hydra.core/HeadRepository/HeadRepository/#/PointingToDeclaration/core/knf.hydra.core/-head-repository/-head-repository.html
 $dokka.location:knf.hydra.core/HeadRepository/analyticsRecommended/#knf.hydra.core.models.BypassModel#kotlin.collections.List[knf.hydra.core.models.analytics.Analytics.Event]/PointingToDeclaration/core/knf.hydra.core/-head-repository/analytics-recommended.html
-$dokka.location:knf.hydra.core/HeadRepository/calendarList/#knf.hydra.core.models.BypassModel#kotlin.Int/PointingToDeclaration/core/knf.hydra.core/-head-repository/calendar-list.html
+$dokka.location:knf.hydra.core/HeadRepository/calendarDay/#knf.hydra.core.models.BypassModel#kotlin.Int/PointingToDeclaration/core/knf.hydra.core/-head-repository/calendar-day.html
 $dokka.location:knf.hydra.core/HeadRepository/customHomeSections/#knf.hydra.core.models.BypassModel/PointingToDeclaration/core/knf.hydra.core/-head-repository/custom-home-sections.html
 $dokka.location:knf.hydra.core/HeadRepository/directoryFilters/#knf.hydra.core.models.BypassModel/PointingToDeclaration/core/knf.hydra.core/-head-repository/directory-filters.html
 $dokka.location:knf.hydra.core/HeadRepository/directoryPager/#knf.hydra.core.models.BypassModel#knf.hydra.core.models.data.FilterRequest?/PointingToDeclaration/core/knf.hydra.core/-head-repository/directory-pager.html

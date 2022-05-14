@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 14/04/22 19:45
+ * Created by @UnbarredStream on 13/05/22 19:01
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 14/04/22 0:17
+ * Last modified 13/05/22 18:59
  */
 
 package knf.hydra.module.test.extras
@@ -14,17 +14,19 @@ import knf.hydra.core.models.*
 import knf.hydra.core.models.analytics.Analytics
 import knf.hydra.core.models.data.*
 import knf.hydra.module.test.db.DB
-import knf.hydra.module.test.models.TestDirectoryModel
-import knf.hydra.module.test.repository.*
+import knf.hydra.module.test.repository.BestSource
+import knf.hydra.module.test.repository.DirectorySource
+import knf.hydra.module.test.repository.RecentsSource
+import knf.hydra.module.test.repository.SearchSource
 import knf.hydra.module.test.retrofit.NetworkRepository
 import knf.tools.bypass.containsAny
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import org.jsoup.Jsoup
-import java.text.SimpleDateFormat
 import java.util.*
 
 class Repository : HeadRepository() {
@@ -218,97 +220,11 @@ class Repository : HeadRepository() {
         ).flow
     }
 
-    override suspend fun calendarList(bypassModel: BypassModel, day: Int): Flow<CalendarList> =
-        flow {
-            try {
-                if (DB.isActive() && DB.INSTANCE.calendarDao().countAll() > 0) {
-                    val cachedMap = if (day != -1) {
-                        mapOf(day to DB.INSTANCE.calendarDao().getByDay(day))
-                    } else {
-                        mapOf<Int, List<DirectoryModel>>(
-                            Calendar.SUNDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.SUNDAY),
-                            Calendar.MONDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.MONDAY),
-                            Calendar.TUESDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.TUESDAY),
-                            Calendar.WEDNESDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.WEDNESDAY),
-                            Calendar.THURSDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.THURSDAY),
-                            Calendar.FRIDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.FRIDAY),
-                            Calendar.SATURDAY to DB.INSTANCE.calendarDao().getByDay(Calendar.SATURDAY)
-                        )
-                    }
-                    emit(
-                        CalendarList(cachedMap.mapValues {
-                            Pager(
-                                config = PagingConfig(24),
-                                pagingSourceFactory = { CalendarSource(it.value) }
-                            ).flow
-                        })
-                    )
-                }
-            }catch (e:Exception) {
-                e.printStackTrace()
-            }
-            val daysMap = mapOf<Int, MutableList<TestDirectoryModel>>(
-                Calendar.SUNDAY to mutableListOf(),
-                Calendar.MONDAY to mutableListOf(),
-                Calendar.TUESDAY to mutableListOf(),
-                Calendar.WEDNESDAY to mutableListOf(),
-                Calendar.THURSDAY to mutableListOf(),
-                Calendar.FRIDAY to mutableListOf(),
-                Calendar.SATURDAY to mutableListOf()
-            )
-            var page = 1
-            var hasMore = true
-            while (hasMore) {
-                try {
-                    val list = NetworkRepository.getCalendarPage(page, bypassModel)
-                    list.forEach { item ->
-                        try {
-                            val doc =
-                                Jsoup.connect(item.infoLink).headers(bypassModel.asMap(NetworkRepository.defaultCookies)).get()
-                            val html = doc.html()
-                            val info =
-                                "anime_info = \\[(.*)\\];".toRegex()
-                                    .find(html)?.destructured?.component1()
-                                    ?.split(",")?.map { it.replace("\"", "") }
-                            if (info?.size == 4) {
-                                val calendar = Calendar.getInstance().apply {
-                                    SimpleDateFormat(
-                                        "yyyy-MM-dd",
-                                        Locale.getDefault()
-                                    ).parse(info.last())
-                                        ?.let {
-                                            time = it
-                                        }
-                                }
-                                daysMap[calendar.get(Calendar.DAY_OF_WEEK)]?.add(item)
-                            }
-                        } catch (e: Exception) {
-                            //e.printStackTrace()
-                        }
-                    }
-                    hasMore = list.size == 24
-                } catch (e: Exception) {
-                    //
-                }
-                page++
-            }
-            if (DB.isActive()) {
-                DB.INSTANCE.calendarDao().nuke()
-                daysMap.forEach { entry ->
-                    entry.value.onEach { it.releaseDay = entry.key }
-                    DB.INSTANCE.calendarDao().insertAll(entry.value)
-                }
-            }
-            emit(
-                CalendarList(daysMap.mapValues {
-                    Pager(
-                        config = PagingConfig(24),
-                        pagingSourceFactory = { CalendarSource(it.value) }
-                    ).flow
-                })
-            )
-        }
-
+    override suspend fun calendarDay(bypassModel: BypassModel, day: Int): Flow<PagingData<DirectoryModel>> {
+        val flow = MutableStateFlow<PagingData<DirectoryModel>>(PagingData.from(DB.INSTANCE.calendarDao().getByDay(day)))
+        CalendarManager.request(CalendarManager.Request(bypassModel, day, flow))
+        return flow
+    }
 
     override suspend fun analyticsRecommended(
         bypassModel: BypassModel,
