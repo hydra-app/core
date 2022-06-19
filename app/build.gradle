@@ -1,3 +1,9 @@
+/*
+ * Created by @UnbarredStream on 19/06/22 13:39
+ * Copyright (c) 2022 . All rights reserved.
+ * Last modified 19/06/22 13:36
+ */
+
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
@@ -32,6 +38,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'knf.hydra'
 }
 
 dependencies {

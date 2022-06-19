@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 14/04/22 19:45
+ * Created by @UnbarredStream on 19/06/22 13:39
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 13/04/22 23:55
+ * Last modified 19/06/22 13:39
  */
 
 package knf.hydra.module.test.test
@@ -25,6 +25,7 @@ class MainTest : AppCompatActivity() {
         startBypass(5547, "https://animeflv.net", true)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == 5547) {

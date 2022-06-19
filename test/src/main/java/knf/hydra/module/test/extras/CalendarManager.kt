@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 13/05/22 19:02
+ * Created by @UnbarredStream on 19/06/22 13:39
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 13/05/22 19:01
+ * Last modified 19/06/22 13:36
  */
 
 package knf.hydra.module.test.extras
@@ -51,7 +51,7 @@ object CalendarManager {
                                         "anime_info = \\[(.*)\\];".toRegex()
                                             .find(html)?.destructured?.component1()
                                             ?.split(",")?.map { it.replace("\"", "") }
-                                    if (info?.size == 4) {
+                                    if (info?.size!! >= 4) {
                                         val calendar = Calendar.getInstance().apply {
                                             SimpleDateFormat(
                                                 "yyyy-MM-dd",

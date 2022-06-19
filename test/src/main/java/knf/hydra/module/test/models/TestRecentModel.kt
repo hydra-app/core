@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 18/04/22 19:39
+ * Created by @UnbarredStream on 19/06/22 13:39
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 18/04/22 18:30
+ * Last modified 19/06/22 13:36
  */
 
 package knf.hydra.module.test.models
@@ -46,7 +46,7 @@ class TestRecentModel : RecentModel() {
 
     override var type: String = "Chapter %s"
 
-    override var isMedia: Boolean = false
+    override var isMedia: Boolean = true
 
     class IdExtractor : ElementConverter<Int> {
         override fun convert(node: Element, selector: Selector): Int {

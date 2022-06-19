@@ -1,3 +1,9 @@
+/*
+ * Created by @UnbarredStream on 19/06/22 13:39
+ * Copyright (c) 2022 . All rights reserved.
+ * Last modified 19/06/22 13:36
+ */
+
 package knf.hydra.module.test.extras
 
 import knf.hydra.core.HeadConfig
@@ -35,10 +41,10 @@ class TestConfig : HeadConfig() {
                 Section(
                     "Información de MAL",
                     listOf(
-                        Setting.Switch("Datos basicos", "Año,y trailer", "mal_basic_data", false),
-                        Setting.Switch("Staff", "Staff de producción y seiyus", "mal_staff", false),
-                        Setting.Switch("Galería", "Imágenes y videos relacionados", "mal_gallery", false),
-                        Setting.Switch("Música", "Música relacionada", "mal_music", false)
+                        Setting.Switch("Datos basicos", "Año,y trailer", "mal_basic_data", true),
+                        Setting.Switch("Staff", "Staff de producción y seiyus", "mal_staff", true),
+                        Setting.Switch("Galería", "Imágenes y videos relacionados", "mal_gallery", true),
+                        Setting.Switch("Música", "Música relacionada", "mal_music", true)
                     )
                 )
             )

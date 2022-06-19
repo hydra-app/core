@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 19:35
+ * Created by @UnbarredStream on 19/06/22 13:39
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 19:17
+ * Last modified 19/06/22 13:37
  */
 
 plugins {
@@ -37,6 +37,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'knf.hydra.core'
 }
 
 tasks.dokkaHtml.configure {
@@ -56,13 +57,13 @@ tasks.dokkaHtml.configure {
 dependencies {
     //dokkaHtmlPlugin 'org.jetbrains.dokka:kotlin-as-java-plugin:1.5.30'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    api 'com.github.jordyamc:Cloudflare-Bypasser:1.0.17'
+    api 'com.github.jordyamc:Cloudflare-Bypasser:1.0.19'
     api 'androidx.paging:paging-runtime-ktx:3.1.1'
     api 'androidx.room:room-runtime:2.4.2'
     api 'androidx.room:room-ktx:2.4.2'
     kapt 'androidx.room:room-compiler:2.4.2'
     api 'androidx.preference:preference-ktx:1.2.0'
-    api 'androidx.annotation:annotation:1.3.0'
+    api 'androidx.annotation:annotation:1.4.0'
     api 'com.google.code.gson:gson:2.8.9'
     api 'com.github.jordyamc:Gson-ktx:1.0'
     api 'de.prosiebensat1digital.oasis-jsbridge-android:oasis-jsbridge-quickjs:0.14.5'

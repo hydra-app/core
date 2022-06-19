@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 18:05
+ * Created by @UnbarredStream on 19/06/22 13:39
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 18:03
+ * Last modified 19/06/22 13:39
  */
 
 package knf.hydra.core.tools.web
@@ -100,6 +100,7 @@ class WebJS(context: Context) {
     private abstract class DefaultClient: WebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean = false
 
+        @Deprecated("Deprecated in Java")
         override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean = false
     }
 
