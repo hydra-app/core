@@ -302,8 +302,9 @@ $dokka.location:knf.hydra.core.models/CalendarList///PointingToDeclaration/core
 $dokka.location:knf.hydra.core.models/CalendarList/CalendarList/#kotlin.collections.Map[kotlin.Int,kotlinx.coroutines.flow.Flow[androidx.paging.PagingData[knf.hydra.core.models.DirectoryModel]]]/PointingToDeclaration/core/knf.hydra.core.models/-calendar-list/-calendar-list.html
 $dokka.location:knf.hydra.core.models/CalendarList/days/#/PointingToDeclaration/core/knf.hydra.core.models/-calendar-list/days.html
 $dokka.location:knf.hydra.core.models/ContentData.Multiple///PointingToDeclaration/core/knf.hydra.core.models/-content-data/-multiple/index.html
-$dokka.location:knf.hydra.core.models/ContentData.Multiple/Multiple/#kotlinx.coroutines.flow.Flow[androidx.paging.PagingData[knf.hydra.core.models.ContentItemModel]]/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-multiple/-multiple.html
-$dokka.location:knf.hydra.core.models/ContentData.Multiple/contentPaging/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-multiple/content-paging.html
+$dokka.location:knf.hydra.core.models/ContentData.Multiple/Multiple/#kotlin.String?#kotlinx.coroutines.flow.Flow[kotlin.collections.List[knf.hydra.core.models.ContentList]]/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-multiple/-multiple.html
+$dokka.location:knf.hydra.core.models/ContentData.Multiple/contentLists/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-multiple/content-lists.html
+$dokka.location:knf.hydra.core.models/ContentData.Multiple/name/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-multiple/name.html
 $dokka.location:knf.hydra.core.models/ContentData.Single///PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/index.html
 $dokka.location:knf.hydra.core.models/ContentData.Single/Single/#knf.hydra.core.models.ContentItemModel/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/-single.html
 $dokka.location:knf.hydra.core.models/ContentData.Single/model/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/model.html
@@ -327,6 +328,10 @@ $dokka.location:knf.hydra.core.models/ContentItemModel/itemTitle/#/PointingToDec
 $dokka.location:knf.hydra.core.models/ContentItemModel/number/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/number.html
 $dokka.location:knf.hydra.core.models/ContentItemModel/thumbnailLink/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/thumbnail-link.html
 $dokka.location:knf.hydra.core.models/ContentItemModel/type/#/PointingToDeclaration/core/knf.hydra.core.models/-content-item-model/type.html
+$dokka.location:knf.hydra.core.models/ContentList///PointingToDeclaration/core/knf.hydra.core.models/-content-list/index.html
+$dokka.location:knf.hydra.core.models/ContentList/ContentList/#kotlin.String#kotlinx.coroutines.flow.Flow[androidx.paging.PagingData[knf.hydra.core.models.ContentItemModel]]/PointingToDeclaration/core/knf.hydra.core.models/-content-list/-content-list.html
+$dokka.location:knf.hydra.core.models/ContentList/name/#/PointingToDeclaration/core/knf.hydra.core.models/-content-list/name.html
+$dokka.location:knf.hydra.core.models/ContentList/paging/#/PointingToDeclaration/core/knf.hydra.core.models/-content-list/paging.html
 $dokka.location:knf.hydra.core.models/DirectoryModel.Companion///PointingToDeclaration/core/knf.hydra.core.models/-directory-model/-companion/index.html
 $dokka.location:knf.hydra.core.models/DirectoryModel.Orientation.HORIZONTAL///PointingToDeclaration/core/knf.hydra.core.models/-directory-model/-orientation/-h-o-r-i-z-o-n-t-a-l/index.html
 $dokka.location:knf.hydra.core.models/DirectoryModel.Orientation.VERTICAL///PointingToDeclaration/core/knf.hydra.core.models/-directory-model/-orientation/-v-e-r-t-i-c-a-l/index.html

@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 13/04/22 11:59
+ * Created by @UnbarredStream on 29/07/22 2:10
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 12/04/22 2:59
+ * Last modified 28/07/22 17:39
  */
 
 package knf.hydra.module.test1.extras
@@ -27,7 +27,7 @@ class Repository : HeadRepository(){
         }
     }
 
-    override suspend fun sourceData(content: ContentItemMin, bypassModel: BypassModel): SourceData? = null
+    override suspend fun sourceData(content: ContentItemMin, bypassModel: BypassModel): SourceData<*>? = null
 
     override suspend fun recentsPager(bypassModel: BypassModel): Flow<PagingData<RecentModel>> {
         return Pager(

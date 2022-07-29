@@ -1,16 +1,18 @@
 /*
- * Created by @UnbarredStream on 19/06/22 13:39
+ * Created by @UnbarredStream on 29/07/22 2:10
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 19/06/22 13:36
+ * Last modified 29/07/22 1:36
  */
 
 package knf.hydra.module.test.models
 
+import android.util.Log
 import androidx.annotation.Keep
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.room.*
 import knf.hydra.core.models.ContentData
+import knf.hydra.core.models.ContentList
 import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.data.*
 import knf.hydra.core.tools.ModulePreferences
@@ -22,9 +24,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
-import org.json.JSONArray
 import org.json.JSONObject
-import org.jsoup.Connection
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import pl.droidsonroids.jspoon.ElementConverter
@@ -182,6 +182,7 @@ class TestAnimeInfo : InfoModel() {
     class ExtraDataConverter @Keep constructor() : ElementConverter<List<ExtraSection>> {
         @OptIn(ExperimentalCoroutinesApi::class)
         override fun convert(node: Element, selector: Selector): List<ExtraSection> {
+            Log.e("Extras", "On create")
             val requestDelay = 550L
             val requestQueue = Channel<suspend () -> Unit>(Channel.UNLIMITED)
             GlobalScope.launch {
@@ -341,7 +342,7 @@ class TestAnimeInfo : InfoModel() {
                     }
                     if (isMusicEnabled) {
                         sections.add(ExtraSection("Música", flow {
-                            withTimeout(5000) {
+                            /*withTimeout(5000) {
                                 val request = URL("https://anusic-api.herokuapp.com/api/v1/anime/$id").readText()
                                 val music = JSONObject(request).getJSONObject("data").getJSONArray("collections")
                                 val musicList = mutableListOf<Music>()
@@ -363,7 +364,41 @@ class TestAnimeInfo : InfoModel() {
                                 } else {
                                     emit(null)
                                 }
+                            }*/
+                            val encodedTitle = URLEncoder.encode(title, "utf-8")
+                            val searchJson = withContext(Dispatchers.IO) {
+                                URL("https://api.animethemes.moe/search?q=$encodedTitle".also { Log.e("Song", it) }).readText()
                             }
+                            val searchArray = JSONObject(searchJson).getJSONObject("search").getJSONArray("anime")
+                            if (searchArray.length() == 0) {
+                                emit(null)
+                                return@flow
+                            }
+                            val slug = searchArray.getJSONObject(0).getString("slug")
+                            val songsJson = withContext(Dispatchers.IO) {
+                                URL("https://api.animethemes.moe/anime/$slug?include=animethemes.animethemeentries.videos".also { Log.e("Song", it) }).readText()
+                            }
+                            val songsArray = JSONObject(songsJson).getJSONObject("anime").getJSONArray("animethemes")
+                            if (songsArray.length() == 0) {
+                                emit(null)
+                                return@flow
+                            }
+                            val songList = mutableListOf<Music>()
+                            for (index in 0 until songsArray.length()) {
+                                val json = songsArray.getJSONObject(index)
+                                val song = JSONObject(URL("https://api.animethemes.moe/song/${json.getString("id")}".also { Log.e("Song", it) }).readText()).getJSONObject("song")
+                                songList.add(
+                                    Music(
+                                        song.getString("title"),
+                                        json.getJSONArray("animethemeentries").getJSONObject(0).getJSONArray("videos").getJSONObject(0).getString("link"),
+                                        json.getString("type")
+                                    )
+                                )
+                            }
+                            if (songList.isNotEmpty())
+                                emit(MusicData(songList))
+                            else
+                                emit(null)
                         }))
                     }
                 }
@@ -426,41 +461,33 @@ class TestAnimeInfo : InfoModel() {
                     else
                         null
                     emit(result)*/
-                    val title = node.select("h1.Title").text()
+                    val title = URLEncoder.encode(node.select("h1.Title").text(), "utf-8")
                     val searchJson = withContext(Dispatchers.IO) {
-                        //URL("https://themes.moe/api/anime/search/$title").readText()
-                        Jsoup.connect("https://themes.moe/api/anime/search/$title")
-                            .ignoreContentType(true)
-                            .method(Connection.Method.GET)
-                            .timeout(2000)
-                            .execute().body()
+                        URL("https://api.animethemes.moe/search?q=$title".also { Log.e("Song", it) }).readText()
                     }
-                    if (JSONArray(searchJson).length() == 0) {
+                    val searchArray = JSONObject(searchJson).getJSONArray("anime")
+                    if (searchArray.length() == 0) {
                         emit(null)
                         return@flow
                     }
+                    val slug = searchArray.getJSONObject(0).getString("slug")
                     val songsJson = withContext(Dispatchers.IO) {
-                        Jsoup.connect("https://themes.moe/api/themes/search")
-                            .ignoreContentType(true)
-                            .method(Connection.Method.POST)
-                            .requestBody(searchJson)
-                            .timeout(2000)
-                            .execute().body()
+                        URL("https://api.animethemes.moe/anime/$slug?include=animethemes.animethemeentries.videos".also { Log.e("Song", it) }).readText()
                     }
-                    val songsArray = JSONArray(songsJson)
+                    val songsArray = JSONObject(songsJson).getJSONArray("animethemes")
                     if (songsArray.length() == 0) {
                         emit(null)
                         return@flow
                     }
-                    val result = songsArray.getJSONObject(0).getJSONArray("themes")
                     val songList = mutableListOf<Music>()
-                    for (index in 0 until result.length()) {
-                        val json = result.getJSONObject(index)
+                    for (index in 0 until songsArray.length()) {
+                        val json = songsArray.getJSONObject(index)
+                        val song = JSONObject(URL("https://api.animethemes.moe/song/${json.getString("id")}".also { Log.e("Song", it) }).readText())
                         songList.add(
                             Music(
-                                json.getString("themeName"),
-                                json.getJSONObject("mirror").getString("mirrorURL"),
-                                json.getString("themeType")
+                                song.getString("title"),
+                                json.getJSONArray("animethemeentries").getJSONObject(0).getJSONArray("videos").getJSONObject(0).getString("link"),
+                                json.getString("type")
                             )
                         )
                     }
@@ -505,24 +532,33 @@ class TestAnimeInfo : InfoModel() {
             } else {
                 val disqusVersion =
                     Regex("load\\.(\\w+)\\.js").find(URL("https://https-animeflv-net.disqus.com/embed.js").readText())?.destructured?.component1()
-                ContentData.Multiple(Pager(
-                    config = PagingConfig(
-                        pageSize = 10,
-                        enablePlaceholders = false
-                    ),
-                    pagingSourceFactory = {
-                        ChaptersSource(
-                            disqusVersion,
-                            ChapterConstructor(
-                                id,
-                                link,
-                                chapLinkBase,
-                                thumbLinkBase,
-                                chapList
+                ContentData.Multiple(contentLists = flow {
+                    emit(
+                        listOf(
+                            ContentList(
+                                "",
+                                Pager(
+                                    config = PagingConfig(
+                                        pageSize = 10,
+                                        enablePlaceholders = false
+                                    ),
+                                    pagingSourceFactory = {
+                                        ChaptersSource(
+                                            disqusVersion,
+                                            ChapterConstructor(
+                                                id,
+                                                link,
+                                                chapLinkBase,
+                                                thumbLinkBase,
+                                                chapList
+                                            )
+                                        )
+                                    }
+                                ).flow
                             )
                         )
-                    }
-                ).flow)
+                    )
+                })
             }
         }
     }
