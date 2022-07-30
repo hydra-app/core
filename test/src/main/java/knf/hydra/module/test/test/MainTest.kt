@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 19/06/22 13:39
+ * Created by @UnbarredStream on 30/07/22 13:36
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 19/06/22 13:39
+ * Last modified 30/07/22 12:22
  */
 
 package knf.hydra.module.test.test
@@ -14,15 +14,13 @@ import androidx.lifecycle.lifecycleScope
 import knf.hydra.core.models.BypassModel
 import knf.hydra.core.models.ContentItemMin
 import knf.hydra.module.test.extras.Repository
-import knf.tools.bypass.startBypass
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class MainTest : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        startBypass(5547, "https://animeflv.net", true)
+        //startBypass(5547, "https://animeflv.net", true)
     }
 
     @Deprecated("Deprecated in Java")

@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 19/06/22 13:39
+ * Created by @UnbarredStream on 30/07/22 13:36
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 19/06/22 13:36
+ * Last modified 30/07/22 12:54
  */
 
 package knf.hydra.module.test.extras
@@ -29,8 +29,7 @@ class TestConfig : HeadConfig() {
         bypassBehavior = BypassBehavior.Custom(
             useLastUA = false,
             skipCaptcha = true,
-            useDialog = true,
-            dialogStyle = DialogStyle.CLASSIC
+            displayType = DisplayType.DIALOG(DialogStyle.SHEET)
         )
         analyticsSettings = Analytics.defaultSettings(Analytics.Type.TAG)
         customDecoders = listOf(

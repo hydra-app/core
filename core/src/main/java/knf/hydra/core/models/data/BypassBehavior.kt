@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
+ * Created by @UnbarredStream on 30/07/22 13:36
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Last modified 30/07/22 12:50
  */
 
 package knf.hydra.core.models.data
@@ -11,12 +11,10 @@ package knf.hydra.core.models.data
  */
 sealed class BypassBehavior(
     val useLastUA: Boolean = true,
-    val showReloadButton: Boolean = false,
     val skipCaptcha: Boolean = false,
     val maxTryCount: Int = 3,
     val clearCookies: Boolean = false,
-    val useDialog: Boolean = false,
-    val dialogStyle: DialogStyle = DialogStyle.CLASSIC,
+    val displayType: DisplayType = DisplayType.ACTIVITY(true),
     val isRequired: Boolean = true
 ) {
     /**
@@ -33,24 +31,29 @@ sealed class BypassBehavior(
      * Custom implementation
      *
      * @param useLastUA Remember last UserAgent.
-     * @param showReloadButton Show a reload button, the UserAgent will change each time.
      * @param skipCaptcha Reload every time a captcha is required.
      * @param maxTryCount Max number of redirects before an UserAgent reload.
      * @param clearCookies Clear all cookies each time the bypass is needed.
-     * @param useDialog Create bypass with UI
-     * @param dialogStyle Type of dialog, Bottom [SHEET][DialogStyle.SHEET] or [CLASSIC][DialogStyle.CLASSIC] dialog.
+     * @param displayType Display type of the bypass screen
      * @param isRequired Disable the bypass creation
      */
     class Custom(
         useLastUA: Boolean = true,
-        showReloadButton: Boolean = false,
         skipCaptcha: Boolean = false,
         maxTryCount: Int = 3,
         clearCookies: Boolean = false,
-        useDialog: Boolean = true,
-        dialogStyle: DialogStyle = DialogStyle.CLASSIC,
+        displayType: DisplayType = DisplayType.ACTIVITY(true),
         isRequired: Boolean = true
-    ) : BypassBehavior(useLastUA, showReloadButton, skipCaptcha, maxTryCount, clearCookies, useDialog, dialogStyle, isRequired)
+    ) : BypassBehavior(useLastUA, skipCaptcha, maxTryCount, clearCookies, displayType, isRequired)
+}
+
+/**
+ * Bypass display type
+ */
+sealed class DisplayType(val value: Int, val showReloadButton: Boolean = false, val style: DialogStyle = DialogStyle.CLASSIC){
+    class ACTIVITY(showReloadButton: Boolean): DisplayType(0, showReloadButton)
+    class DIALOG(style: DialogStyle): DisplayType(1, style = style)
+    object BACKGROUND: DisplayType(2)
 }
 
 /**

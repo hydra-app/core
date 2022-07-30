@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 29/07/22 2:10
+ * Created by @UnbarredStream on 30/07/22 13:36
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 28/07/22 22:49
+ * Last modified 30/07/22 13:12
  */
 
 plugins {
@@ -57,8 +57,8 @@ tasks.dokkaHtml.configure {
 dependencies {
     //dokkaHtmlPlugin 'org.jetbrains.dokka:kotlin-as-java-plugin:1.5.30'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    api 'com.github.jordyamc:Cloudflare-Bypasser:1.0.19'
-    //api 'knf.tools:bypass:1.0.20'
+    api 'com.github.jordyamc:Cloudflare-Bypasser:1.0.22'
+    //api 'knf.tools:bypass:1.0.21'
     api 'androidx.paging:paging-runtime-ktx:3.1.1'
     api 'androidx.room:room-runtime:2.4.2'
     api 'androidx.room:room-ktx:2.4.2'

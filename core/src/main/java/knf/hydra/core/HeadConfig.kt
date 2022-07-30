@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 19:35
+ * Created by @UnbarredStream on 30/07/22 13:36
  * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 19:33
+ * Last modified 30/07/22 0:35
  */
 
 package knf.hydra.core
@@ -78,6 +78,11 @@ abstract class HeadConfig {
      * [isRecentsAvailable] needs to be enabled as well.
      */
     var isNotifyRecentsEnabled = false
+
+    /**
+     * Hide the history of this module
+     */
+    var isSensitiveContent = false
 
     /**
      * Enable cast feature if your module uses direct video links.
