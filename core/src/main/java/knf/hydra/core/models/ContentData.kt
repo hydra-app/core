@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 29/07/22 2:10
- * Copyright (c) 2022 . All rights reserved.
- * Last modified 29/07/22 1:48
+ * Created by @UnbarredStream on 10/01/23 14:14
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 10/01/23 11:43
  */
 
 package knf.hydra.core.models
@@ -19,8 +19,9 @@ sealed class ContentData {
      * Single model, used to show only one item, (e.g. a movie)
      *
      * @property model The single content item
+     * @property canDownload Indicates if the content can be downloaded, default true
      */
-    data class Single(val model: ContentItemModel): ContentData()
+    data class Single(val model: ContentItemModel, val canDownload: Boolean = true): ContentData()
 
     /**
      * Multiple model, used to show a list of items

@@ -313,7 +313,8 @@ $dokka.location:knf.hydra.core.models/ContentData.Multiple/Multiple/#kotlin.Stri
 $dokka.location:knf.hydra.core.models/ContentData.Multiple/contentLists/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-multiple/content-lists.html
 $dokka.location:knf.hydra.core.models/ContentData.Multiple/name/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-multiple/name.html
 $dokka.location:knf.hydra.core.models/ContentData.Single///PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/index.html
-$dokka.location:knf.hydra.core.models/ContentData.Single/Single/#knf.hydra.core.models.ContentItemModel/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/-single.html
+$dokka.location:knf.hydra.core.models/ContentData.Single/Single/#knf.hydra.core.models.ContentItemModel#kotlin.Boolean/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/-single.html
+$dokka.location:knf.hydra.core.models/ContentData.Single/canDownload/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/can-download.html
 $dokka.location:knf.hydra.core.models/ContentData.Single/model/#/PointingToDeclaration/core/knf.hydra.core.models/-content-data/-single/model.html
 $dokka.location:knf.hydra.core.models/ContentData///PointingToDeclaration/core/knf.hydra.core.models/-content-data/index.html
 $dokka.location:knf.hydra.core.models/ContentItemMin///PointingToDeclaration/core/knf.hydra.core.models/-content-item-min/index.html

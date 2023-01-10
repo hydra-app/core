@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 29/07/22 2:10
- * Copyright (c) 2022 . All rights reserved.
- * Last modified 29/07/22 1:36
+ * Created by @UnbarredStream on 10/01/23 14:15
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 12/12/22 14:55
  */
 
 package knf.hydra.module.test.models
@@ -526,7 +526,8 @@ class TestAnimeInfo : InfoModel() {
                         chapLinkBase + formatted,
                         chapter.toDouble(),
                         String.format(thumbLinkBase, formatted),
-                        null
+                        null,
+                        "Movie"
                     )
                 )
             } else {
