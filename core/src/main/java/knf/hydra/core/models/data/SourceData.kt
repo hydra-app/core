@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 14/04/22 20:00
- * Copyright (c) 2022 . All rights reserved.
- * Last modified 14/04/22 19:59
+ * Created by @UnbarredStream on 25/04/23 18:25
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 24/04/23 23:39
  */
 
 package knf.hydra.core.models.data
@@ -41,12 +41,22 @@ sealed class SourceItem(val name: String, val link: String)
  * @param canDownload Specify if this link can be downloaded
  * @param payload Optional payload for custom decoders
  */
-class VideoItem(name: String, link: String, val type: String? = null, val quality: Quality? = null, val needDecoder: Boolean = true, val canDownload: Boolean = true, val payload: String? = null): SourceItem(name, link) {
+open class VideoItem(name: String, link: String, val type: String? = null, val quality: Quality? = null, val needDecoder: Boolean = true, val canDownload: Boolean = true, val payload: String? = null): SourceItem(name, link) {
     /**
      * Represents the quality of the video item
      */
     enum class Quality{ HIGH_4K, HIGH, MEDIUM, LOW, MULTIPLE }
 }
+
+/**
+ * Represents a video item in the source that need to be open with an external app
+ *
+ * @param name Item name
+ * @param link Item link
+ * @param type Optional item subtext
+ * @param quality Optional quality type (icon in the source list)
+ */
+class ExternalVideoItem(name: String, link: String, type: String? = null, quality: Quality? = null): VideoItem(name, link, type, quality, false, false)
 
 /**
  * Represents an item in the gallery

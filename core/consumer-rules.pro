@@ -1,0 +1,2 @@
+-keep class knf.hydra.core.** { *; }
+-keepnames public class * extends knf.hydra.core.** { *; }

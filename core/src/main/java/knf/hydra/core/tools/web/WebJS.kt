@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 19/06/22 13:39
- * Copyright (c) 2022 . All rights reserved.
- * Last modified 19/06/22 13:39
+ * Created by @UnbarredStream on 25/04/23 18:25
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 24/04/23 19:09
  */
 
 package knf.hydra.core.tools.web
@@ -35,10 +35,11 @@ class WebJS(context: Context) {
      *
      * @param link Link to be loaded in the webview
      * @param userAgent Optional user agent to be used while loading the [link]
+     * @param headers Optional additional headers
      * @param timeout Time to wait after onPageFinished is called before getting the cookies
      * @param callback Callback of eval code result
      */
-    fun evalOnFinish(link: String, userAgent :String, timeout: Long, js: String, callback: (String) -> Unit){
+    fun evalOnFinish(link: String, userAgent :String, headers: Map<String, String>,timeout: Long, js: String, callback: (String) -> Unit){
         this.callback = callback
         val handler = Handler(Looper.getMainLooper())
         val runnable = {
@@ -53,7 +54,7 @@ class WebJS(context: Context) {
                 handler.postDelayed(runnable,timeout)
             }
         }
-        webView.loadUrl(link)
+        webView.loadUrl(link, headers)
     }
 
     /**
@@ -61,10 +62,11 @@ class WebJS(context: Context) {
      *
      * @param link Link to be loaded in the webview
      * @param userAgent Optional user agent to be used while loading the [link]
+     * @param headers Optional additional headers
      * @param timeout Time to wait after onPageFinished is called before getting the cookies
      * @param cookies Callback of the cookies from the link
      */
-    fun cookiesOnFinish(link: String, userAgent: String, timeout: Long, cookies: (String) -> Unit) {
+    fun cookiesOnFinish(link: String, userAgent: String, headers: Map<String, String>, timeout: Long, cookies: (String) -> Unit) {
         val handler = Handler(Looper.getMainLooper())
         val callback = {
             cookies(CookieManager.getInstance().getCookie(link))
@@ -78,7 +80,7 @@ class WebJS(context: Context) {
                 handler.postDelayed(callback,timeout)
             }
         }
-        webView.loadUrl(link)
+        webView.loadUrl(link, headers)
     }
 
     /**

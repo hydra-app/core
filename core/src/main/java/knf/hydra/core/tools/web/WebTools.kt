@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 08/04/22 17:11
- * Copyright (c) 2022 . All rights reserved.
- * Last modified 08/04/22 17:10
+ * Created by @UnbarredStream on 25/04/23 18:25
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 24/04/23 19:20
  */
 
 package knf.hydra.core.tools.web
@@ -81,13 +81,16 @@ object WebTools {
      *
      * @param link Link to be loaded in the webview
      * @param userAgent Optional user agent to be used while loading the [link]
+     * @param headers Optional additional headers
      * @param timeout Time to wait after onPageFinished is called before getting the html
      * @return The html of the link
      */
-    suspend fun getHtml(link: String, userAgent: String = webJs.defaultUserAgent, timeout: Long = 1000): String? {
-        return suspendCoroutine { continuation ->
-            webJs.evalOnFinish(link, userAgent, timeout, "(\"<html>\"+document.getElementsByTagName(\"html\")[0].innerHTML+\"<\\/html>\")"){
-                continuation.resume(it)
+    suspend fun getHtml(link: String, userAgent: String = webJs.defaultUserAgent, headers: Map<String, String> = emptyMap(), timeout: Long = 1000): String? {
+        return withContext(Dispatchers.Main) {
+            suspendCoroutine { continuation ->
+                webJs.evalOnFinish(link, userAgent, headers, timeout, "(\"<html>\"+document.getElementsByTagName(\"html\")[0].innerHTML+\"<\\/html>\")"){
+                    continuation.resume(it)
+                }
             }
         }
     }
@@ -97,13 +100,16 @@ object WebTools {
      *
      * @param link Link to be loaded in the webview
      * @param userAgent Optional user agent to be used while loading the [link]
+     * @param headers Optional additional headers
      * @param timeout Time to wait after onPageFinished is called before getting the cookies
      * @return The cookies of the link
      */
-    suspend fun getCookies(link: String, userAgent: String = webJs.defaultUserAgent, timeout: Long = 1000): String? {
-        return suspendCoroutine { continuation ->
-            webJs.cookiesOnFinish(link, userAgent, timeout){
-                continuation.resume(it)
+    suspend fun getCookies(link: String, userAgent: String = webJs.defaultUserAgent, headers: Map<String, String> = emptyMap(), timeout: Long = 1000): String? {
+        return withContext(Dispatchers.Main) {
+            suspendCoroutine { continuation ->
+                webJs.cookiesOnFinish(link, userAgent, headers, timeout){
+                    continuation.resume(it)
+                }
             }
         }
     }
