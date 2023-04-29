@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 10/01/23 14:15
+ * Created by @UnbarredStream on 29/04/23 00:40
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 12/12/22 14:55
+ * Last modified 27/04/23 23:10
  */
 
 package knf.hydra.module.test.models
@@ -145,7 +145,7 @@ class TestAnimeInfo : InfoModel() {
     @Keep
     class StateConverter @Keep constructor() : ElementConverter<StateData> {
         override fun convert(node: Element, selector: Selector): StateData {
-            val animeState = node.select("p.AnmStts").first()
+            val animeState = node.select("p.AnmStts").first()!!
             val status =
                 if (animeState.hasClass("A")) StateData.Type.COMPLETED else StateData.Type.EMISSION
             var emissionDay: StateData.EmissionDay? = null
@@ -506,7 +506,7 @@ class TestAnimeInfo : InfoModel() {
     @Keep
     class ChaptersConverter @Keep constructor() : ElementConverter<ContentData?> {
         override fun convert(node: Element, selector: Selector): ContentData? {
-            val isMovie = node.select("span.Type").first().classNames().contains("movie")
+            val isMovie = node.select("span.Type").first()!!.classNames().contains("movie")
             val id = node.select(".Strs.RateIt").attr("data-id")
             val link = node.select("link[rel=canonical]").attr("href")
             val chapLinkBase = link.replace("/anime/", "/ver/") + "-"

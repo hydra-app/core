@@ -1,7 +1,7 @@
 /*
- * Created by @UnbarredStream on 13/05/22 19:02
- * Copyright (c) 2022 . All rights reserved.
- * Last modified 13/05/22 19:01
+ * Created by @UnbarredStream on 29/04/23 00:40
+ * Copyright (c) 2023 . All rights reserved.
+ * Last modified 27/04/23 23:10
  */
 
 package knf.hydra.module.test.extras
@@ -10,9 +10,23 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import knf.hydra.core.HeadRepository
-import knf.hydra.core.models.*
+import knf.hydra.core.models.BypassModel
+import knf.hydra.core.models.ContentItemMin
+import knf.hydra.core.models.DirectoryModel
+import knf.hydra.core.models.InfoModel
+import knf.hydra.core.models.RecentModel
 import knf.hydra.core.models.analytics.Analytics
-import knf.hydra.core.models.data.*
+import knf.hydra.core.models.data.ExtraDirectoryRequest
+import knf.hydra.core.models.data.FilterData
+import knf.hydra.core.models.data.FilterItem
+import knf.hydra.core.models.data.FilterRequest
+import knf.hydra.core.models.data.FilterResult
+import knf.hydra.core.models.data.NotifyData
+import knf.hydra.core.models.data.ReviewResult
+import knf.hydra.core.models.data.SectionData
+import knf.hydra.core.models.data.SourceData
+import knf.hydra.core.models.data.VideoItem
+import knf.hydra.core.models.data.VideoSource
 import knf.hydra.module.test.db.DB
 import knf.hydra.module.test.repository.BestSource
 import knf.hydra.module.test.repository.DirectorySource
@@ -27,7 +41,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import org.jsoup.Jsoup
-import java.util.*
+import java.util.Calendar
 
 class Repository : HeadRepository() {
 
@@ -121,7 +135,7 @@ class Repository : HeadRepository() {
                             }
                         }
                         downloads.select("tr:contains($lang)").forEach { element ->
-                            val name = element.select("td").first().text()
+                            val name = element.select("td").first()?.text()?: "Unk"
                             val dLink = element.select("a").attr("href")
                             val videoQuality = when {
                                 dLink.containsAny(
