@@ -487,6 +487,7 @@ $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/header/#kotlin.String#kotl
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/headers/#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/core/knf.hydra.core.tools.web/-simple-o-k-http/headers.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/post/#okhttp3.RequestBody/PointingToDeclaration/core/knf.hydra.core.tools.web/-simple-o-k-http/post.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/postAsString/#okhttp3.RequestBody/PointingToDeclaration/core/knf.hydra.core.tools.web/-simple-o-k-http/post-as-string.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/setErrorCallback/#kotlinx.coroutines.CoroutineExceptionHandler/PointingToDeclaration/core/knf.hydra.core.tools.web/-simple-o-k-http/set-error-callback.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/userAgent/#kotlin.String/PointingToDeclaration/core/knf.hydra.core.tools.web/-simple-o-k-http/user-agent.html
 $dokka.location:knf.hydra.core.tools.web/Unpacker///PointingToDeclaration/core/knf.hydra.core.tools.web/-unpacker/index.html
 $dokka.location:knf.hydra.core.tools.web/Unpacker/unpack/#kotlin.String/PointingToDeclaration/core/knf.hydra.core.tools.web/-unpacker/unpack.html

@@ -43,7 +43,7 @@ android {
 dependencies {
     //dokkaHtmlPlugin 'org.jetbrains.dokka:kotlin-as-java-plugin:1.5.30'
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    api 'com.github.jordyamc:Cloudflare-Bypasser:1.0.22'
+    api 'com.github.jordyamc:Cloudflare-Bypasser:1.0.23'
     //api 'knf.tools:bypass:1.0.21'
     api 'androidx.paging:paging-runtime-ktx:3.1.1'
     api 'androidx.room:room-runtime:2.5.1'

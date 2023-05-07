@@ -1,11 +1,12 @@
 /*
- * Created by @UnbarredStream on 25/04/23 18:25
+ * Created by @UnbarredStream on 07/05/23 14:54
  * Copyright (c) 2023 . All rights reserved.
- * Last modified 24/04/23 19:49
+ * Last modified 07/05/23 14:50
  */
 
 package knf.hydra.core.tools.web
 
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -21,6 +22,18 @@ import okhttp3.Response
 class SimpleOKHttp(url: String) {
     private var client = OkHttpClient()
     private val request = Request.Builder().url(url)
+    private var errorCallback = CoroutineExceptionHandler { _, throwable -> throwable.printStackTrace() }
+
+    /**
+     * Set error callback
+     *
+     * @param callback Request error callback
+     * @return This builder
+     */
+    fun setErrorCallback(callback: CoroutineExceptionHandler): SimpleOKHttp {
+        errorCallback = callback
+        return this
+    }
 
     /**
      * Set follow redirects
@@ -75,7 +88,7 @@ class SimpleOKHttp(url: String) {
      * @return Request response
      */
     suspend fun get(): Response {
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO + errorCallback) {
             client.newCall(request.build()).execute()
         }
     }
@@ -87,7 +100,7 @@ class SimpleOKHttp(url: String) {
      * @return Request response
      */
     suspend fun post(body: RequestBody): Response {
-        return withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO + errorCallback) {
             client.newCall(request.post(body).build()).execute()
         }
     }
