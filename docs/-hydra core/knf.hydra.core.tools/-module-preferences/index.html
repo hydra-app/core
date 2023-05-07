@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>ModulePreferences</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>Hydra core</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":core:dokkaHtml/release">androidJvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Hydra core::knf.hydra.core.tools/ModulePreferences///PointingToDeclaration//197447377">
+  <div class="breadcrumbs"><a href="../../../index.html">Hydra core</a><span class="delimiter">/</span><a href="../index.html">knf.hydra.core.tools</a><span class="delimiter">/</span><span class="current">ModulePreferences</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Module</span><wbr></wbr><span><span>Preferences</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="index.html">ModulePreferences</a></div><p class="paragraph">Object used to access the module preferences defined in <a href="../../knf.hydra.core/-head-config/settings-page.html">HeadConfig.settingsPage</a></p></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="207021512%2FFunctions%2F197447377" anchor-label="getPreference" id="207021512%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-preference.html"><span>get</span><wbr></wbr><span><span>Preference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="207021512%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-preference.html">T</a><span class="token operator">&gt; </span><a href="get-preference.html"><span class="token function">getPreference</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">default<span class="token operator">: </span><a href="get-preference.html">T</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-preference.html">T</a></div><div class="brief "><p class="paragraph">Get preference value by <a href="get-preference.html">key</a> or <a href="get-preference.html">default</a> suspending coroutine</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-741975971%2FFunctions%2F197447377" anchor-label="getPreferenceBlocking" id="-741975971%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-preference-blocking.html"><span>get</span><wbr></wbr><span>Preference</span><wbr></wbr><span><span>Blocking</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-741975971%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-preference-blocking.html">T</a><span class="token operator">&gt; </span><a href="get-preference-blocking.html"><span class="token function">getPreferenceBlocking</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">default<span class="token operator">: </span><a href="get-preference-blocking.html">T</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-preference-blocking.html">T</a></div><div class="brief "><p class="paragraph">Get preference value by <a href="get-preference-blocking.html">key</a> or <a href="get-preference-blocking.html">default</a> blocking the thread</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-833162413%2FFunctions%2F197447377" anchor-label="getPreferenceOrNull" id="-833162413%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-preference-or-null.html"><span>get</span><wbr></wbr><span>Preference</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Null</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-833162413%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-preference-or-null.html">T</a><span class="token operator">&gt; </span><a href="get-preference-or-null.html"><span class="token function">getPreferenceOrNull</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-preference-or-null.html">T</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get preference value by <a href="get-preference-or-null.html">key</a> or null suspending coroutine</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2034815000%2FFunctions%2F197447377" anchor-label="getPreferenceOrNullBlocking" id="-2034815000%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-preference-or-null-blocking.html"><span>get</span><wbr></wbr><span>Preference</span><wbr></wbr><span>Or</span><wbr></wbr><span>Null</span><wbr></wbr><span><span>Blocking</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2034815000%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-preference-or-null-blocking.html">T</a><span class="token operator">&gt; </span><a href="get-preference-or-null-blocking.html"><span class="token function">getPreferenceOrNullBlocking</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-preference-or-null-blocking.html">T</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Get preference value by <a href="get-preference-or-null-blocking.html">key</a> or null blocking the thread</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1449433912%2FFunctions%2F197447377" anchor-label="getPreferenceOrThrow" id="-1449433912%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-preference-or-throw.html"><span>get</span><wbr></wbr><span>Preference</span><wbr></wbr><span>Or</span><wbr></wbr><span><span>Throw</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1449433912%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-preference-or-throw.html">T</a><span class="token operator">&gt; </span><a href="get-preference-or-throw.html"><span class="token function">getPreferenceOrThrow</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-preference-or-throw.html">T</a></div><div class="brief "><p class="paragraph">Get preference value by <a href="get-preference-or-throw.html">key</a> or throw suspending coroutine</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-700359587%2FFunctions%2F197447377" anchor-label="getPreferenceOrThrowBlocking" id="-700359587%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="get-preference-or-throw-blocking.html"><span>get</span><wbr></wbr><span>Preference</span><wbr></wbr><span>Or</span><wbr></wbr><span>Throw</span><wbr></wbr><span><span>Blocking</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-700359587%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="get-preference-or-throw-blocking.html">T</a><span class="token operator">&gt; </span><a href="get-preference-or-throw-blocking.html"><span class="token function">getPreferenceOrThrowBlocking</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="get-preference-or-throw-blocking.html">T</a></div><div class="brief "><p class="paragraph">Get preference value by <a href="get-preference-or-throw-blocking.html">key</a> or throw blocking the thread</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="470242959%2FFunctions%2F197447377" anchor-label="setPreference" id="470242959%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-preference.html"><span>set</span><wbr></wbr><span><span>Preference</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="470242959%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">suspend </span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="set-preference.html">T</a><span class="token operator">&gt; </span><a href="set-preference.html"><span class="token function">setPreference</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="set-preference.html">T</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set preference value by <a href="set-preference.html">key</a> suspending coroutine</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-665025894%2FFunctions%2F197447377" anchor-label="setPreferenceBlocking" id="-665025894%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="set-preference-blocking.html"><span>set</span><wbr></wbr><span>Preference</span><wbr></wbr><span><span>Blocking</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-665025894%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="set-preference-blocking.html">T</a><span class="token operator">&gt; </span><a href="set-preference-blocking.html"><span class="token function">setPreferenceBlocking</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">key<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">value<span class="token operator">: </span><a href="set-preference-blocking.html">T</a><span class="token operator">?</span></span></span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">Set preference value by <a href="set-preference-blocking.html">key</a> blocking the thread</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>HeadModule</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+<div class="navigation-wrapper" id="navigation-wrapper">
+    <div id="leftToggler"><span class="icon-toggler"></span></div>
+    <div class="library-name">
+            <a href="../../../index.html">
+                    <span>Hydra core</span>
+            </a>
+    </div>
+    <div>
+    </div>
+    <div class="pull-right d-flex">
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":core:dokkaHtml/release">androidJvm</button>
+        </div>
+        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
+        <div id="searchBar"></div>
+    </div>
+</div>
+<div id="container">
+    <div id="leftColumn">
+        <div id="sideMenu"></div>
+    </div>
+    <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Hydra core::knf.hydra.core/HeadModule///PointingToDeclaration//197447377">
+  <div class="breadcrumbs"><a href="../../../index.html">Hydra core</a><span class="delimiter">/</span><a href="../index.html">knf.hydra.core</a><span class="delimiter">/</span><span class="current">HeadModule</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Head</span><wbr></wbr><span><span>Module</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">HeadModule</a></div><p class="paragraph">Main class to crate a Module for <a href="https://knf-hydra.app/">Hydra</a></p><p class="paragraph"><strong>Don't modify this code</strong>, the main app and the module need to have exactly the same library implementation in order to work, in the same way you can only implement an specific list of libraries, the main app needs to have a copy of that library in order to work.</p><p class="paragraph">TODO: Add compatible libraries list</p><p class="paragraph">The modules are limited in the permission they can declare, if the main app detects any other permission besides those, the module will be ignored, the admitted permissions are:</p><ul><li><p class="paragraph">android.permission.INTERNET</p></li><li><p class="paragraph">android.permission.ACCESS_WIFI_STATE</p></li></ul><p class="paragraph">To create a module you need to create a new Application project, once created you need to create a class named <strong>Module</strong> that extends <a href="index.html">HeadModule</a>, because the core is based in abstract implementation the minimum required functions needs to be overridden, the other overridable functions are optional (i.e., the main app will try to use the functions, but if the module doesn't implement them or any of them fail/crash it will adapt the UI to hide the related elements).</p><p class="paragraph">The name of the application doesn't need any requirements, but it can be a little descriptive for the users (e.g., Hydra Module: My module name) in case of a manual uninstall, the app won't use this name internally, instead it will use the name provided in the <a href="module-name.html">moduleName</a> implementation.</p><p class="paragraph"><b>Sample usage</b></p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">class Module: HeadModule() {<br>     override val moduleVersionCode: Int = BuildConfig.VERSION_CODE<br>     override val moduleVersionName: String = BuildConfig.VERSION_NAME<br>     override val baseUrl: String = &quot;https://empty.com&quot;<br>     override val moduleName: String = &quot;Test Module&quot;<br>     override val dataRepository: HeadRepository = Repository()<br>     override val config: HeadConfig = TestConfig()<br> }</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="-1084205753%2FConstructors%2F197447377" anchor-label="HeadModule" id="-1084205753%2FConstructors%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-head-module.html"><span>Head</span><wbr></wbr><span><span>Module</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1084205753%2FConstructors%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="FUNCTION">
+        <h2 class="">Functions</h2>
+        <div class="table"><a data-name="466363793%2FFunctions%2F197447377" anchor-label="createRoomDatabase" id="466363793%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="create-room-database.html"><span>create</span><wbr></wbr><span>Room</span><wbr></wbr><span><span>Database</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="466363793%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">fun </span><span class="token operator">&lt;</span><span class="token keyword"></span><a href="create-room-database.html">T</a><span class="token operator"> : </span><a href="https://developer.android.com/reference/kotlin/androidx/room/RoomDatabase.html">RoomDatabase</a><span class="token operator">&gt; </span><a href="create-room-database.html"><span class="token function">createRoomDatabase</span></a><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">name<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token punctuation">, </span></span><span class="parameter ">clazz<span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.reflect/-k-class/index.html">KClass</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="create-room-database.html">T</a><span class="token operator">&gt;</span></span></span><span class="token punctuation">)</span><span class="token operator">: </span><a href="https://developer.android.com/reference/kotlin/androidx/room/RoomDatabase.Builder.html">RoomDatabase.Builder</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="create-room-database.html">T</a><span class="token operator">&gt;</span></div><div class="brief "><p class="paragraph">Create or get a RoomDatabase, it will be created in the Main app storage and will persist if the module is uninstalled, we suggest to put the database reference inside an object for easier access through the module, this method can only be used inside of <a href="on-module-initialize.html">onModuleInitialize</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="338491288%2FFunctions%2F197447377" anchor-label="onModuleInitialize" id="338491288%2FFunctions%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="on-module-initialize.html"><span>on</span><wbr></wbr><span>Module</span><wbr></wbr><span><span>Initialize</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="338491288%2FFunctions%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">open </span><span class="token keyword">suspend </span><span class="token keyword">fun </span><a href="on-module-initialize.html"><span class="token function">onModuleInitialize</span></a><span class="token punctuation">(</span><span class="token punctuation">)</span></div><div class="brief "><p class="paragraph">This method is called the first time the module is initialized, here you can get/create internal databases using <a href="create-room-database.html">createRoomDatabase</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-1962551351%2FProperties%2F197447377" anchor-label="baseUrl" id="-1962551351%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="base-url.html"><span>base</span><wbr></wbr><span><span>Url</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1962551351%2FProperties%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="base-url.html">baseUrl</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">Base Url of the module to check for Cloudflare anti DDoS, in case of  protected url the app will try to bypass it, in case of a custom behaviour is needed for the bypass use the <strong>BypassBehavior</strong> in <a href="config.html">config</a> implementation.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-913917359%2FProperties%2F197447377" anchor-label="config" id="-913917359%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="config.html"><span><span>config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-913917359%2FProperties%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="config.html">config</a><span class="token operator">: </span><a href="../-head-config/index.html">HeadConfig</a></div><div class="brief "><p class="paragraph">The configuration for the module, here you can enable and modify the behaviour of some features in the module.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-2106512065%2FProperties%2F197447377" anchor-label="dataRepository" id="-2106512065%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="data-repository.html"><span>data</span><wbr></wbr><span><span>Repository</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2106512065%2FProperties%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="data-repository.html">dataRepository</a><span class="token operator">: </span><a href="../-head-repository/index.html">HeadRepository</a></div><div class="brief "><p class="paragraph">Data repository for the module, all the data required by the Main app in order to show content comes from here.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-499282660%2FProperties%2F197447377" anchor-label="moduleName" id="-499282660%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="module-name.html"><span>module</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-499282660%2FProperties%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="module-name.html">moduleName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The module name, it will be used internally to list the Module</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-186696786%2FProperties%2F197447377" anchor-label="moduleVersionCode" id="-186696786%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="module-version-code.html"><span>module</span><wbr></wbr><span>Version</span><wbr></wbr><span><span>Code</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-186696786%2FProperties%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="module-version-code.html">moduleVersionCode</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html">Int</a></div><div class="brief "><p class="paragraph">The module version code, usually <strong>BuildConfig.VERSION_CODE</strong> for easier implementation</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="-1816576816%2FProperties%2F197447377" anchor-label="moduleVersionName" id="-1816576816%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="module-version-name.html"><span>module</span><wbr></wbr><span>Version</span><wbr></wbr><span><span>Name</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1816576816%2FProperties%2F197447377"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword"></span><span class="token keyword">val </span><a href="module-version-name.html">moduleVersionName</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a></div><div class="brief "><p class="paragraph">The module version name, usually <strong>BuildConfig.VERSION_NAME</strong> for easier implementation</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2023 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+    </div>
+</div>
+</body>
+</html>
