@@ -6,7 +6,6 @@
 
 package knf.hydra.core.tools.web
 
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
@@ -22,18 +21,6 @@ import okhttp3.Response
 class SimpleOKHttp(url: String) {
     private var client = OkHttpClient()
     private val request = Request.Builder().url(url)
-    private var errorCallback = CoroutineExceptionHandler { _, throwable -> throwable.printStackTrace() }
-
-    /**
-     * Set error callback
-     *
-     * @param callback Request error callback
-     * @return This builder
-     */
-    fun setErrorCallback(callback: CoroutineExceptionHandler): SimpleOKHttp {
-        errorCallback = callback
-        return this
-    }
 
     /**
      * Set follow redirects
@@ -87,9 +74,14 @@ class SimpleOKHttp(url: String) {
      *
      * @return Request response
      */
-    suspend fun get(): Response {
-        return withContext(Dispatchers.IO + errorCallback) {
-            client.newCall(request.build()).execute()
+    suspend fun get(): Result<Response> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Result.OK(client.newCall(request.build()).execute())
+            } catch (e: Exception) {
+                e.printStackTrace()
+                Result.Error(e)
+            }
         }
     }
 
@@ -99,9 +91,14 @@ class SimpleOKHttp(url: String) {
      * @param body Data of the request
      * @return Request response
      */
-    suspend fun post(body: RequestBody): Response {
-        return withContext(Dispatchers.IO + errorCallback) {
-            client.newCall(request.post(body).build()).execute()
+    suspend fun post(body: RequestBody): Result<Response> {
+        return withContext(Dispatchers.IO) {
+            try {
+                Result.OK(client.newCall(request.post(body).build()).execute())
+            } catch (e:Exception) {
+                e.printStackTrace()
+                Result.Error(e)
+            }
         }
     }
 
@@ -110,8 +107,13 @@ class SimpleOKHttp(url: String) {
      *
      * @return Request response as string
      */
-    suspend fun getAsString(): String? {
-        return get().body?.string()
+    suspend fun getAsString(): Result<String> {
+        return get().let {
+            when(it) {
+                is Result.OK -> Result.OK(it.data?.body?.string())
+                is Result.Error -> Result.Error(it.error)
+            }
+        }
     }
 
     /**
@@ -120,8 +122,32 @@ class SimpleOKHttp(url: String) {
      * @param body Data of the request
      * @return Request response as string
      */
-    suspend fun postAsString(body: RequestBody): String? {
-        return post(body).body?.string()
+    suspend fun postAsString(body: RequestBody): Result<String> {
+        return post(body).let {
+            when(it) {
+                is Result.OK -> Result.OK(it.data?.body?.string())
+                is Result.Error -> Result.Error(it.error)
+            }
+        }
+    }
+
+    /**
+     * Result base calss
+     *
+     * @param T Response data type
+     * @property data Response data, null if error
+     */
+    sealed class Result<T>(val data: T?) {
+        /**
+         * Successful response
+         */
+        class OK<T>(data: T?): Result<T>(data)
+        /**
+         * Error response
+         *
+         * @param error Request throwable
+         */
+        class Error<T>(val error: Throwable): Result<T>(null)
     }
 
 }
