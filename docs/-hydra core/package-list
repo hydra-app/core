@@ -478,6 +478,13 @@ $dokka.location:knf.hydra.core.models/RecentModel/name/#/PointingToDeclaration/
 $dokka.location:knf.hydra.core.models/RecentModel/number/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-recent-model/number.html
 $dokka.location:knf.hydra.core.models/RecentModel/type/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-recent-model/type.html
 $dokka.location:knf.hydra.core.tools.web////PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/index.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.Error///PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/-result/-error/index.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.Error/Error/#kotlin.Throwable/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/-result/-error/-error.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.Error/error/#/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/-result/-error/error.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.OK///PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/-result/-o-k/index.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.OK/OK/#TypeParam(bounds=[kotlin.Any?])?/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/-result/-o-k/-o-k.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result///PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/-result/index.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result/data/#/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/-result/data.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp///PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/index.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/SimpleOKHttp/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/-simple-o-k-http.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/followRedirects/#kotlin.Boolean/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/follow-redirects.html
@@ -487,7 +494,6 @@ $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/header/#kotlin.String#kotl
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/headers/#kotlin.collections.Map[kotlin.String,kotlin.String]/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/headers.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/post/#okhttp3.RequestBody/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/post.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/postAsString/#okhttp3.RequestBody/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/post-as-string.html
-$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/setErrorCallback/#kotlinx.coroutines.CoroutineExceptionHandler/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/set-error-callback.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/userAgent/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/user-agent.html
 $dokka.location:knf.hydra.core.tools.web/Unpacker///PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-unpacker/index.html
 $dokka.location:knf.hydra.core.tools.web/Unpacker/unpack/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-unpacker/unpack.html
