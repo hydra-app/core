@@ -62,7 +62,7 @@ tasks.dokkaHtml.configure {
         named("main") {
             moduleName.set("Hydra core")
             includes.from("README.md")
-            customAssets.set([file("logo-icon.svg")])
+            customAssets.from("logo-icon.svg")
             noAndroidSdkLink.set(false)
             sourceLink {
                 remoteUrl.set(java.net.URL("https://github.com/hydra-app/core/tree/master/core/src/main/java"))
