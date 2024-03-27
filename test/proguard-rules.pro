@@ -22,3 +22,8 @@
 
 -keep class * implements pl.droidsonroids.jspoon.ElementConverter
 -keep class * extends knf.hydra.core.**
+-keep class * extends androidx.room.RoomDatabase
+-keep class knf.hydra.module.test.db.**
+-keep class knf.hydra.module.test.models.**
+-keep @androidx.room.Entity class *
+-keep @androidx.room.Database class *

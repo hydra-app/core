@@ -10,20 +10,47 @@ import android.util.Log
 import androidx.annotation.Keep
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.room.*
+import androidx.room.Embedded
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+import androidx.room.TypeConverters
 import knf.hydra.core.models.ContentData
 import knf.hydra.core.models.ContentList
 import knf.hydra.core.models.InfoModel
-import knf.hydra.core.models.data.*
+import knf.hydra.core.models.data.Category
+import knf.hydra.core.models.data.ClickAction
+import knf.hydra.core.models.data.CollectionData
+import knf.hydra.core.models.data.CollectionItem
+import knf.hydra.core.models.data.ExtraSection
+import knf.hydra.core.models.data.GalleryData
+import knf.hydra.core.models.data.ImageMediaItem
+import knf.hydra.core.models.data.LayoutType
+import knf.hydra.core.models.data.MediaItem
+import knf.hydra.core.models.data.Music
+import knf.hydra.core.models.data.MusicData
+import knf.hydra.core.models.data.RankingData
+import knf.hydra.core.models.data.TextData
+import knf.hydra.core.models.data.VerticalImageItem
+import knf.hydra.core.models.data.YoutubeData
+import knf.hydra.core.models.data.YoutubeItem
+import knf.hydra.core.models.data.asFlow
 import knf.hydra.core.tools.ModulePreferences
 import knf.hydra.module.test.repository.ChaptersSource
 import knf.hydra.module.test.retrofit.NetworkRepository
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.channelFlow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeout
 import org.json.JSONObject
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
@@ -33,7 +60,8 @@ import java.net.URL
 import java.net.URLEncoder
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 import kotlin.random.Random
 
 @Entity
@@ -192,10 +220,10 @@ class TestAnimeInfo : InfoModel() {
                 }
             }
             val sections = mutableListOf<ExtraSection>()
-            val isBasicDataEnabled = ModulePreferences.getPreferenceBlocking("mal_basic_data", false)
-            val isStaffEnabled = ModulePreferences.getPreferenceBlocking("mal_staff", false)
-            val isGalleryEnabled = ModulePreferences.getPreferenceBlocking("mal_gallery", false)
-            val isMusicEnabled = ModulePreferences.getPreferenceBlocking("mal_music", false)
+            val isBasicDataEnabled = ModulePreferences.getPreferenceBlocking("mal_basic_data", true)
+            val isStaffEnabled = ModulePreferences.getPreferenceBlocking("mal_staff", true)
+            val isGalleryEnabled = ModulePreferences.getPreferenceBlocking("mal_gallery", true)
+            val isMusicEnabled = ModulePreferences.getPreferenceBlocking("mal_music", true)
             if (!listOf(isBasicDataEnabled, isGalleryEnabled, isStaffEnabled, isMusicEnabled).any { it }){
                 return sections
             }

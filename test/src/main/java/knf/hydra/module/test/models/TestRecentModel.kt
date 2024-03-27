@@ -71,7 +71,7 @@ class TestRecentModel : RecentModel() {
 
     class ChapterImageExtractor : ElementConverter<String> {
         override fun convert(node: Element, selector: Selector): String {
-            val id = node.select("img").first().attr("src").substringAfterLast("/").substringBeforeLast(".")
+            val id = node.select("img").first()?.attr("src")?.substringAfterLast("/")?.substringBeforeLast(".")
             val number = node.select("span.Capi").text().substringAfterLast(" ").trim().toInt()
             return "https://cdn.animeflv.net/screenshots/$id/$number/th_3.jpg"
         }

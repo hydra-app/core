@@ -8,7 +8,13 @@ package knf.hydra.module.test.extras
 
 import knf.hydra.core.HeadConfig
 import knf.hydra.core.models.analytics.Analytics
-import knf.hydra.core.models.data.*
+import knf.hydra.core.models.data.BypassBehavior
+import knf.hydra.core.models.data.DialogStyle
+import knf.hydra.core.models.data.DisplayType
+import knf.hydra.core.models.data.ReviewConfig
+import knf.hydra.core.models.data.Section
+import knf.hydra.core.models.data.Setting
+import knf.hydra.core.models.data.SettingPage
 import knf.hydra.module.test.decoders.GoCDN
 
 class TestConfig : HeadConfig() {

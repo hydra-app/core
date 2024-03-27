@@ -8,7 +8,8 @@ package knf.hydra.module.test.extras
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
-import androidx.paging.PagingData
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import knf.hydra.core.HeadRepository
 import knf.hydra.core.models.BypassModel
 import knf.hydra.core.models.ContentItemMin
@@ -16,18 +17,19 @@ import knf.hydra.core.models.DirectoryModel
 import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.RecentModel
 import knf.hydra.core.models.analytics.Analytics
+import knf.hydra.core.models.data.CalendarDay
 import knf.hydra.core.models.data.ExtraDirectoryRequest
 import knf.hydra.core.models.data.FilterData
 import knf.hydra.core.models.data.FilterItem
 import knf.hydra.core.models.data.FilterRequest
 import knf.hydra.core.models.data.FilterResult
 import knf.hydra.core.models.data.NotifyData
+import knf.hydra.core.models.data.PagerData
 import knf.hydra.core.models.data.ReviewResult
 import knf.hydra.core.models.data.SectionData
 import knf.hydra.core.models.data.SourceData
 import knf.hydra.core.models.data.VideoItem
 import knf.hydra.core.models.data.VideoSource
-import knf.hydra.module.test.db.DB
 import knf.hydra.module.test.repository.BestSource
 import knf.hydra.module.test.repository.DirectorySource
 import knf.hydra.module.test.repository.RecentsSource
@@ -36,7 +38,6 @@ import knf.hydra.module.test.retrofit.NetworkRepository
 import knf.tools.bypass.containsAny
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -45,16 +46,8 @@ import java.util.Calendar
 
 class Repository : HeadRepository() {
 
-    override suspend fun recentsPager(
-        bypassModel: BypassModel
-    ): Flow<PagingData<RecentModel>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 20,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = { RecentsSource(bypassModel) }
-        ).flow
+    override suspend fun recentsPagerData(bypassModel: BypassModel): PagerData<*, RecentModel> {
+        return PagerData(20, RecentsSource(bypassModel))
     }
 
     override fun infoPage(
@@ -207,37 +200,33 @@ class Repository : HeadRepository() {
         }
     }
 
-    override suspend fun directoryPager(
+    override suspend fun directoryPagerData(
         bypassModel: BypassModel,
         filters: FilterRequest?
-    ): Flow<PagingData<DirectoryModel>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 24,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = { DirectorySource(bypassModel, filters) }
-        ).flow
+    ): PagerData<*, DirectoryModel> {
+        return PagerData(24, DirectorySource(bypassModel, filters))
     }
 
-    override suspend fun searchPager(
+    override suspend fun searchPagerData(
         query: String?,
         bypassModel: BypassModel,
         filters: FilterRequest?
-    ): Flow<PagingData<DirectoryModel>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 24,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = { SearchSource(query, bypassModel, filters) }
-        ).flow
+    ): PagerData<*, DirectoryModel> {
+        return PagerData(24, SearchSource(query, bypassModel, filters))
     }
 
-    override suspend fun calendarDay(bypassModel: BypassModel, day: Int): Flow<PagingData<DirectoryModel>> {
-        val flow = MutableStateFlow<PagingData<DirectoryModel>>(PagingData.from(DB.INSTANCE.calendarDao().getByDay(day)))
-        CalendarManager.request(CalendarManager.Request(bypassModel, day, flow))
-        return flow
+    override suspend fun calendarByDayData(
+        bypassModel: BypassModel,
+        day: CalendarDay
+    ): PagerData<*, DirectoryModel> {
+        val list = CalendarManager.getDay(bypassModel, day)
+        return PagerData(50, object : PagingSource<Int, DirectoryModel>() {
+            override fun getRefreshKey(state: PagingState<Int, DirectoryModel>): Int? = state.anchorPosition
+
+            override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DirectoryModel> {
+                return LoadResult.Page(list, null, null)
+            }
+        })
     }
 
     override suspend fun analyticsRecommended(
@@ -284,15 +273,12 @@ class Repository : HeadRepository() {
         }
     }
 
-    override suspend fun extraDirectoryPager(bypassModel: BypassModel, request: ExtraDirectoryRequest): Flow<PagingData<DirectoryModel>> {
+    override suspend fun extraDirectoryPagerData(
+        bypassModel: BypassModel,
+        request: ExtraDirectoryRequest
+    ): PagerData<*, DirectoryModel> {
         val filter = FilterResult(FilterData("genre","",FilterData.Type.SINGLE, emptyList()), listOf(FilterItem(request.payload.orEmpty(),"")))
         val order = FilterResult(FilterData("order","",FilterData.Type.SINGLE, emptyList()), listOf(FilterItem("title","")))
-        return Pager(
-            config = PagingConfig(
-                pageSize = 24,
-                enablePlaceholders = false
-            ),
-            pagingSourceFactory = { DirectorySource(bypassModel, FilterRequest(listOf(filter,order))) }
-        ).flow
+        return PagerData(24, DirectorySource(bypassModel, FilterRequest(listOf(filter,order))))
     }
 }

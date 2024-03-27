@@ -22,6 +22,7 @@ class ChaptersSource (private val disqusVersion: String?, private  val construct
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, ContentItemModel> {
         return try {
+            params.key
             val list = withContext(Dispatchers.IO){
                 constructor.chapterList.subList((params.key?:0)*10,constructor.chapterList.size).take(10)
                     .map {

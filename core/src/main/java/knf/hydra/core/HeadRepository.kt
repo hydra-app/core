@@ -6,13 +6,29 @@
 
 package knf.hydra.core
 
-import androidx.paging.PagingData
-import knf.hydra.core.models.*
+import knf.hydra.core.models.BypassModel
+import knf.hydra.core.models.ContentItemMin
+import knf.hydra.core.models.ContentItemModel
+import knf.hydra.core.models.DirectoryModel
+import knf.hydra.core.models.InfoModel
 import knf.hydra.core.models.InfoModel.Tag
+import knf.hydra.core.models.ProfileModel
+import knf.hydra.core.models.RecentModel
 import knf.hydra.core.models.analytics.Analytics
-import knf.hydra.core.models.data.*
+import knf.hydra.core.models.data.CalendarDay
+import knf.hydra.core.models.data.ClickAction
+import knf.hydra.core.models.data.ExtraDirectoryRequest
+import knf.hydra.core.models.data.FilterData
+import knf.hydra.core.models.data.FilterRequest
+import knf.hydra.core.models.data.GallerySource
+import knf.hydra.core.models.data.NotifyData
+import knf.hydra.core.models.data.PagerData
+import knf.hydra.core.models.data.ReviewResult
+import knf.hydra.core.models.data.SectionData
+import knf.hydra.core.models.data.SourceData
+import knf.hydra.core.models.data.VideoSource
+import knf.hydra.core.models.data.WebSource
 import kotlinx.coroutines.flow.Flow
-import java.util.*
 
 /**
  * Module repository, it contains all the methods required for the Main app to get data from the Module,
@@ -79,10 +95,10 @@ abstract class HeadRepository {
      *
      * @param bypassModel Cloudflare bypass information extracted by the Main app, if your module
      * doesn't require a bypass you can disable it in [HeadConfig.bypassBehavior].
-     * @return A [PagingData flow](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingdata-stream)
+     * @return A [PagerData] containing a [PagingData](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource)
      * for the recents.
      */
-    open suspend fun recentsPager(bypassModel: BypassModel): Flow<PagingData<RecentModel>>? = null
+    open suspend fun recentsPagerData(bypassModel: BypassModel): PagerData<*, RecentModel>? = null
 
     /**
      * This function is called only if [HeadConfig.isRecentsAvailable] and [HeadConfig.isNotifyRecentsEnabled]
@@ -115,13 +131,13 @@ abstract class HeadRepository {
      * @param bypassModel Cloudflare bypass information extracted by the Main app, if your module
      * doesn't require a bypass you can disable it in [HeadConfig.bypassBehavior].
      * @param filters Requested filters by the user.
-     * @return A [PagingData flow](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingdata-stream)
+     * @return A [PagerData] containing a [PagingData](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource)
      * for the directory.
      */
-    open suspend fun directoryPager(bypassModel: BypassModel, filters: FilterRequest?): Flow<PagingData<DirectoryModel>>? = null
+    open suspend fun directoryPagerData(bypassModel: BypassModel, filters: FilterRequest?): PagerData<*, DirectoryModel>? = null
 
     /**
-     * This function is used to declare the custom filters to be used in [directoryPager].
+     * This function is used to declare the custom filters to be used in [directoryPagerData].
      *
      * See [FilterData] for more information.
      *
@@ -140,13 +156,13 @@ abstract class HeadRepository {
      * @param bypassModel Cloudflare bypass information extracted by the Main app, if your module
      * doesn't require a bypass you can disable it in [HeadConfig.bypassBehavior].
      * @param filters Requested filters by the user.
-     * @return A [PagingData flow](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingdata-stream)
+     * @return A [PagerData] containing a [PagingData](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource)
      * for the search result.
      */
-    open suspend fun searchPager(query: String?, bypassModel: BypassModel, filters: FilterRequest?): Flow<PagingData<DirectoryModel>>? = null
+    open suspend fun searchPagerData(query: String?, bypassModel: BypassModel, filters: FilterRequest?): PagerData<*, DirectoryModel>? = null
 
     /**
-     * This function is used to declare the custom filters to be used in [searchPager].
+     * This function is used to declare the custom filters to be used in [searchPagerData].
      *
      * See [FilterData] for more information.
      *
@@ -173,11 +189,11 @@ abstract class HeadRepository {
      *
      * @param bypassModel Cloudflare bypass information extracted by the Main app, if your module
      * doesn't require a bypass you can disable it in [HeadConfig.bypassBehavior].
-     * @param day The day requested by the main app using [Calendar.DAY_OF_WEEK].
-     * @return A [PagingData flow](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingdata-stream)
+     * @param day The day requested by the main app
+     * @return A [PagerData] containing a [PagingData](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource)
      * for the items in the request.
      */
-    open suspend fun calendarDay(bypassModel: BypassModel, day: Int): Flow<PagingData<DirectoryModel>>? = null
+    open suspend fun calendarByDayData(bypassModel: BypassModel, day: CalendarDay): PagerData<*, DirectoryModel>? = null
 
     /**
      * Declare custom Home sections
@@ -218,10 +234,10 @@ abstract class HeadRepository {
      * @param bypassModel Cloudflare bypass information extracted by the Main app, if your module
      * doesn't require a bypass you can disable it in [HeadConfig.bypassBehavior].
      * @param request The requested payload to load.
-     * @return A [PagingData flow](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingdata-stream)
+     * @return A [PagerData] containing a [PagingData](https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource)
      * for the items in the request.
      */
-    open suspend fun extraDirectoryPager(bypassModel: BypassModel, request: ExtraDirectoryRequest): Flow<PagingData<DirectoryModel>>? = null
+    open suspend fun extraDirectoryPagerData(bypassModel: BypassModel, request: ExtraDirectoryRequest): PagerData<*, DirectoryModel>? = null
 
     /**
      * Load a profile with custom sections declared in the [ProfileModel].

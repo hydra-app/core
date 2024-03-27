@@ -39,9 +39,18 @@ sealed class SourceItem(val name: String, val link: String)
  * @param quality Optional quality type (icon in the source list)
  * @param needDecoder Specify if this link needs to be processed before playing or it can be played instantly, default is **true**
  * @param canDownload Specify if this link can be downloaded
+ * @param isExternal Specify if the link is an external link, use [ExternalVideoItem]
  * @param payload Optional payload for custom decoders
  */
-open class VideoItem(name: String, link: String, val type: String? = null, val quality: Quality? = null, val needDecoder: Boolean = true, val canDownload: Boolean = true, val payload: String? = null): SourceItem(name, link) {
+open class VideoItem(
+    name: String,
+    link: String,
+    val type: String? = null,
+    val quality: Quality? = null,
+    val needDecoder: Boolean = true,
+    val canDownload: Boolean = true,
+    val payload: String? = null
+): SourceItem(name, link) {
     /**
      * Represents the quality of the video item
      */
@@ -56,7 +65,12 @@ open class VideoItem(name: String, link: String, val type: String? = null, val q
  * @param type Optional item subtext
  * @param quality Optional quality type (icon in the source list)
  */
-class ExternalVideoItem(name: String, link: String, type: String? = null, quality: Quality? = null): VideoItem(name, link, type, quality, false, false)
+class ExternalVideoItem(
+    name: String,
+    link: String,
+    type: String? = null,
+    quality: Quality? = null
+): VideoItem(name, link, type, quality, false, false)
 
 /**
  * Represents an item in the gallery
