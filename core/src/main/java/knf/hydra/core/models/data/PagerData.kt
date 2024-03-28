@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.PagingSource
+import androidx.paging.PagingState
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -66,5 +67,22 @@ data class PagerData<Key : Any, Value : Any>(
             }
         }
         return list
+    }
+
+    companion object {
+        /**
+         * Creates a [PagerData] from a static [List]
+         *
+         * @param list List of items
+         * @return a [PagerData] with the entire list
+         */
+        fun <T: Any>from(list: List<T>): PagerData<Int, T> {
+            return PagerData(list.size, object :PagingSource<Int, T>() {
+                override fun getRefreshKey(state: PagingState<Int, T>): Int? = null
+                override suspend fun load(params: LoadParams<Int>): LoadResult<Int, T> {
+                    return LoadResult.Page(list, null, null)
+                }
+            })
+        }
     }
 }

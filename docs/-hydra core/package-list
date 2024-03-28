@@ -229,6 +229,8 @@ $dokka.location:knf.hydra.core.models.data/Option/directLink/#/PointingToDeclara
 $dokka.location:knf.hydra.core.models.data/Option/headers/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-option/headers.html
 $dokka.location:knf.hydra.core.models.data/Option/name/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-option/name.html
 $dokka.location:knf.hydra.core.models.data/Option/quality/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-option/quality.html
+$dokka.location:knf.hydra.core.models.data/PagerData.Companion///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-pager-data/-companion/index.html
+$dokka.location:knf.hydra.core.models.data/PagerData.Companion/from/#kotlin.collections.List[TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-pager-data/-companion/from.html
 $dokka.location:knf.hydra.core.models.data/PagerData///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-pager-data/index.html
 $dokka.location:knf.hydra.core.models.data/PagerData/PagerData/#kotlin.Int#androidx.paging.PagingSource[TypeParam(bounds=[kotlin.Any]),TypeParam(bounds=[kotlin.Any])]/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-pager-data/-pager-data.html
 $dokka.location:knf.hydra.core.models.data/PagerData/pageSize/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-pager-data/page-size.html
@@ -260,7 +262,7 @@ $dokka.location:knf.hydra.core.models.data/Section/Section/#kotlin.String#kotlin
 $dokka.location:knf.hydra.core.models.data/Section/name/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-section/name.html
 $dokka.location:knf.hydra.core.models.data/Section/settings/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-section/settings.html
 $dokka.location:knf.hydra.core.models.data/SectionData///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-section-data/index.html
-$dokka.location:knf.hydra.core.models.data/SectionData/SectionData/#kotlin.String#kotlinx.coroutines.flow.Flow[androidx.paging.PagingData[knf.hydra.core.models.DirectoryModel]]/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-section-data/-section-data.html
+$dokka.location:knf.hydra.core.models.data/SectionData/SectionData/#kotlin.String#knf.hydra.core.models.data.PagerData[*,knf.hydra.core.models.DirectoryModel]/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-section-data/-section-data.html
 $dokka.location:knf.hydra.core.models.data/SectionData/data/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-section-data/data.html
 $dokka.location:knf.hydra.core.models.data/SectionData/title/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-section-data/title.html
 $dokka.location:knf.hydra.core.models.data/Setting.LoginCookies///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-setting/-login-cookies/index.html
