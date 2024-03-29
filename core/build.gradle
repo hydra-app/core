@@ -103,6 +103,13 @@ artifacts {
     archives dokkaHtmlJar
 }
 
+tasks.register('copyLogo', Copy) {
+    from ("${rootProject.projectDir}") {
+        include 'logo-icon.svg'
+    }
+    into ("${rootProject.projectDir}/docs/images")
+}
+
 afterEvaluate {
     publishing {
         repositories {
@@ -115,11 +122,12 @@ afterEvaluate {
                 from components.release
                 groupId = 'knf.hydra'
                 artifactId = 'core'
-                version = '1.0.2-rc4'
+                version = '1.0.2-rc5'
                 artifact(androidSourcesJar)
                 artifact(dokkaJavadocJar)
                 artifact(dokkaHtmlJar)
             }
         }
     }
+    publishToMavenLocal.finalizedBy(copyLogo)
 }

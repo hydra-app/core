@@ -6,10 +6,13 @@
 
 package knf.hydra.core.models.data
 
+import android.net.Uri
+import android.os.Parcelable
 import knf.hydra.core.models.data.DecodeResult.Failed
 import knf.hydra.core.models.data.DecodeResult.Success
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.parcelize.Parcelize
 
 
 /**
@@ -47,6 +50,7 @@ open class VideoItem(
     link: String,
     val type: String? = null,
     val quality: Quality? = null,
+    val subtitles: List<Subtitle>? = null,
     val needDecoder: Boolean = true,
     val canDownload: Boolean = true,
     val payload: String? = null
@@ -70,7 +74,7 @@ class ExternalVideoItem(
     link: String,
     type: String? = null,
     quality: Quality? = null
-): VideoItem(name, link, type, quality, false, false)
+): VideoItem(name, link, type, quality, needDecoder = false, canDownload = false)
 
 /**
  * Represents an item in the gallery
@@ -166,3 +170,25 @@ sealed class DecodeResult(val list: List<Option>, val isSuccessful: Boolean = tr
  * @property headers Optional headers for this option
  */
 class Option(val directLink: String, val name: String? = null, val quality: VideoItem.Quality? = null, val headers: Map<String,String>? = null)
+
+
+/**
+ * Subtitle object for [VideoItem]
+ *
+ * @property uri Subtitle uri
+ * @property language Language code for this subtitle (ex. *en, es, fr*)
+ * @property type Subtitle mimetype
+ */
+@Parcelize
+class Subtitle(val uri: Uri, val language: String, val type: Type): Parcelable {
+
+    /**
+     * Subtitle mimetype supported by [ExoPlayer](https://exoplayer.dev/supported-formats.html)
+     */
+    enum class Type(val value: String) {
+        VTT("text/vtt"),
+        SSA("text/x-ssa"),
+        TTML("application/ttml+xml"),
+        SUBRIP("application/x-subrip")
+    }
+}
