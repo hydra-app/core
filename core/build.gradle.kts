@@ -122,7 +122,7 @@ afterEvaluate {
             create<MavenPublication>("release") {
                 groupId = "knf.hydra"
                 artifactId = "core"
-                version = "1.0.2-rc6"
+                version = "1.0.2-rc7"
                 artifact(tasks.named("androidSourcesJar"))
                 artifact(tasks.named("dokkaHtmlJar"))
                 artifact(tasks.named("dokkaJavadocJar"))

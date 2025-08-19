@@ -88,8 +88,12 @@ object WebTools {
     suspend fun getHtml(link: String, userAgent: String = webJs.defaultUserAgent, headers: Map<String, String> = emptyMap(), timeout: Long = 1000): String? {
         return withContext(Dispatchers.Main) {
             suspendCoroutine { continuation ->
+                var isResponded = false
                 webJs.evalOnFinish(link, userAgent, headers, timeout, "(\"<html>\"+document.getElementsByTagName(\"html\")[0].innerHTML+\"<\\/html>\")"){
-                    continuation.resume(it)
+                    if (!isResponded){
+                        isResponded = true
+                        continuation.resume(it)
+                    }
                 }
             }
         }
@@ -107,8 +111,12 @@ object WebTools {
     suspend fun getCookies(link: String, userAgent: String = webJs.defaultUserAgent, headers: Map<String, String> = emptyMap(), timeout: Long = 1000): String? {
         return withContext(Dispatchers.Main) {
             suspendCoroutine { continuation ->
+                var isResponded = false
                 webJs.cookiesOnFinish(link, userAgent, headers, timeout){
-                    continuation.resume(it)
+                    if (!isResponded){
+                        isResponded = true
+                        continuation.resume(it)
+                    }
                 }
             }
         }
@@ -123,8 +131,12 @@ object WebTools {
     suspend fun evalJS(code: String): String {
         return withContext(Dispatchers.Main) {
             suspendCoroutine { continuation ->
+                var isResponded = false
                 webJs.evalJs(code) {
-                    continuation.resume(it)
+                    if (!isResponded){
+                        isResponded = true
+                        continuation.resume(it)
+                    }
                 }
             }
         }

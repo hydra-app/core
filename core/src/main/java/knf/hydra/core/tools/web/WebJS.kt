@@ -9,7 +9,11 @@ package knf.hydra.core.tools.web
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
-import android.webkit.*
+import android.webkit.CookieManager
+import android.webkit.JavascriptInterface
+import android.webkit.WebResourceRequest
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.annotation.Keep
 
 /**
@@ -42,13 +46,22 @@ class WebJS(context: Context) {
     fun evalOnFinish(link: String, userAgent :String, headers: Map<String, String>,timeout: Long, js: String, callback: (String) -> Unit){
         this.callback = callback
         val handler = Handler(Looper.getMainLooper())
-        val runnable = {
+        val runnable = Runnable {
             webView.loadUrl("javascript:myInterface.returnResult(eval('try{$js}catch(e){e}'));")
             reset()
         }
         webView.settings.userAgentString = userAgent
         webView.settings.blockNetworkImage = true
-        webView.webViewClient = object : DefaultClient(){
+        webView.webViewClient = object : DefaultClient() {
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                if (request?.url?.toString()?.startsWith("http") != true) {
+                    return true
+                }
+                return super.shouldOverrideUrlLoading(view, request)
+            }
             override fun onPageFinished(view: WebView?, url: String?) {
                 handler.removeCallbacks(runnable)
                 handler.postDelayed(runnable,timeout)
