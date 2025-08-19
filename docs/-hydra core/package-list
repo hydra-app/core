@@ -8,6 +8,7 @@ $dokka.location:knf.hydra.core.models.analytics/Analytics.Action.OPEN_CONTENT///
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Action.OPEN_INFO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.analytics/-analytics/-action/-o-p-e-n_-i-n-f-o/index.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Action.REMOVE_FAV///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.analytics/-analytics/-action/-r-e-m-o-v-e_-f-a-v/index.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Action///PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-action/index.html
+$dokka.location:knf.hydra.core.models.analytics/Analytics.Action/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-action/entries.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Action/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-action/value-of.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Action/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-action/values.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.DefaultKeys///PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-default-keys/index.html
@@ -30,6 +31,7 @@ $dokka.location:knf.hydra.core.models.analytics/Analytics.Settings/type/#/Pointi
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Type.INFO///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.analytics/-analytics/-type/-i-n-f-o/index.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Type.TAG///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.analytics/-analytics/-type/-t-a-g/index.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Type///PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-type/index.html
+$dokka.location:knf.hydra.core.models.analytics/Analytics.Type/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-type/entries.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Type/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-type/value-of.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics.Type/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/-type/values.html
 $dokka.location:knf.hydra.core.models.analytics/Analytics///PointingToDeclaration/-hydra core/knf.hydra.core.models.analytics/-analytics/index.html
@@ -59,6 +61,7 @@ $dokka.location:knf.hydra.core.models.data/CalendarDay.THURSDAY///PointingToDecl
 $dokka.location:knf.hydra.core.models.data/CalendarDay.TUESDAY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-calendar-day/-t-u-e-s-d-a-y/index.html
 $dokka.location:knf.hydra.core.models.data/CalendarDay.WEDNESDAY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-calendar-day/-w-e-d-n-e-s-d-a-y/index.html
 $dokka.location:knf.hydra.core.models.data/CalendarDay///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-calendar-day/index.html
+$dokka.location:knf.hydra.core.models.data/CalendarDay/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-calendar-day/entries.html
 $dokka.location:knf.hydra.core.models.data/CalendarDay/value/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-calendar-day/value.html
 $dokka.location:knf.hydra.core.models.data/CalendarDay/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-calendar-day/value-of.html
 $dokka.location:knf.hydra.core.models.data/CalendarDay/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-calendar-day/values.html
@@ -73,6 +76,7 @@ $dokka.location:knf.hydra.core.models.data/Category.SERIES///PointingToDeclarati
 $dokka.location:knf.hydra.core.models.data/Category.TV///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-category/-t-v/index.html
 $dokka.location:knf.hydra.core.models.data/Category.UNKNOWN///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-category/-u-n-k-n-o-w-n/index.html
 $dokka.location:knf.hydra.core.models.data/Category///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-category/index.html
+$dokka.location:knf.hydra.core.models.data/Category/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-category/entries.html
 $dokka.location:knf.hydra.core.models.data/Category/value/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-category/value.html
 $dokka.location:knf.hydra.core.models.data/Category/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-category/value-of.html
 $dokka.location:knf.hydra.core.models.data/Category/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-category/values.html
@@ -125,6 +129,7 @@ $dokka.location:knf.hydra.core.models.data/DecodeResult/list/#/PointingToDeclara
 $dokka.location:knf.hydra.core.models.data/DialogStyle.CLASSIC///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-dialog-style/-c-l-a-s-s-i-c/index.html
 $dokka.location:knf.hydra.core.models.data/DialogStyle.SHEET///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-dialog-style/-s-h-e-e-t/index.html
 $dokka.location:knf.hydra.core.models.data/DialogStyle///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-dialog-style/index.html
+$dokka.location:knf.hydra.core.models.data/DialogStyle/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-dialog-style/entries.html
 $dokka.location:knf.hydra.core.models.data/DialogStyle/value/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-dialog-style/value.html
 $dokka.location:knf.hydra.core.models.data/DialogStyle/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-dialog-style/value-of.html
 $dokka.location:knf.hydra.core.models.data/DialogStyle/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-dialog-style/values.html
@@ -153,6 +158,7 @@ $dokka.location:knf.hydra.core.models.data/ExtraSection/title/#/PointingToDeclar
 $dokka.location:knf.hydra.core.models.data/FilterData.Type.MULTIPLE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-filter-data/-type/-m-u-l-t-i-p-l-e/index.html
 $dokka.location:knf.hydra.core.models.data/FilterData.Type.SINGLE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-filter-data/-type/-s-i-n-g-l-e/index.html
 $dokka.location:knf.hydra.core.models.data/FilterData.Type///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-filter-data/-type/index.html
+$dokka.location:knf.hydra.core.models.data/FilterData.Type/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-filter-data/-type/entries.html
 $dokka.location:knf.hydra.core.models.data/FilterData.Type/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-filter-data/-type/value-of.html
 $dokka.location:knf.hydra.core.models.data/FilterData.Type/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-filter-data/-type/values.html
 $dokka.location:knf.hydra.core.models.data/FilterData///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-filter-data/index.html
@@ -191,6 +197,7 @@ $dokka.location:knf.hydra.core.models.data/LayoutType.MULTIPLE///PointingToDecla
 $dokka.location:knf.hydra.core.models.data/LayoutType.SINGLE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-layout-type/-s-i-n-g-l-e/index.html
 $dokka.location:knf.hydra.core.models.data/LayoutType.UNKNOWN///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-layout-type/-u-n-k-n-o-w-n/index.html
 $dokka.location:knf.hydra.core.models.data/LayoutType///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-layout-type/index.html
+$dokka.location:knf.hydra.core.models.data/LayoutType/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-layout-type/entries.html
 $dokka.location:knf.hydra.core.models.data/LayoutType/value/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-layout-type/value.html
 $dokka.location:knf.hydra.core.models.data/LayoutType/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-layout-type/value-of.html
 $dokka.location:knf.hydra.core.models.data/LayoutType/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-layout-type/values.html
@@ -243,6 +250,7 @@ $dokka.location:knf.hydra.core.models.data/ReviewConfig.State.DISABLED///Pointin
 $dokka.location:knf.hydra.core.models.data/ReviewConfig.State.OPTIONAL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-review-config/-state/-o-p-t-i-o-n-a-l/index.html
 $dokka.location:knf.hydra.core.models.data/ReviewConfig.State.REQUIRED///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-review-config/-state/-r-e-q-u-i-r-e-d/index.html
 $dokka.location:knf.hydra.core.models.data/ReviewConfig.State///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-review-config/-state/index.html
+$dokka.location:knf.hydra.core.models.data/ReviewConfig.State/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-review-config/-state/entries.html
 $dokka.location:knf.hydra.core.models.data/ReviewConfig.State/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-review-config/-state/value-of.html
 $dokka.location:knf.hydra.core.models.data/ReviewConfig.State/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-review-config/-state/values.html
 $dokka.location:knf.hydra.core.models.data/ReviewConfig///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-review-config/index.html
@@ -299,6 +307,7 @@ $dokka.location:knf.hydra.core.models.data/Subtitle.Type.SUBRIP///PointingToDecl
 $dokka.location:knf.hydra.core.models.data/Subtitle.Type.TTML///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-subtitle/-type/-t-t-m-l/index.html
 $dokka.location:knf.hydra.core.models.data/Subtitle.Type.VTT///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-subtitle/-type/-v-t-t/index.html
 $dokka.location:knf.hydra.core.models.data/Subtitle.Type///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-subtitle/-type/index.html
+$dokka.location:knf.hydra.core.models.data/Subtitle.Type/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-subtitle/-type/entries.html
 $dokka.location:knf.hydra.core.models.data/Subtitle.Type/value/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-subtitle/-type/value.html
 $dokka.location:knf.hydra.core.models.data/Subtitle.Type/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-subtitle/-type/value-of.html
 $dokka.location:knf.hydra.core.models.data/Subtitle.Type/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-subtitle/-type/values.html
@@ -316,13 +325,14 @@ $dokka.location:knf.hydra.core.models.data/VerticalImageItem/VerticalImageItem/#
 $dokka.location:knf.hydra.core.models.data/VideoDecoder///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-decoder/index.html
 $dokka.location:knf.hydra.core.models.data/VideoDecoder/VideoDecoder/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-decoder/-video-decoder.html
 $dokka.location:knf.hydra.core.models.data/VideoDecoder/canDecode/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-decoder/can-decode.html
-$dokka.location:knf.hydra.core.models.data/VideoDecoder/decode/#knf.hydra.core.models.data.SourceItem/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-decoder/decode.html
+$dokka.location:knf.hydra.core.models.data/VideoDecoder/decode/#android.content.Context#knf.hydra.core.models.data.SourceItem#knf.hydra.core.models.BypassModel/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-decoder/decode.html
 $dokka.location:knf.hydra.core.models.data/VideoItem.Quality.HIGH///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-video-item/-quality/-h-i-g-h/index.html
 $dokka.location:knf.hydra.core.models.data/VideoItem.Quality.HIGH_4K///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-video-item/-quality/-h-i-g-h_4-k/index.html
 $dokka.location:knf.hydra.core.models.data/VideoItem.Quality.LOW///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-video-item/-quality/-l-o-w/index.html
 $dokka.location:knf.hydra.core.models.data/VideoItem.Quality.MEDIUM///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-video-item/-quality/-m-e-d-i-u-m/index.html
 $dokka.location:knf.hydra.core.models.data/VideoItem.Quality.MULTIPLE///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models.data/-video-item/-quality/-m-u-l-t-i-p-l-e/index.html
 $dokka.location:knf.hydra.core.models.data/VideoItem.Quality///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-item/-quality/index.html
+$dokka.location:knf.hydra.core.models.data/VideoItem.Quality/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-item/-quality/entries.html
 $dokka.location:knf.hydra.core.models.data/VideoItem.Quality/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-item/-quality/value-of.html
 $dokka.location:knf.hydra.core.models.data/VideoItem.Quality/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-item/-quality/values.html
 $dokka.location:knf.hydra.core.models.data/VideoItem///PointingToDeclaration/-hydra core/knf.hydra.core.models.data/-video-item/index.html
@@ -392,6 +402,7 @@ $dokka.location:knf.hydra.core.models/DirectoryModel.Companion///PointingToDecla
 $dokka.location:knf.hydra.core.models/DirectoryModel.Orientation.HORIZONTAL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models/-directory-model/-orientation/-h-o-r-i-z-o-n-t-a-l/index.html
 $dokka.location:knf.hydra.core.models/DirectoryModel.Orientation.VERTICAL///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models/-directory-model/-orientation/-v-e-r-t-i-c-a-l/index.html
 $dokka.location:knf.hydra.core.models/DirectoryModel.Orientation///PointingToDeclaration/-hydra core/knf.hydra.core.models/-directory-model/-orientation/index.html
+$dokka.location:knf.hydra.core.models/DirectoryModel.Orientation/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-directory-model/-orientation/entries.html
 $dokka.location:knf.hydra.core.models/DirectoryModel.Orientation/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models/-directory-model/-orientation/value-of.html
 $dokka.location:knf.hydra.core.models/DirectoryModel.Orientation/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-directory-model/-orientation/values.html
 $dokka.location:knf.hydra.core.models/DirectoryModel///PointingToDeclaration/-hydra core/knf.hydra.core.models/-directory-model/index.html
@@ -429,6 +440,7 @@ $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay.TUESDAY///
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay.UNKNOWN///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models/-info-model/-state-data/-emission-day/-u-n-k-n-o-w-n/index.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay.WEDNESDAY///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models/-info-model/-state-data/-emission-day/-w-e-d-n-e-s-d-a-y/index.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay///PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-emission-day/index.html
+$dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-emission-day/entries.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay/value/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-emission-day/value.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-emission-day/value-of.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-emission-day/values.html
@@ -438,6 +450,7 @@ $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.EMISSION///Pointi
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.HIATUS///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models/-info-model/-state-data/-type/-h-i-a-t-u-s/index.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.UNKNOWN///PointingToDeclaration/{"org.jetbrains.dokka.links.EnumEntryDRIExtra":{"key":"org.jetbrains.dokka.links.EnumEntryDRIExtra"}}-hydra core/knf.hydra.core.models/-info-model/-state-data/-type/-u-n-k-n-o-w-n/index.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type///PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-type/index.html
+$dokka.location:knf.hydra.core.models/InfoModel.StateData.Type/entries/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-type/entries.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type/value/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-type/value.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type/valueOf/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-type/value-of.html
 $dokka.location:knf.hydra.core.models/InfoModel.StateData.Type/values/#/PointingToDeclaration/-hydra core/knf.hydra.core.models/-info-model/-state-data/-type/values.html
@@ -526,7 +539,7 @@ $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/post/#okhttp3.RequestBody/
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/postAsString/#okhttp3.RequestBody/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/post-as-string.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp/userAgent/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-simple-o-k-http/user-agent.html
 $dokka.location:knf.hydra.core.tools.web/Unpacker///PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-unpacker/index.html
-$dokka.location:knf.hydra.core.tools.web/Unpacker/unpack/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-unpacker/unpack.html
+$dokka.location:knf.hydra.core.tools.web/Unpacker/unpack/#android.content.Context#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-unpacker/unpack.html
 $dokka.location:knf.hydra.core.tools.web/WebJS///PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-web-j-s/index.html
 $dokka.location:knf.hydra.core.tools.web/WebJS/WebJS/#android.content.Context/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-web-j-s/-web-j-s.html
 $dokka.location:knf.hydra.core.tools.web/WebJS/cookiesOnFinish/#kotlin.String#kotlin.String#kotlin.collections.Map[kotlin.String,kotlin.String]#kotlin.Long#kotlin.Function1[kotlin.String,kotlin.Unit]/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-web-j-s/cookies-on-finish.html
@@ -541,6 +554,19 @@ $dokka.location:knf.hydra.core.tools.web/WebTools/unpackAll/#kotlin.collections.
 $dokka.location:knf.hydra.core.tools.web/WebTools/unpackLink/#kotlin.String#kotlin.Function1[kotlin.collections.List[kotlin.String],kotlin.String]/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-web-tools/unpack-link.html
 $dokka.location:knf.hydra.core.tools.web/WebTools/unpackLinkAll/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools.web/-web-tools/unpack-link-all.html
 $dokka.location:knf.hydra.core.tools////PointingToDeclaration/-hydra core/knf.hydra.core.tools/index.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDB_Impl///PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-d-b_-impl/index.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDB_Impl/ModulePreferenceDB_Impl/#/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-d-b_-impl/-module-preference-d-b_-impl.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDB_Impl/clearAllTables/#/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-d-b_-impl/clear-all-tables.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDB_Impl/createAutoMigrations/#kotlin.collections.Map[kotlin.reflect.KClass[androidx.room.migration.AutoMigrationSpec],androidx.room.migration.AutoMigrationSpec]/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-d-b_-impl/create-auto-migrations.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDB_Impl/dao/#/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-d-b_-impl/dao.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDB_Impl/getRequiredAutoMigrationSpecClasses/#/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-d-b_-impl/get-required-auto-migration-spec-classes.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl.Companion///PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-dao_-impl/-companion/index.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl.Companion/getRequiredConverters/#/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-dao_-impl/-companion/get-required-converters.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl///PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-dao_-impl/index.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl/ModulePreferenceDao_Impl/#androidx.room.RoomDatabase/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-dao_-impl/-module-preference-dao_-impl.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl/findPreference/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-dao_-impl/find-preference.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl/insert/#[Error type: Unresolved type for ModulePreference]/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-dao_-impl/insert.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl/listenAll/#kotlin.String/PointingToDeclaration/-hydra core/knf.hydra.core.tools/[android-jvm]-module-preference-dao_-impl/listen-all.html
 $dokka.location:knf.hydra.core.tools/ModulePreferences///PointingToDeclaration/-hydra core/knf.hydra.core.tools/-module-preferences/index.html
 $dokka.location:knf.hydra.core.tools/ModulePreferences/getPreference/#kotlin.String#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/-hydra core/knf.hydra.core.tools/-module-preferences/get-preference.html
 $dokka.location:knf.hydra.core.tools/ModulePreferences/getPreferenceBlocking/#kotlin.String#TypeParam(bounds=[kotlin.Any?])/PointingToDeclaration/-hydra core/knf.hydra.core.tools/-module-preferences/get-preference-blocking.html
@@ -601,4 +627,3 @@ knf.hydra.core.models.analytics
 knf.hydra.core.models.data
 knf.hydra.core.tools
 knf.hydra.core.tools.web
-

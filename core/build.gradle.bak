@@ -1,0 +1,135 @@
+/*
+ * Created by @UnbarredStream on 30/07/22 13:36
+ * Copyright (c) 2022 . All rights reserved.
+ * Last modified 30/07/22 13:12
+ */
+
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-parcelize'
+    id 'com.google.devtools.ksp'
+    id 'maven-publish'
+    id 'org.jetbrains.dokka'
+}
+
+android {
+    compileSdk 36
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 36
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    namespace 'knf.hydra.core'
+}
+
+dependencies {
+    //dokkaHtmlPlugin 'org.jetbrains.dokka:kotlin-as-java-plugin:1.5.30'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    api 'com.github.jordyamc:Cloudflare-Bypasser:1.0.26'
+    //api 'knf.tools:bypass:1.0.21'
+    api 'androidx.paging:paging-runtime-ktx:3.3.6'
+    api 'androidx.room:room-runtime:2.7.2'
+    api 'androidx.room:room-ktx:2.7.2'
+    ksp 'androidx.room:room-compiler:2.7.2'
+    api 'androidx.preference:preference-ktx:1.2.1'
+    api 'androidx.annotation:annotation:1.9.1'
+    api 'com.google.code.gson:gson:2.13.1'
+    api 'com.github.jordyamc:Gson-ktx:1.0'
+    api 'com.github.jordyamc.oasis-jsbridge-android:oasis-jsbridge-quickjs:1.0.2'
+    dokkaPlugin 'org.jetbrains.dokka:android-documentation-plugin:2.0.0'
+}
+
+tasks.dokkaHtml.configure {
+    outputDirectory.set(file("$rootDir/docs"))
+    dokkaSourceSets {
+        named("main") {
+            moduleName.set("Hydra core")
+            includes.from("README.md")
+            customAssets.from(projectDir.toString() + "/logo-icon.svg")
+            noAndroidSdkLink.set(false)
+            sourceLink {
+                remoteUrl.set(java.net.URL("https://github.com/hydra-app/core/tree/master/core/src/main/java"))
+                remoteLineSuffix.set("#L")
+            }
+        }
+    }
+}
+
+tasks.register('dokkaJavadocJar', Jar) {
+    dependsOn(tasks.dokkaJavadoc)
+    def directories = new ArrayList<Object>()
+    tasks.dokkaJavadoc.each {
+        directories.add(it.outputDirectory)
+    }
+    from(directories)
+    archiveClassifier.set("javadoc")
+}
+
+tasks.register('dokkaHtmlJar', Jar) {
+    dependsOn(tasks.dokkaHtml)
+    def directories = new ArrayList<Object>()
+    tasks.dokkaHtml.each {
+        directories.add(it.outputDirectory)
+    }
+    from(directories)
+    archiveClassifier.set("html-doc")
+}
+
+tasks.register('androidSourcesJar', Jar) {
+    archiveClassifier.set('sources')
+    from android.sourceSets.main.java.srcDirs
+}
+
+artifacts {
+    archives androidSourcesJar
+    archives dokkaJavadocJar
+    archives dokkaHtmlJar
+}
+
+tasks.register('copyLogo', Copy) {
+    from ("${rootProject.projectDir}") {
+        include 'logo-icon.svg'
+    }
+    into ("${rootProject.projectDir}/docs/images")
+}
+
+afterEvaluate {
+    tasks["dokkaHtml"].dependsOn(tasks.getByName("generateReleaseRFile"), tasks.getByName("generateDebugRFile"))
+    publishing {
+        repositories {
+            maven {
+                url = uri("$buildDir/repository")
+            }
+        }
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = 'knf.hydra'
+                artifactId = 'core'
+                version = '1.0.2-rc5'
+                artifact(androidSourcesJar)
+                artifact(dokkaJavadocJar)
+                artifact(dokkaHtmlJar)
+            }
+        }
+    }
+    publishToMavenLocal.finalizedBy(copyLogo)
+}

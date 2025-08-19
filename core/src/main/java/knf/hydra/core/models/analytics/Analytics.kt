@@ -10,7 +10,12 @@ import androidx.room.Entity
 import knf.hydra.core.HeadConfig
 import knf.hydra.core.HeadRepository
 import knf.hydra.core.models.InfoModel
-import knf.hydra.core.models.analytics.Analytics.Action.*
+import knf.hydra.core.models.analytics.Analytics.Action.ADD_FAV
+import knf.hydra.core.models.analytics.Analytics.Action.DOWNLOAD_CONTENT
+import knf.hydra.core.models.analytics.Analytics.Action.FROM_SEARCH
+import knf.hydra.core.models.analytics.Analytics.Action.OPEN_CONTENT
+import knf.hydra.core.models.analytics.Analytics.Action.OPEN_INFO
+import knf.hydra.core.models.analytics.Analytics.Action.REMOVE_FAV
 import knf.hydra.core.models.analytics.Analytics.Type.INFO
 import knf.hydra.core.models.analytics.Analytics.Type.TAG
 import org.json.JSONObject

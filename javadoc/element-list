@@ -1,0 +1,62 @@
+$dokka.format:javadoc-v1
+$dokka.linkExtension:html
+$dokka.location:knf.hydra.core.models.analytics/Analytics.Action///PointingToDeclaration/knf/hydra/core/models/analytics/Analytics.Action.html
+$dokka.location:knf.hydra.core.models.analytics/Analytics.DefaultKeys///PointingToDeclaration/knf/hydra/core/models/analytics/Analytics.DefaultKeys.html
+$dokka.location:knf.hydra.core.models.analytics/Analytics.DefaultScores///PointingToDeclaration/knf/hydra/core/models/analytics/Analytics.DefaultScores.html
+$dokka.location:knf.hydra.core.models.analytics/Analytics.Settings///PointingToDeclaration/knf/hydra/core/models/analytics/Analytics.Settings.html
+$dokka.location:knf.hydra.core.models.analytics/Analytics.Type///PointingToDeclaration/knf/hydra/core/models/analytics/Analytics.Type.html
+$dokka.location:knf.hydra.core.models.data/BypassBehavior.Custom///PointingToDeclaration/knf/hydra/core/models/data/BypassBehavior.Custom.html
+$dokka.location:knf.hydra.core.models.data/BypassBehavior.Default///PointingToDeclaration/knf/hydra/core/models/data/BypassBehavior.Default.html
+$dokka.location:knf.hydra.core.models.data/BypassBehavior.Disabled///PointingToDeclaration/knf/hydra/core/models/data/BypassBehavior.Disabled.html
+$dokka.location:knf.hydra.core.models.data/CalendarDay.Companion///PointingToDeclaration/knf/hydra/core/models/data/CalendarDay.Companion.html
+$dokka.location:knf.hydra.core.models.data/Category.Companion///PointingToDeclaration/knf/hydra/core/models/data/Category.Companion.html
+$dokka.location:knf.hydra.core.models.data/ClickAction.Clipboard///PointingToDeclaration/knf/hydra/core/models/data/ClickAction.Clipboard.html
+$dokka.location:knf.hydra.core.models.data/ClickAction.ExtraDirectory///PointingToDeclaration/knf/hydra/core/models/data/ClickAction.ExtraDirectory.html
+$dokka.location:knf.hydra.core.models.data/ClickAction.Info///PointingToDeclaration/knf/hydra/core/models/data/ClickAction.Info.html
+$dokka.location:knf.hydra.core.models.data/ClickAction.Profile///PointingToDeclaration/knf/hydra/core/models/data/ClickAction.Profile.html
+$dokka.location:knf.hydra.core.models.data/ClickAction.Web///PointingToDeclaration/knf/hydra/core/models/data/ClickAction.Web.html
+$dokka.location:knf.hydra.core.models.data/DecodeResult.Failed///PointingToDeclaration/knf/hydra/core/models/data/DecodeResult.Failed.html
+$dokka.location:knf.hydra.core.models.data/DecodeResult.Success///PointingToDeclaration/knf/hydra/core/models/data/DecodeResult.Success.html
+$dokka.location:knf.hydra.core.models.data/DisplayType.ACTIVITY///PointingToDeclaration/knf/hydra/core/models/data/DisplayType.ACTIVITY.html
+$dokka.location:knf.hydra.core.models.data/DisplayType.BACKGROUND///PointingToDeclaration/knf/hydra/core/models/data/DisplayType.BACKGROUND.html
+$dokka.location:knf.hydra.core.models.data/DisplayType.DIALOG///PointingToDeclaration/knf/hydra/core/models/data/DisplayType.DIALOG.html
+$dokka.location:knf.hydra.core.models.data/ExtraDirectoryRequest.Companion///PointingToDeclaration/knf/hydra/core/models/data/ExtraDirectoryRequest.Companion.html
+$dokka.location:knf.hydra.core.models.data/FilterData.Type///PointingToDeclaration/knf/hydra/core/models/data/FilterData.Type.html
+$dokka.location:knf.hydra.core.models.data/LayoutType.Companion///PointingToDeclaration/knf/hydra/core/models/data/LayoutType.Companion.html
+$dokka.location:knf.hydra.core.models.data/NotifyData.Request///PointingToDeclaration/knf/hydra/core/models/data/NotifyData.Request.html
+$dokka.location:knf.hydra.core.models.data/NotifyData.Response///PointingToDeclaration/knf/hydra/core/models/data/NotifyData.Response.html
+$dokka.location:knf.hydra.core.models.data/PagerData.Companion///PointingToDeclaration/knf/hydra/core/models/data/PagerData.Companion.html
+$dokka.location:knf.hydra.core.models.data/ReviewConfig.State///PointingToDeclaration/knf/hydra/core/models/data/ReviewConfig.State.html
+$dokka.location:knf.hydra.core.models.data/Setting.LoginCookies///PointingToDeclaration/knf/hydra/core/models/data/Setting.LoginCookies.html
+$dokka.location:knf.hydra.core.models.data/Setting.MultiChoice///PointingToDeclaration/knf/hydra/core/models/data/Setting.MultiChoice.html
+$dokka.location:knf.hydra.core.models.data/Setting.SingleChoice///PointingToDeclaration/knf/hydra/core/models/data/Setting.SingleChoice.html
+$dokka.location:knf.hydra.core.models.data/Setting.Switch///PointingToDeclaration/knf/hydra/core/models/data/Setting.Switch.html
+$dokka.location:knf.hydra.core.models.data/Setting.TextInput///PointingToDeclaration/knf/hydra/core/models/data/Setting.TextInput.html
+$dokka.location:knf.hydra.core.models.data/Subtitle.Type///PointingToDeclaration/knf/hydra/core/models/data/Subtitle.Type.html
+$dokka.location:knf.hydra.core.models.data/VideoItem.Quality///PointingToDeclaration/knf/hydra/core/models/data/VideoItem.Quality.html
+$dokka.location:knf.hydra.core.models/BypassModel.Companion///PointingToDeclaration/knf/hydra/core/models/BypassModel.Companion.html
+$dokka.location:knf.hydra.core.models/ContentData.Multiple///PointingToDeclaration/knf/hydra/core/models/ContentData.Multiple.html
+$dokka.location:knf.hydra.core.models/ContentData.Single///PointingToDeclaration/knf/hydra/core/models/ContentData.Single.html
+$dokka.location:knf.hydra.core.models/DirectoryModel.Orientation///PointingToDeclaration/knf/hydra/core/models/DirectoryModel.Orientation.html
+$dokka.location:knf.hydra.core.models/InfoModel.ProfileData///PointingToDeclaration/knf/hydra/core/models/InfoModel.ProfileData.html
+$dokka.location:knf.hydra.core.models/InfoModel.Related///PointingToDeclaration/knf/hydra/core/models/InfoModel.Related.html
+$dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay.Companion///PointingToDeclaration/knf/hydra/core/models/InfoModel.StateData.EmissionDay.Companion.html
+$dokka.location:knf.hydra.core.models/InfoModel.StateData.EmissionDay///PointingToDeclaration/knf/hydra/core/models/InfoModel.StateData.EmissionDay.html
+$dokka.location:knf.hydra.core.models/InfoModel.StateData.Type.Companion///PointingToDeclaration/knf/hydra/core/models/InfoModel.StateData.Type.Companion.html
+$dokka.location:knf.hydra.core.models/InfoModel.StateData.Type///PointingToDeclaration/knf/hydra/core/models/InfoModel.StateData.Type.html
+$dokka.location:knf.hydra.core.models/InfoModel.StateData///PointingToDeclaration/knf/hydra/core/models/InfoModel.StateData.html
+$dokka.location:knf.hydra.core.models/InfoModel.Tag///PointingToDeclaration/knf/hydra/core/models/InfoModel.Tag.html
+$dokka.location:knf.hydra.core.models/ProfileTab.DirectoryGrid///PointingToDeclaration/knf/hydra/core/models/ProfileTab.DirectoryGrid.html
+$dokka.location:knf.hydra.core.models/ProfileTab.GalleryGrid///PointingToDeclaration/knf/hydra/core/models/ProfileTab.GalleryGrid.html
+$dokka.location:knf.hydra.core.models/ProfileTab.Info///PointingToDeclaration/knf/hydra/core/models/ProfileTab.Info.html
+$dokka.location:knf.hydra.core.models/RecentModel.Notify///PointingToDeclaration/knf/hydra/core/models/RecentModel.Notify.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.Error///PointingToDeclaration/knf/hydra/core/tools/web/SimpleOKHttp.Result.Error.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.OK///PointingToDeclaration/knf/hydra/core/tools/web/SimpleOKHttp.Result.OK.html
+$dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result///PointingToDeclaration/knf/hydra/core/tools/web/SimpleOKHttp.Result.html
+$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl.Companion///PointingToDeclaration/knf/hydra/core/tools/ModulePreferenceDao_Impl.Companion.html
+knf.hydra.core
+knf.hydra.core.models
+knf.hydra.core.models.analytics
+knf.hydra.core.models.data
+knf.hydra.core.tools
+knf.hydra.core.tools.web

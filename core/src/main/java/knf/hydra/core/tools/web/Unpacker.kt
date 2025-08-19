@@ -6,6 +6,7 @@
 
 package knf.hydra.core.tools.web
 
+import android.content.Context
 import com.github.kittinunf.fuel.Fuel
 import de.prosiebensat1digital.oasisjsbridge.JsBridge
 import de.prosiebensat1digital.oasisjsbridge.JsBridgeConfig
@@ -22,12 +23,13 @@ object Unpacker {
     /**
      * Search packed code and decode it
      *
+     * @param context Context
      * @param link Link to search for packed
      * @return The decoded code
      */
-    fun unpack(link: String): String {
+    fun unpack(context: Context, link: String): String {
         val html = Fuel.get(link).responseString().third.get()
-        val jsBridge = JsBridge(JsBridgeConfig.bareConfig())
+        val jsBridge = JsBridge(JsBridgeConfig.bareConfig(), context)
         val packedCode = packedRegex2.find(html)?.destructured?.component1()
         return jsBridge.evaluateBlocking("function prnt() {var txt = $packedCode; return txt;}prnt();")
     }

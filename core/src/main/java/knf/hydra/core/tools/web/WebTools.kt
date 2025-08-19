@@ -21,12 +21,14 @@ import kotlin.coroutines.suspendCoroutine
  */
 object WebTools {
     private lateinit var webJs: WebJS
+    private lateinit var jsBridge: JsBridge
     private val packedRegex = "eval\\((function\\(p,a,c,k,e,?[dr]?\\).*.split\\('\\|'\\).*)\\)".toRegex()
 
     /** @suppress */
     @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
     fun init(context: Context){
         webJs = WebJS(context)
+        jsBridge = JsBridge(JsBridgeConfig.bareConfig(), context)
     }
 
     /** Search packed functions in the [link] html and decode ONE defined by [packedSelector], by default the first packed found will be decoded.
@@ -61,7 +63,6 @@ object WebTools {
      * @return The decoded packed function
      */
     fun unpack(packedCode: String): String {
-        val jsBridge = JsBridge(JsBridgeConfig.bareConfig())
         return jsBridge.evaluateBlocking("function prnt() {var txt = $packedCode; return txt;}prnt();")
     }
 
@@ -72,7 +73,6 @@ object WebTools {
      * @return A list with the decoded functions in the same order as [packedCodes]
      */
     fun unpackAll(packedCodes: List<String>): List<String> {
-        val jsBridge = JsBridge(JsBridgeConfig.bareConfig())
         return packedCodes.map { jsBridge.evaluateBlocking("function prnt() {var txt = $it; return txt;}prnt();") }
     }
 

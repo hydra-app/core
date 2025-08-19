@@ -6,10 +6,10 @@
 
 package knf.hydra.core.models.data
 
+import android.content.Context
 import android.net.Uri
 import android.os.Parcelable
-import knf.hydra.core.models.data.DecodeResult.Failed
-import knf.hydra.core.models.data.DecodeResult.Success
+import knf.hydra.core.models.BypassModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.parcelize.Parcelize
@@ -131,10 +131,12 @@ abstract class VideoDecoder {
     /**
      * Try to decode the [SourceItem]
      *
+     * @param context Context
      * @param item The item to decode
+     * @param bypassModel Bypass data
      * @return The result of the operation, [DecodeResult.Success] or [DecodeResult.Failed]
      */
-    abstract suspend fun decode(item: SourceItem): DecodeResult
+    abstract suspend fun decode(context: Context, item: SourceItem, bypassModel: BypassModel): DecodeResult
 }
 
 /**

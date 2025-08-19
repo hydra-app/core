@@ -1,0 +1,1055 @@
+<!DOCTYPE HTML>
+<!-- NewPage -->
+<html lang="en"><head>
+    <title>HeadRepository </title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="dc.created" content="2020-03-25">
+    <link rel="stylesheet" type="text/css" href="../../../stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../dokka-javadoc-stylesheet.css" title="Style">
+    <link rel="stylesheet" type="text/css" href="../../../jquery/jquery-ui.css" title="Style">
+    <script type="text/javascript" src="../../../jquery/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="../../../jquery/jquery-migrate-3.4.0.min.js"></script>
+    <script type="text/javascript" src="../../../jquery/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="../../../search.js"></script>
+    <script async type="text/javascript" src="../../../module-search-index.js"></script>
+    <script async type="text/javascript" src="../../../package-search-index.js"></script>
+    <script async type="text/javascript" src="../../../type-search-index.js"></script>
+    <script async type="text/javascript" src="../../../member-search-index.js"></script>
+    <script async type="text/javascript" src="../../../tag-search-index.js"></script>
+</head><body>
+<script type="text/javascript">
+var pathtoroot = "../../../";
+</script>
+<noscript>
+    <div>JavaScript is disabled on your browser.</div>
+</noscript><header role="banner">
+    <nav role="navigation">
+        <div class="fixedNav">
+            <!-- ========= START OF TOP NAVBAR ======= -->
+            <div class="topNav"><a id="navbar.top">
+                <!--   -->
+            </a>
+                <div class="skipNav"><a href="#skip.navbar.top" title="Skip navigation links">Skip navigation links</a>
+                </div>
+                <a id="navbar.top.firstrow">
+                    <!--   -->
+                </a>
+                <ul class="navList" title="Navigation">
+    <li><a href="../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+            <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+
+<ul class="navListSearch">
+<li><label for="search">SEARCH:</label>
+<input type="text" id="search" value="search" class="ui-autocomplete-input" autocomplete="off" placeholder="Search">
+<input type="reset" id="reset" value="reset">
+</li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ========= END OF TOP NAVBAR ========= -->
+        </div>
+        <div class="navPadding">&nbsp;</div>
+        <script type="text/javascript"><!--
+        $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
+        //-->
+        </script>
+    </nav>
+</header>
+
+<main role="main">
+    <div class="header">
+        <div class="subTitle"><span class="packageLabelInType">Package</span>&nbsp;<a href="package-summary.html">knf.hydra.core</a></div>
+        <h2 title="Class HeadRepository" class="title">Class HeadRepository</h2>
+    </div>
+    <div class="contentContainer">
+        <!-- <ul class="inheritance">
+            <li>java.lang.Object</li>
+            <li>
+                <ul class="inheritance">
+                    <li>adaptation.Adaptation</li>
+                </ul>
+            </li>
+        </ul> TODO inheritance tree -->
+        <div class="description">
+            <ul class="blockList">
+                <li class="blockList">
+                    
+                    <dl>
+                        <dt>All Implemented Interfaces:</dt>
+                        <dd>
+                            
+                        </dd>
+                    </dl>
+                    
+                    <hr>
+                    <pre class="wrap-overflow">
+
+public abstract class <span class="typeNameLabel"><a href=HeadRepository.html>HeadRepository</a></span>
+
+                    </pre>
+                    <div class="block"><p>Module repository, it contains all the methods required for the Main app to get data from the Module, abstract functions <a href=HeadRepository.html#infoPage(java.lang.String,knf.hydra.core.models.BypassModel)>infoPage</a> and <a href=HeadRepository.html#sourceData(knf.hydra.core.models.ContentItemMin,knf.hydra.core.models.BypassModel)>sourceData</a> are required, all other functions are optional.</p><p>&lt;b&gt;Sample usage&lt;/b&gt;</p><pre><code>class Repository : HeadRepository(){
+
+   override fun infoPage(link: String, bypassModel: BypassModel): Flow&lt;InfoModel?&gt; {
+       return flow {
+           emit(null)
+       }
+   }
+
+   override fun sourceData(link: String, bypassModel: BypassModel): Flow&lt;SourceData?&gt; {
+       return flow { emit(null) }
+   }
+
+   override suspend fun recentsPager(bypassModel: BypassModel): Flow&lt;PagingData&lt;RecentModel&gt;&gt; {
+       return Pager(
+           config = PagingConfig(
+               pageSize = 20,
+               enablePlaceholders = false
+           ),
+           pagingSourceFactory = { RecentsSource() }
+       ).flow
+   }
+}</code></pre></div>
+
+                    <dl>
+
+                    
+
+                    
+
+                    </dl>
+                </li>
+            </ul>
+        </div>
+        <div class="summary">
+            <ul class="blockList">
+                <li class="blockList">
+                <!-- ======== NESTED CLASS SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="nested.class.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Nested Class Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Nested Classes</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Class</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== FIELD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="field.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Field Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Fields</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Field</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ======== CONSTRUCTOR SUMMARY ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Summary</h3>
+                                <div class="memberSummary">
+                                    <table>
+                                        <caption><span>Constructors</span><span class="tabEnd">&nbsp;</span></caption>
+                                        <tbody>
+                                        <tr>
+                                            <th class="colFirst" scope="col">Constructor</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+
+                                        
+                                            <tr class="altColor">
+                                                <th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a
+                                                        href="#HeadRepository()">HeadRepository</a></span>()</code></th>
+                                                <td class="colLast"></td>
+                                            </tr>
+                                        
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- =========== ENUM CONSTANT SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="enum.constant.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Enum Constant Summary</h3>
+                                <table class="memberSummary">
+                                    <caption><span>Enum Constants</span><span class="tabEnd">&nbsp;</span></caption>
+                                    <tr>
+                                        <th class="colFirst" scope="col">Enum Constant</th>
+                                        <th class="colLast" scope="col">Description</th>
+                                    </tr>
+                                    
+                                </table>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ========== METHOD SUMMARY =========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.summary">
+                                <!--   -->
+                            </a>
+                                <h3>Method Summary</h3>
+                                <div class="memberSummary">
+                                    <div role="tablist" aria-orientation="horizontal">
+                                        <button role="tab" aria-selected="true" aria-controls="memberSummary_tabpanel" tabindex="0" onkeydown="switchTab(event)" id="t0" class="activeTableTab">All Methods</button>
+                                        <!-- TODO: Instance and Concrete Methods #1118 -->
+                                    </div>
+                                    <div id="memberSummary_tabpanel" role="tabpanel">
+                                    <table aria-labelledby="t0">
+                                        <tr>
+                                            <th class="colFirst" scope="col">Modifier and Type</th>
+                                            <th class="colSecond" scope="col">Method</th>
+                                            <th class="colLast" scope="col">Description</th>
+                                        </tr>
+                                        
+                                        <tr id="i0" class="altColor">
+                                            <td class="colFirst"><code>abstract Flow&lt;<a href=models/InfoModel.html>InfoModel</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#infoPage(java.lang.String,knf.hydra.core.models.BypassModel)>infoPage</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> link, <a href=models/BypassModel.html>BypassModel</a> bypassModel) </code>
+                                            </th>
+                                            <td class="colLast">This function is called when loading the information page for any of this items:<ul><li><p><a href=models/RecentModel.html#infoLink>RecentModel.infoLink</a></p></li><li><p><a href=models/DirectoryModel.html#infoLink>DirectoryModel.infoLink</a></p></li></ul>It's required that this 3 properties have the same link.</td>
+                                        </tr>
+                                        
+                                        <tr id="i1" class="rowColor">
+                                            <td class="colFirst"><code>abstract <a href=models/data/SourceData.html>SourceData</a>&lt;?&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#sourceData(knf.hydra.core.models.ContentItemMin,knf.hydra.core.models.BypassModel)>sourceData</a>(<a href=models/ContentItemMin.html>ContentItemMin</a> content, <a href=models/BypassModel.html>BypassModel</a> bypassModel) </code>
+                                            </th>
+                                            <td class="colLast">This function is called when loading the sources for a <a href=models/ContentItemModel.html>ContentItemModel</a> it can be a <a href=models/data/VideoSource.html>VideoSource</a>, <a href=models/data/GallerySource.html>GallerySource</a> or a <a href=models/data/WebSource.html>WebSource</a>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i2" class="altColor">
+                                            <td class="colFirst"><code><a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/RecentModel.html>RecentModel</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#recentsPagerData(knf.hydra.core.models.BypassModel)>recentsPagerData</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel) </code>
+                                            </th>
+                                            <td class="colLast">This function is called only if <a href=HeadConfig.html#isRecentsAvailable()>HeadConfig.isRecentsAvailable</a> is enabled, it's used for loading the recents section in Home.</td>
+                                        </tr>
+                                        
+                                        <tr id="i3" class="rowColor">
+                                            <td class="colFirst"><code><a href=models/data/NotifyData.Response.html>NotifyData.Response</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#lastRecents(knf.hydra.core.models.data.NotifyData.Request)>lastRecents</a>(<a href=models/data/NotifyData.Request.html>NotifyData.Request</a> data) </code>
+                                            </th>
+                                            <td class="colLast">This function is called only if <a href=HeadConfig.html#isRecentsAvailable()>HeadConfig.isRecentsAvailable</a> and <a href=HeadConfig.html#isNotifyRecentsEnabled()>HeadConfig.isNotifyRecentsEnabled</a> are enabled, it's used to get the latest sublist of recents.</td>
+                                        </tr>
+                                        
+                                        <tr id="i4" class="altColor">
+                                            <td class="colFirst"><code><a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/DirectoryModel.html>DirectoryModel</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#directoryPagerData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)>directoryPagerData</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/data/FilterRequest.html>FilterRequest</a> filters) </code>
+                                            </th>
+                                            <td class="colLast">This function is called only if <a href=HeadConfig.html#isDirectoryAvailable()>HeadConfig.isDirectoryAvailable</a> is enabled, it's used to load the directory of items.</td>
+                                        </tr>
+                                        
+                                        <tr id="i5" class="rowColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=models/data/FilterData.html>FilterData</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#directoryFilters(knf.hydra.core.models.BypassModel)>directoryFilters</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel) </code>
+                                            </th>
+                                            <td class="colLast">This function is used to declare the custom filters to be used in <a href=HeadRepository.html#directoryPagerData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)>directoryPagerData</a>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i6" class="altColor">
+                                            <td class="colFirst"><code><a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/DirectoryModel.html>DirectoryModel</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#searchPagerData(java.lang.String,knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)>searchPagerData</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> query, <a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/data/FilterRequest.html>FilterRequest</a> filters) </code>
+                                            </th>
+                                            <td class="colLast">This function is called only if <a href=HeadConfig.html#isSearchAvailable()>HeadConfig.isSearchAvailable</a> is enabled, it's used to search items in the module.</td>
+                                        </tr>
+                                        
+                                        <tr id="i7" class="rowColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=models/data/FilterData.html>FilterData</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#searchFilters(knf.hydra.core.models.BypassModel)>searchFilters</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel) </code>
+                                            </th>
+                                            <td class="colLast">This function is used to declare the custom filters to be used in <a href=HeadRepository.html#searchPagerData(java.lang.String,knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)>searchPagerData</a>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i8" class="altColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#searchSuggestions(java.lang.String,knf.hydra.core.models.BypassModel)>searchSuggestions</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> query, <a href=models/BypassModel.html>BypassModel</a> bypassModel) </code>
+                                            </th>
+                                            <td class="colLast">This function is called only if <a href=HeadConfig.html#isSearchSuggestionsAvailable()>HeadConfig.isSearchSuggestionsAvailable</a> is enabled, it's used for search autocompletion.</td>
+                                        </tr>
+                                        
+                                        <tr id="i9" class="rowColor">
+                                            <td class="colFirst"><code><a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/DirectoryModel.html>DirectoryModel</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#calendarByDayData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.CalendarDay)>calendarByDayData</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/data/CalendarDay.html>CalendarDay</a> day) </code>
+                                            </th>
+                                            <td class="colLast">This function is called only if <a href=HeadConfig.html#isCalendarEnabled()>HeadConfig.isCalendarEnabled</a> is enabled, it's used to create a daily calendar.</td>
+                                        </tr>
+                                        
+                                        <tr id="i10" class="altColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=models/data/SectionData.html>SectionData</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#customHomeSections(knf.hydra.core.models.BypassModel)>customHomeSections</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel) </code>
+                                            </th>
+                                            <td class="colLast">Declare custom Home sections</td>
+                                        </tr>
+                                        
+                                        <tr id="i11" class="rowColor">
+                                            <td class="colFirst"><code>Flow&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=models/DirectoryModel.html>DirectoryModel</a>&gt;&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#analyticsRecommended(knf.hydra.core.models.BypassModel,java.util.List)>analyticsRecommended</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;Analytics.Event&gt; events) </code>
+                                            </th>
+                                            <td class="colLast">This function is called only if <a href=HeadConfig.html#analyticsSettings>HeadConfig.analyticsSettings</a> is declared, it's used to load a list of recommendations based on the user behaviour and the <a href=HeadConfig.html#analyticsSettings>module configuration</a>.</td>
+                                        </tr>
+                                        
+                                        <tr id="i12" class="altColor">
+                                            <td class="colFirst"><code><a href=https://developer.android.com/reference/kotlin/java/lang/Boolean.html>Boolean</a></code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#sendReview(knf.hydra.core.models.BypassModel,java.lang.Integer,knf.hydra.core.models.data.ReviewResult)>sendReview</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=https://developer.android.com/reference/kotlin/java/lang/Integer.html>Integer</a> id, <a href=models/data/ReviewResult.html>ReviewResult</a> reviewResult) </code>
+                                            </th>
+                                            <td class="colLast">This function is called only if <a href=HeadConfig.html#reviewConfig>HeadConfig.reviewConfig</a> is declared, it's called whe the user sends a review.</td>
+                                        </tr>
+                                        
+                                        <tr id="i13" class="rowColor">
+                                            <td class="colFirst"><code><a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/DirectoryModel.html>DirectoryModel</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#extraDirectoryPagerData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.ExtraDirectoryRequest)>extraDirectoryPagerData</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/data/ExtraDirectoryRequest.html>ExtraDirectoryRequest</a> request) </code>
+                                            </th>
+                                            <td class="colLast">Load a filtered list of the directory based on the payload from <a href=models/data/ClickAction.ExtraDirectory.html>ClickAction.ExtraDirectory</a> or <a href=models/InfoModel.Tag.html#payload>Tag.payload</a></td>
+                                        </tr>
+                                        
+                                        <tr id="i14" class="altColor">
+                                            <td class="colFirst"><code>Flow&lt;<a href=models/ProfileModel.html>ProfileModel</a>&gt;</code>
+                                            </td>
+                                            <th class="colSecond" scope="row"><code><a href=HeadRepository.html#userProfile(knf.hydra.core.models.BypassModel,knf.hydra.core.models.InfoModel.ProfileData)>userProfile</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/InfoModel.ProfileData.html>InfoModel.ProfileData</a> profileData) </code>
+                                            </th>
+                                            <td class="colLast">Load a profile with custom sections declared in the <a href=models/ProfileModel.html>ProfileModel</a>.</td>
+                                        </tr>
+                                        
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <ul class="blockList">
+                                
+                                    <li class="blockList"><a id="methods.inherited.from.class.java.lang.Object">
+                                        <!--   -->
+                                    </a>
+                                        <h3>Methods inherited from class&nbsp;java.lang.Object</h3>
+                                        <code>clone, equals, finalize, getClass, hashCode, notify, notifyAll, toString,
+                                            wait, wait, wait</code></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+        <div class="details">
+            <ul class="blockList">
+                <li class="blockList">
+                    <!-- ========= CONSTRUCTOR DETAIL ======== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="constructor.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Constructor Detail</h3>
+                                
+                                <a name="HeadRepository()"></a>
+                                <ul class="blockList">
+                                    <li class="blockList">
+                                        <h4>HeadRepository</h4>
+                                        <pre>HeadRepository()</pre>
+                                        <div class="block"></div>
+                                        
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                    <!-- ============ METHOD DETAIL ========== -->
+                    
+                    <section role="region">
+                        <ul class="blockList">
+                            <li class="blockList"><a id="method.detail">
+                                <!--   -->
+                            </a>
+                                <h3>Method Detail</h3>
+                                
+                                <a id="infoPage(java.lang.String,knf.hydra.core.models.BypassModel)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>infoPage</h4>
+                                        <pre class="methodSignature"> abstract Flow&lt;<a href=models/InfoModel.html>InfoModel</a>&gt; <a href=HeadRepository.html#infoPage(java.lang.String,knf.hydra.core.models.BypassModel)>infoPage</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> link, <a href=models/BypassModel.html>BypassModel</a> bypassModel)</pre>
+                                        <div class="block"><p>This function is called when loading the information page for any of this items:</p><ul><li><p><a href=models/RecentModel.html#infoLink>RecentModel.infoLink</a></p></li><li><p><a href=models/DirectoryModel.html#infoLink>DirectoryModel.infoLink</a></p></li></ul><p>It's required that this 3 properties have the same link.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>link</code> - Information link, it can be any string, if your module need a content id or something like that you can send it as the link, it's not required to be an http link.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=https://developer.android.com/kotlin/flow#create.html>flow</a> containing the <a href=models/InfoModel.html>InfoModel</a> for this <a href=HeadRepository.html#infoPage(java.lang.String,knf.hydra.core.models.BypassModel)>link</a> or null if there was an error.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="sourceData(knf.hydra.core.models.ContentItemMin,knf.hydra.core.models.BypassModel)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>sourceData</h4>
+                                        <pre class="methodSignature"> abstract <a href=models/data/SourceData.html>SourceData</a>&lt;?&gt; <a href=HeadRepository.html#sourceData(knf.hydra.core.models.ContentItemMin,knf.hydra.core.models.BypassModel)>sourceData</a>(<a href=models/ContentItemMin.html>ContentItemMin</a> content, <a href=models/BypassModel.html>BypassModel</a> bypassModel)</pre>
+                                        <div class="block"><p>This function is called when loading the sources for a <a href=models/ContentItemModel.html>ContentItemModel</a> it can be a <a href=models/data/VideoSource.html>VideoSource</a>, <a href=models/data/GallerySource.html>GallerySource</a> or a <a href=models/data/WebSource.html>WebSource</a>.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>content</code> - The minimized version en the <a href=models/ContentItemModel.html>ContentItemModel</a> declared in <a href=models/InfoModel.html#contentData>InfoModel.contentData</a></dd>
+                                            
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=models/data/SourceData.html>SourceData</a> declaring the data type for this <a href=HeadRepository.html#sourceData(knf.hydra.core.models.ContentItemMin,knf.hydra.core.models.BypassModel)>content</a> or null if there was an error.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="recentsPagerData(knf.hydra.core.models.BypassModel)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>recentsPagerData</h4>
+                                        <pre class="methodSignature"> <a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/RecentModel.html>RecentModel</a>&gt; <a href=HeadRepository.html#recentsPagerData(knf.hydra.core.models.BypassModel)>recentsPagerData</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel)</pre>
+                                        <div class="block"><p>This function is called only if <a href=HeadConfig.html#isRecentsAvailable()>HeadConfig.isRecentsAvailable</a> is enabled, it's used for loading the recents section in Home.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=models/data/PagerData.html>PagerData</a> containing a <a href=https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource.html>PagingData</a> for the recents.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="lastRecents(knf.hydra.core.models.data.NotifyData.Request)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>lastRecents</h4>
+                                        <pre class="methodSignature"> <a href=models/data/NotifyData.Response.html>NotifyData.Response</a> <a href=HeadRepository.html#lastRecents(knf.hydra.core.models.data.NotifyData.Request)>lastRecents</a>(<a href=models/data/NotifyData.Request.html>NotifyData.Request</a> data)</pre>
+                                        <div class="block"><p>This function is called only if <a href=HeadConfig.html#isRecentsAvailable()>HeadConfig.isRecentsAvailable</a> and <a href=HeadConfig.html#isNotifyRecentsEnabled()>HeadConfig.isNotifyRecentsEnabled</a> are enabled, it's used to get the latest sublist of recents.</p><p>The system works like this:</p><ul><li><p>Every X minutes the app will call this method with a <a href=models/data/NotifyData.Request.html>NotifyData.Request</a>, it includes the latest <a href=models/BypassModel.html>BypassModel</a> for the module and the last <a href=models/RecentModel.html>RecentModel</a> send in a <a href=models/data/NotifyData.Request.html>NotifyData.Request</a> or null if it's the first request.</p></li><li><p>The module needs to load the latest recents until the item in the request and send them in a <a href=models/data/NotifyData.Response.html>NotifyData.Response</a>, the response needs to include the new latest recent.</p></li></ul><ul><li><p>The Main app won't notify the first time it sends a request so if the item in the request is null you can send a response only containing the latest recent.</p></li><li><p>If the latest in the Response is null, the app will send the same latest in the next request.</p></li><li><p>The amount of notifications is limited to 5 per request, if the response contains more than 5 recents the Main app will only take the first 5 elements.</p></li></ul></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>data</code> - The request for latest recents</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>The response containing the list of latest recents and the latest recent to record</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="directoryPagerData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>directoryPagerData</h4>
+                                        <pre class="methodSignature"> <a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/DirectoryModel.html>DirectoryModel</a>&gt; <a href=HeadRepository.html#directoryPagerData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)>directoryPagerData</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/data/FilterRequest.html>FilterRequest</a> filters)</pre>
+                                        <div class="block"><p>This function is called only if <a href=HeadConfig.html#isDirectoryAvailable()>HeadConfig.isDirectoryAvailable</a> is enabled, it's used to load the directory of items.</p><p>This section can be filtered if <a href=HeadRepository.html#directoryFilters(knf.hydra.core.models.BypassModel)>directoryFilters</a> is declared.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>filters</code> - Requested filters by the user.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=models/data/PagerData.html>PagerData</a> containing a <a href=https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource.html>PagingData</a> for the directory.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="directoryFilters(knf.hydra.core.models.BypassModel)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>directoryFilters</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=models/data/FilterData.html>FilterData</a>&gt; <a href=HeadRepository.html#directoryFilters(knf.hydra.core.models.BypassModel)>directoryFilters</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel)</pre>
+                                        <div class="block"><p>This function is used to declare the custom filters to be used in <a href=HeadRepository.html#directoryPagerData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)>directoryPagerData</a>.</p><p>See <a href=models/data/FilterData.html>FilterData</a> for more information.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A list of <a href=models/data/FilterData.html>FilterData</a> that represents the filters available for the directory.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="searchPagerData(java.lang.String,knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>searchPagerData</h4>
+                                        <pre class="methodSignature"> <a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/DirectoryModel.html>DirectoryModel</a>&gt; <a href=HeadRepository.html#searchPagerData(java.lang.String,knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)>searchPagerData</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> query, <a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/data/FilterRequest.html>FilterRequest</a> filters)</pre>
+                                        <div class="block"><p>This function is called only if <a href=HeadConfig.html#isSearchAvailable()>HeadConfig.isSearchAvailable</a> is enabled, it's used to search items in the module.</p><p>This section can be filtered if <a href=HeadRepository.html#searchFilters(knf.hydra.core.models.BypassModel)>searchFilters</a> is declared.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>query</code> - The query to search</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>filters</code> - Requested filters by the user.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=models/data/PagerData.html>PagerData</a> containing a <a href=https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource.html>PagingData</a> for the search result.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="searchFilters(knf.hydra.core.models.BypassModel)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>searchFilters</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=models/data/FilterData.html>FilterData</a>&gt; <a href=HeadRepository.html#searchFilters(knf.hydra.core.models.BypassModel)>searchFilters</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel)</pre>
+                                        <div class="block"><p>This function is used to declare the custom filters to be used in <a href=HeadRepository.html#searchPagerData(java.lang.String,knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.FilterRequest)>searchPagerData</a>.</p><p>See <a href=models/data/FilterData.html>FilterData</a> for more information.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>Requested filters by the user.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="searchSuggestions(java.lang.String,knf.hydra.core.models.BypassModel)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>searchSuggestions</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a>&gt; <a href=HeadRepository.html#searchSuggestions(java.lang.String,knf.hydra.core.models.BypassModel)>searchSuggestions</a>(<a href=https://developer.android.com/reference/kotlin/java/lang/String.html>String</a> query, <a href=models/BypassModel.html>BypassModel</a> bypassModel)</pre>
+                                        <div class="block"><p>This function is called only if <a href=HeadConfig.html#isSearchSuggestionsAvailable()>HeadConfig.isSearchSuggestionsAvailable</a> is enabled, it's used for search autocompletion.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>query</code> - The current query to search</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A list of possible titles based on the query</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="calendarByDayData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.CalendarDay)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>calendarByDayData</h4>
+                                        <pre class="methodSignature"> <a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/DirectoryModel.html>DirectoryModel</a>&gt; <a href=HeadRepository.html#calendarByDayData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.CalendarDay)>calendarByDayData</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/data/CalendarDay.html>CalendarDay</a> day)</pre>
+                                        <div class="block"><p>This function is called only if <a href=HeadConfig.html#isCalendarEnabled()>HeadConfig.isCalendarEnabled</a> is enabled, it's used to create a daily calendar.</p><p>If the calendar is enabled home will try to load a &quot;Today&quot; list calling this function with the current <a href=HeadRepository.html#calendarByDayData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.CalendarDay)>day</a> as parameter.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>day</code> - The day requested by the main app</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=models/data/PagerData.html>PagerData</a> containing a <a href=https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource.html>PagingData</a> for the items in the request.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="customHomeSections(knf.hydra.core.models.BypassModel)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>customHomeSections</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=models/data/SectionData.html>SectionData</a>&gt; <a href=HeadRepository.html#customHomeSections(knf.hydra.core.models.BypassModel)>customHomeSections</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel)</pre>
+                                        <div class="block"><p>Declare custom Home sections</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A list of <a href=models/data/SectionData.html>SectionData</a>.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="analyticsRecommended(knf.hydra.core.models.BypassModel,java.util.List)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>analyticsRecommended</h4>
+                                        <pre class="methodSignature"> Flow&lt;<a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;<a href=models/DirectoryModel.html>DirectoryModel</a>&gt;&gt; <a href=HeadRepository.html#analyticsRecommended(knf.hydra.core.models.BypassModel,java.util.List)>analyticsRecommended</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=https://developer.android.com/reference/kotlin/java/util/List.html>List</a>&lt;Analytics.Event&gt; events)</pre>
+                                        <div class="block"><p>This function is called only if <a href=HeadConfig.html#analyticsSettings>HeadConfig.analyticsSettings</a> is declared, it's used to load a list of recommendations based on the user behaviour and the <a href=HeadConfig.html#analyticsSettings>module configuration</a>.</p><p>The main app needs to register at least 3 events to start recommending.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>events</code> - The list of the top 3-15 events sorted by Analytics.Event.score.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=https://developer.android.com/kotlin/flow#create.html>flow</a> containing a list of <a href=models/DirectoryModel.html>DirectoryModel</a> with the recommendations.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="sendReview(knf.hydra.core.models.BypassModel,java.lang.Integer,knf.hydra.core.models.data.ReviewResult)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>sendReview</h4>
+                                        <pre class="methodSignature"> <a href=https://developer.android.com/reference/kotlin/java/lang/Boolean.html>Boolean</a> <a href=HeadRepository.html#sendReview(knf.hydra.core.models.BypassModel,java.lang.Integer,knf.hydra.core.models.data.ReviewResult)>sendReview</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=https://developer.android.com/reference/kotlin/java/lang/Integer.html>Integer</a> id, <a href=models/data/ReviewResult.html>ReviewResult</a> reviewResult)</pre>
+                                        <div class="block"><p>This function is called only if <a href=HeadConfig.html#reviewConfig>HeadConfig.reviewConfig</a> is declared, it's called whe the user sends a review.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>id</code> - The id of the reviewed <a href=models/InfoModel.html>InfoModel</a>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>reviewResult</code> - The review send by the user.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>True if the review was processed successfully.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="extraDirectoryPagerData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.ExtraDirectoryRequest)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockList"
+                                          >
+                                    <li class="blockList">
+                                        <h4>extraDirectoryPagerData</h4>
+                                        <pre class="methodSignature"> <a href=models/data/PagerData.html>PagerData</a>&lt;?, <a href=models/DirectoryModel.html>DirectoryModel</a>&gt; <a href=HeadRepository.html#extraDirectoryPagerData(knf.hydra.core.models.BypassModel,knf.hydra.core.models.data.ExtraDirectoryRequest)>extraDirectoryPagerData</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/data/ExtraDirectoryRequest.html>ExtraDirectoryRequest</a> request)</pre>
+                                        <div class="block"><p>Load a filtered list of the directory based on the payload from <a href=models/data/ClickAction.ExtraDirectory.html>ClickAction.ExtraDirectory</a> or <a href=models/InfoModel.Tag.html#payload>Tag.payload</a></p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>request</code> - The requested payload to load.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=models/data/PagerData.html>PagerData</a> containing a <a href=https://developer.android.com/topic/libraries/architecture/paging/v3-paged-data#pagingsource.html>PagingData</a> for the items in the request.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                                <a id="userProfile(knf.hydra.core.models.BypassModel,knf.hydra.core.models.InfoModel.ProfileData)">
+                                    <!--   -->
+                                </a>
+                                <ul class=
+                                              "blockListLast"
+                                          >
+                                    <li class="blockList">
+                                        <h4>userProfile</h4>
+                                        <pre class="methodSignature"> Flow&lt;<a href=models/ProfileModel.html>ProfileModel</a>&gt; <a href=HeadRepository.html#userProfile(knf.hydra.core.models.BypassModel,knf.hydra.core.models.InfoModel.ProfileData)>userProfile</a>(<a href=models/BypassModel.html>BypassModel</a> bypassModel, <a href=models/InfoModel.ProfileData.html>InfoModel.ProfileData</a> profileData)</pre>
+                                        <div class="block"><p>Load a profile with custom sections declared in the <a href=models/ProfileModel.html>ProfileModel</a>.</p></div>
+
+                                        <dl>
+
+                                        
+                                            <dt><span class="paramLabel">Parameters:</span></dt>
+                                            
+                                            
+                                            <dd><code>bypassModel</code> - Cloudflare bypass information extracted by the Main app, if your module doesn't require a bypass you can disable it in <a href=HeadConfig.html#bypassBehavior>HeadConfig.bypassBehavior</a>.</dd>
+                                            
+                                            
+                                            
+                                            <dd><code>profileData</code> - The declared <a href=models/InfoModel.ProfileData.html>InfoModel.ProfileData</a> from <a href=models/InfoModel.html>InfoModel</a>.</dd>
+                                            
+                                            
+                                        
+
+                                        
+                                            <dt><span class="returnLabel">Returns:</span></dt>
+                                            <dd><p>A <a href=https://developer.android.com/kotlin/flow#create.html>flow</a> containing the profile from the declared <a href=models/InfoModel.ProfileData.html>InfoModel.ProfileData</a>.</p></dd>
+                                        
+
+                                        
+
+                                        </dl>
+                                    </li>
+                                </ul>
+                                
+                            </li>
+                        </ul>
+                    </section>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</main>
+<footer role="contentinfo">
+    <nav role="navigation">
+        <!-- ======= START OF BOTTOM NAVBAR ====== -->
+        <div class="bottomNav"><a id="navbar.bottom">
+            <!--   -->
+        </a>
+            <div class="skipNav"><a href="#skip.navbar.bottom" title="Skip navigation links">Skip navigation links</a>
+            </div>
+            <a id="navbar.bottom.firstrow">
+                <!--   -->
+            </a>
+            <ul class="navList" title="Navigation">
+    <li><a href="../../../index.html">Overview</a></li>
+    
+    <li><a href="package-summary.html">Package</a></li>
+    
+    <li class="navBarCell1Rev">Class</li>
+    
+    <li><a href="package-tree.html">Tree</a></li>
+    
+    <li><a href="../../../deprecated.html">Deprecated</a></li>
+    <li><a href="../../../index-files/index-1.html">Index</a></li>
+    <li>Help</li>
+</ul></div>
+        <a id="skip.navbar.bottom">
+            <!--   -->
+        </a>
+        <div class="subNav">
+<ul class="navList" id="allclasses_navbar_top" style="display: block;">
+    <li><a href="../../../allclasses.html">All&nbsp;Classes</a></li>
+</ul>
+<div>
+<script type="text/javascript"><!--
+  allClassesLink = document.getElementById("allclasses_navbar_top");
+  if(window==top) {
+    allClassesLink.style.display = "block";
+  }
+  else {
+    allClassesLink.style.display = "none";
+  }
+  //-->
+</script>
+<noscript>
+<div>JavaScript is disabled on your browser.</div>
+</noscript>
+</div>
+<a id="skip.navbar.top">
+<!--   -->
+</a></div><!-- ======== END OF BOTTOM NAVBAR ======= -->
+    </nav>
+</footer><ul class="ui-autocomplete ui-front ui-menu ui-widget ui-widget-content" id="ui-id-1" tabindex="0"
+    style="display: none;"></ul>
+<span role="status" aria-live="assertive" aria-relevant="additions" class="ui-helper-hidden-accessible"></span>
+</body>
+</html>

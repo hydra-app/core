@@ -1,4 +1,4 @@
-rootProject.name = "Hydra"
+rootProject.name = "Hydra Core"
 if (!System.env.JITPACK) {
     include ':app'
     include ':test'

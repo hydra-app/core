@@ -7,7 +7,14 @@
 package knf.hydra.core.tools
 
 import androidx.annotation.RestrictTo
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Database
+import androidx.room.Entity
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.PrimaryKey
+import androidx.room.Query
+import androidx.room.RoomDatabase
 import knf.hydra.core.HeadConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -190,6 +197,7 @@ interface ModulePreferenceDao{
 }
 
 /** @suppress */
+/** @hide */
 @RestrictTo(RestrictTo.Scope.LIBRARY_GROUP_PREFIX)
 @Entity
 data class ModulePreference(@PrimaryKey val key: String, val value: String?, val type: Int){

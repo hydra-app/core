@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
     <title>HeadConfig</title>
     <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
     <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
     <script>const storage = localStorage.getItem("dokka-dark-mode")
     if (storage == null) {
         const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -18,64 +19,114 @@
         }
     }
     </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
 <link href="../../../styles/style.css" rel="Stylesheet">
-<link href="../../../styles/jetbrains-mono.css" rel="Stylesheet">
 <link href="../../../styles/main.css" rel="Stylesheet">
 <link href="../../../styles/prism.css" rel="Stylesheet">
 <link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<link href="../../../ui-kit/ui-kit.min.css" rel="Stylesheet">
 <script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
 <script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../ui-kit/ui-kit.min.js" defer="defer"></script>
 <script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+<link href="../../../images/logo-icon.svg">
 </head>
 <body>
-<div class="navigation-wrapper" id="navigation-wrapper">
-    <div id="leftToggler"><span class="icon-toggler"></span></div>
-    <div class="library-name">
-            <a href="../../../index.html">
-                    <span>Hydra core</span>
+    <div class="root">
+    <nav class="navigation theme-dark" id="navigation-wrapper">
+            <a class="library-name--link" href="../../../index.html">
+                    Hydra core
             </a>
-    </div>
-    <div>
-    </div>
-    <div class="pull-right d-flex">
-        <div class="filter-section" id="filter-section">
-                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":core:dokkaHtml/release">androidJvm</button>
+        <button class="navigation-controls--btn navigation-controls--btn_toc ui-kit_mobile-only" id="toc-toggle"
+                type="button">Toggle table of contents
+        </button>
+        <div class="navigation-controls--break ui-kit_mobile-only"></div>
+        <div class="library-version" id="library-version">
         </div>
-        <button id="theme-toggle-button"><span id="theme-toggle"></span></button>
-        <div id="searchBar"></div>
-    </div>
-</div>
-<div id="container">
-    <div id="leftColumn">
-        <div id="sideMenu"></div>
-    </div>
-    <div id="main">
-<div class="main-content" data-page-type="classlike" id="content" pageIds="Hydra core::knf.hydra.core/HeadConfig///PointingToDeclaration//197447377">
+        <div class="navigation-controls">
+        <div class="filter-section filter-section_loading" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active=""
+                        data-filter=":core/release">androidJvm</button>
+            <div class="dropdown filter-section--dropdown" data-role="dropdown" id="filter-section-dropdown">
+                <button class="button button_dropdown filter-section--dropdown-toggle" role="combobox"
+                        data-role="dropdown-toggle"
+                        aria-controls="platform-tags-listbox"
+                        aria-haspopup="listbox"
+                        aria-expanded="false"
+                        aria-label="Toggle source sets"
+                ></button>
+                <ul role="listbox" id="platform-tags-listbox" class="dropdown--list" data-role="dropdown-listbox">
+                    <div class="dropdown--header"><span>Platform filter</span>
+                        <button class="button" data-role="dropdown-toggle" aria-label="Close platform filter">
+                            <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                        </button>
+                    </div>
+                        <li role="option" class="dropdown--option platform-selector-option jvm-like" tabindex="0">
+                            <label class="checkbox">
+                                <input type="checkbox" class="checkbox--input" id=":core/release"
+                                       data-filter=":core/release"/>
+                                <span class="checkbox--icon"></span>
+                                androidJvm
+                            </label>
+                        </li>
+                </ul>
+                <div class="dropdown--overlay"></div>
+            </div>
+        </div>
+            <button class="navigation-controls--btn navigation-controls--btn_theme" id="theme-toggle-button"
+                    type="button">Switch theme
+            </button>
+            <div class="navigation-controls--btn navigation-controls--btn_search" id="searchBar" role="button">Search in
+                API
+            </div>
+        </div>
+    </nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="dropdown theme-dark_mobile" data-role="dropdown" id="toc-dropdown">
+                    <ul role="listbox" id="toc-listbox" class="dropdown--list dropdown--list_toc-list"
+                        data-role="dropdown-listbox">
+                        <div class="dropdown--header">
+                            <span>
+                                    Hydra core
+                            </span>
+                            <button class="button" data-role="dropdown-toggle" aria-label="Close table of contents">
+                                <i class="ui-kit-icon ui-kit-icon_cross"></i>
+                            </button>
+                        </div>
+                        <div class="sidebar--inner" id="sideMenu"></div>
+                    </ul>
+                    <div class="dropdown--overlay"></div>
+                </div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="Hydra core::knf.hydra.core/HeadConfig///PointingToDeclaration//-1261813462">
   <div class="breadcrumbs"><a href="../../../index.html">Hydra core</a><span class="delimiter">/</span><a href="../index.html">knf.hydra.core</a><span class="delimiter">/</span><span class="current">HeadConfig</span></div>
   <div class="cover ">
     <h1 class="cover"><span>Head</span><wbr></wbr><span><span>Config</span></span></h1>
-    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">HeadConfig</a></div><p class="paragraph">Module configuration, enable and modify the behaviour of some features.</p><p class="paragraph">To use this class you need to create a new class and extend <a href="index.html">HeadConfig</a> or use a <a href="https://kotlinlang.org/docs/object-declarations.html">kotlin object</a>, then modify the required variables in <strong>init</strong>.</p><p class="paragraph"><b>Sample usage</b></p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">object: HeadConfig() {<br>   init {<br>      isRecentsAvailable = true<br>      isSearchAvailable = true<br>      ...<br>   }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">abstract </span><span class="token keyword">class </span><a href="index.html">HeadConfig</a></div><p class="paragraph">Module configuration, enable and modify the behaviour of some features.</p><p class="paragraph">To use this class you need to create a new class and extend <a href="index.html">HeadConfig</a> or use a <a href="https://kotlinlang.org/docs/object-declarations.html">kotlin object</a>, then modify the required variables in <strong>init</strong>.</p><p class="paragraph"><b>Sample usage</b></p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">object: HeadConfig() {<br>   init {<br>      isRecentsAvailable = true<br>      isSearchAvailable = true<br>      ...<br>   }<br>}</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
   </div>
   <div class="tabbedcontent">
-    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,FUNCTION,PROPERTY">Members</button></div>
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
     <div class="tabs-section-body">
       <div data-togglable="CONSTRUCTOR">
         <h2 class="">Constructors</h2>
-        <div class="table"><a data-name="543694599%2FConstructors%2F197447377" anchor-label="HeadConfig" id="543694599%2FConstructors%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+        <div class="table"><a data-name="543694599%2FConstructors%2F-1261813462" anchor-label="HeadConfig" id="543694599%2FConstructors%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="-head-config.html"><span>Head</span><wbr></wbr><span><span>Config</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="543694599%2FConstructors%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="543694599%2FConstructors%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="token punctuation">)</span></div></div></div>
                 </div>
               </div>
             </div>
@@ -84,227 +135,227 @@
       </div>
       <div data-togglable="PROPERTY">
         <h2 class="">Properties</h2>
-        <div class="table"><a data-name="476030504%2FProperties%2F197447377" anchor-label="analyticsSettings" id="476030504%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+        <div class="table"><a data-name="476030504%2FProperties%2F-1261813462" anchor-label="analyticsSettings" id="476030504%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="analytics-settings.html"><span>analytics</span><wbr></wbr><span><span>Settings</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="476030504%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="476030504%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="analytics-settings.html">analyticsSettings</a><span class="token operator">: </span><a href="../../knf.hydra.core.models.analytics/-analytics/-settings/index.html">Analytics.Settings</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Enable the recommended system, you can choose between collecting the whole information page or only the Tags.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="analytics-settings.html">analyticsSettings</a><span class="token operator">: </span><a href="../../knf.hydra.core.models.analytics/-analytics/-settings/index.html">Analytics.Settings</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Enable the recommended system, you can choose between collecting the whole information page or only the Tags.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1758512655%2FProperties%2F197447377" anchor-label="bypassBehavior" id="1758512655%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="1758512655%2FProperties%2F-1261813462" anchor-label="bypassBehavior" id="1758512655%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="bypass-behavior.html"><span>bypass</span><wbr></wbr><span><span>Behavior</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1758512655%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1758512655%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="bypass-behavior.html">bypassBehavior</a><span class="token operator">: </span><a href="../../knf.hydra.core.models.data/-bypass-behavior/index.html">BypassBehavior</a></div><div class="brief "><p class="paragraph">Change the behavior and look of the Cloudflare bypass system, default is <a href="../../knf.hydra.core.models.data/-bypass-behavior/-default/index.html">BypassBehavior.Default</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="bypass-behavior.html">bypassBehavior</a><span class="token operator">: </span><a href="../../knf.hydra.core.models.data/-bypass-behavior/index.html">BypassBehavior</a></div><div class="brief "><p class="paragraph">Change the behavior and look of the Cloudflare bypass system, default is <a href="../../knf.hydra.core.models.data/-bypass-behavior/-default/index.html">BypassBehavior.Default</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="495822057%2FProperties%2F197447377" anchor-label="customDecoders" id="495822057%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="495822057%2FProperties%2F-1261813462" anchor-label="customDecoders" id="495822057%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="custom-decoders.html"><span>custom</span><wbr></wbr><span><span>Decoders</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="495822057%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="495822057%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="custom-decoders.html">customDecoders</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><span class="token keyword"></span><a href="../../knf.hydra.core.models.data/-video-decoder/index.html">VideoDecoder</a><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Declare custom video decoders, the Main app already supports:</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="custom-decoders.html">customDecoders</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.collections/-list/index.html">List</a><span class="token operator">&lt;</span><a href="../../knf.hydra.core.models.data/-video-decoder/index.html">VideoDecoder</a><span class="token operator">&gt;</span><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Declare custom video decoders, the Main app already supports:</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="725261158%2FProperties%2F197447377" anchor-label="directoryOrientation" id="725261158%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="725261158%2FProperties%2F-1261813462" anchor-label="directoryOrientation" id="725261158%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="directory-orientation.html"><span>directory</span><wbr></wbr><span><span>Orientation</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="725261158%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="725261158%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="directory-orientation.html">directoryOrientation</a><span class="token operator">: </span><a href="../../knf.hydra.core.models/-directory-model/-orientation/index.html">DirectoryModel.Orientation</a></div><div class="brief "><p class="paragraph">Specify if the directory style needs to be <a href="../../knf.hydra.core.models/-directory-model/-orientation/-v-e-r-t-i-c-a-l/index.html">VERTICAL</a> for portraits, or <a href="../../knf.hydra.core.models/-directory-model/-orientation/-h-o-r-i-z-o-n-t-a-l/index.html">HORIZONTAL</a> for videos.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="directory-orientation.html">directoryOrientation</a><span class="token operator">: </span><a href="../../knf.hydra.core.models/-directory-model/-orientation/index.html">DirectoryModel.Orientation</a></div><div class="brief "><p class="paragraph">Specify if the directory style needs to be <a href="../../knf.hydra.core.models/-directory-model/-orientation/-v-e-r-t-i-c-a-l/index.html">VERTICAL</a> for portraits, or <a href="../../knf.hydra.core.models/-directory-model/-orientation/-h-o-r-i-z-o-n-t-a-l/index.html">HORIZONTAL</a> for videos.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1584263592%2FProperties%2F197447377" anchor-label="isCalendarEnabled" id="-1584263592%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1584263592%2FProperties%2F-1261813462" anchor-label="isCalendarEnabled" id="-1584263592%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-calendar-enabled.html"><span>is</span><wbr></wbr><span>Calendar</span><wbr></wbr><span><span>Enabled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1584263592%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1584263592%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-calendar-enabled.html">isCalendarEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable the calendar feature, this will call HeadRepository.calendarList when the main app loads the &quot;Today&quot; section in Home, this also will be called when the user enters the Calendar Activity.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="is-calendar-enabled.html">isCalendarEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable the calendar feature, this will call HeadRepository.calendarList when the main app loads the &quot;Today&quot; section in Home, this also will be called when the user enters the Calendar Activity.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="956672345%2FProperties%2F197447377" anchor-label="isCastEnabled" id="956672345%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="956672345%2FProperties%2F-1261813462" anchor-label="isCastEnabled" id="956672345%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-cast-enabled.html"><span>is</span><wbr></wbr><span>Cast</span><wbr></wbr><span><span>Enabled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="956672345%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="956672345%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-cast-enabled.html">isCastEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable cast feature if your module uses direct video links.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="is-cast-enabled.html">isCastEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable cast feature if your module uses direct video links.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-993770429%2FProperties%2F197447377" anchor-label="isDirectoryAvailable" id="-993770429%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-993770429%2FProperties%2F-1261813462" anchor-label="isDirectoryAvailable" id="-993770429%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-directory-available.html"><span>is</span><wbr></wbr><span>Directory</span><wbr></wbr><span><span>Available</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-993770429%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-993770429%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-directory-available.html">isDirectoryAvailable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable the directory section, this will call HeadRepository.directoryPager when the user enters the directory section, this also could be called multiple times if <a href="../-head-repository/directory-filters.html">HeadRepository.directoryFilters</a> is used.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="is-directory-available.html">isDirectoryAvailable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable the directory section, this will call HeadRepository.directoryPager when the user enters the directory section, this also could be called multiple times if <a href="../-head-repository/directory-filters.html">HeadRepository.directoryFilters</a> is used.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="1726940429%2FProperties%2F197447377" anchor-label="isNotifyRecentsEnabled" id="1726940429%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="1726940429%2FProperties%2F-1261813462" anchor-label="isNotifyRecentsEnabled" id="1726940429%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-notify-recents-enabled.html"><span>is</span><wbr></wbr><span>Notify</span><wbr></wbr><span>Recents</span><wbr></wbr><span><span>Enabled</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1726940429%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1726940429%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-notify-recents-enabled.html">isNotifyRecentsEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable recents notifications feature, if enabled the main app will call <a href="../-head-repository/last-recents.html">HeadRepository.lastRecents</a> periodically in order to get the latest recents.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="is-notify-recents-enabled.html">isNotifyRecentsEnabled</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable recents notifications feature, if enabled the main app will call <a href="../-head-repository/last-recents.html">HeadRepository.lastRecents</a> periodically in order to get the latest recents.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="882489614%2FProperties%2F197447377" anchor-label="isRecentsAvailable" id="882489614%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="882489614%2FProperties%2F-1261813462" anchor-label="isRecentsAvailable" id="882489614%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-recents-available.html"><span>is</span><wbr></wbr><span>Recents</span><wbr></wbr><span><span>Available</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="882489614%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="882489614%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-recents-available.html">isRecentsAvailable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable the recents feature, this will call HeadRepository.recentsPager in order to get the latest recents.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="is-recents-available.html">isRecentsAvailable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable the recents feature, this will call HeadRepository.recentsPager in order to get the latest recents.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="2117929018%2FProperties%2F197447377" anchor-label="isSearchAvailable" id="2117929018%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="2117929018%2FProperties%2F-1261813462" anchor-label="isSearchAvailable" id="2117929018%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-search-available.html"><span>is</span><wbr></wbr><span>Search</span><wbr></wbr><span><span>Available</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2117929018%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="2117929018%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-search-available.html">isSearchAvailable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable the search feature, this will call HeadRepository.searchPager every time a user uses the search feature, this can also include custom filters using <a href="../-head-repository/search-filters.html">HeadRepository.searchFilters</a>.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="is-search-available.html">isSearchAvailable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable the search feature, this will call HeadRepository.searchPager every time a user uses the search feature, this can also include custom filters using <a href="../-head-repository/search-filters.html">HeadRepository.searchFilters</a>.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-2046143107%2FProperties%2F197447377" anchor-label="isSearchSuggestionsAvailable" id="-2046143107%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-2046143107%2FProperties%2F-1261813462" anchor-label="isSearchSuggestionsAvailable" id="-2046143107%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-search-suggestions-available.html"><span>is</span><wbr></wbr><span>Search</span><wbr></wbr><span>Suggestions</span><wbr></wbr><span><span>Available</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2046143107%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-2046143107%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-search-suggestions-available.html">isSearchSuggestionsAvailable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable custom suggestions for the search feature, this will call <a href="../-head-repository/search-suggestions.html">HeadRepository.searchSuggestions</a> every time an user writes a new query.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="is-search-suggestions-available.html">isSearchSuggestionsAvailable</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Enable custom suggestions for the search feature, this will call <a href="../-head-repository/search-suggestions.html">HeadRepository.searchSuggestions</a> every time an user writes a new query.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1758450564%2FProperties%2F197447377" anchor-label="isSensitiveContent" id="-1758450564%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1758450564%2FProperties%2F-1261813462" anchor-label="isSensitiveContent" id="-1758450564%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="is-sensitive-content.html"><span>is</span><wbr></wbr><span>Sensitive</span><wbr></wbr><span><span>Content</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1758450564%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1758450564%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="is-sensitive-content.html">isSensitiveContent</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Hide the history of this module</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="is-sensitive-content.html">isSensitiveContent</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-boolean/index.html">Boolean</a></div><div class="brief "><p class="paragraph">Hide the history of this module</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="850777007%2FProperties%2F197447377" anchor-label="reviewConfig" id="850777007%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="850777007%2FProperties%2F-1261813462" anchor-label="reviewConfig" id="850777007%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="review-config.html"><span>review</span><wbr></wbr><span><span>Config</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="850777007%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="850777007%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="review-config.html">reviewConfig</a><span class="token operator">: </span><a href="../../knf.hydra.core.models.data/-review-config/index.html">ReviewConfig</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Enable the review feature in the information page, you can decide to request a star based review, a written review, or both.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="review-config.html">reviewConfig</a><span class="token operator">: </span><a href="../../knf.hydra.core.models.data/-review-config/index.html">ReviewConfig</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Enable the review feature in the information page, you can decide to request a star based review, a written review, or both.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="-1738624071%2FProperties%2F197447377" anchor-label="searchBarText" id="-1738624071%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="-1738624071%2FProperties%2F-1261813462" anchor-label="searchBarText" id="-1738624071%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="search-bar-text.html"><span>search</span><wbr></wbr><span>Bar</span><wbr></wbr><span><span>Text</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1738624071%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-1738624071%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="search-bar-text.html">searchBarText</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Set a custom message for the search bar, by default the Module name is used.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="search-bar-text.html">searchBarText</a><span class="token operator">: </span><a href="https://kotlinlang.org/api/core/kotlin-stdlib/kotlin/-string/index.html">String</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Set a custom message for the search bar, by default the Module name is used.</p></div></div></div>
                 </div>
               </div>
             </div>
           </div>
-<a data-name="945711639%2FProperties%2F197447377" anchor-label="settingsPage" id="945711639%2FProperties%2F197447377" data-filterable-set=":core:dokkaHtml/release"></a>
-          <div class="table-row" data-filterable-current=":core:dokkaHtml/release" data-filterable-set=":core:dokkaHtml/release">
+<a data-name="945711639%2FProperties%2F-1261813462" anchor-label="settingsPage" id="945711639%2FProperties%2F-1261813462" data-filterable-set=":core/release"></a>
+          <div class="table-row" data-filterable-current=":core/release" data-filterable-set=":core/release">
             <div class="main-subrow keyValue ">
               <div class=""><span class="inline-flex">
                   <div><a href="settings-page.html"><span>settings</span><wbr></wbr><span><span>Page</span></span></a></div>
-<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="945711639%2FProperties%2F197447377"></span>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="945711639%2FProperties%2F-1261813462"></span>
                     <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
                   </span></span></div>
               <div>
                 <div class="title">
-                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core:dokkaHtml/release"><div class="symbol monospace"><span class="token keyword"></span><span class="token keyword">var </span><a href="settings-page.html">settingsPage</a><span class="token operator">: </span><a href="../../knf.hydra.core.models.data/-setting-page/index.html">SettingPage</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Specify a list of custom settings, an icon will be visible for the user to enter this settings, this settings will persist in the Main app even if the Module is uninstalled.</p></div></div></div>
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":core/release"><div class="symbol monospace"><span class="token keyword">var </span><a href="settings-page.html">settingsPage</a><span class="token operator">: </span><a href="../../knf.hydra.core.models.data/-setting-page/index.html">SettingPage</a><span class="token operator">?</span></div><div class="brief "><p class="paragraph">Specify a list of custom settings, an icon will be visible for the user to enter this settings, this settings will persist in the Main app even if the Module is uninstalled.</p></div></div></div>
                 </div>
               </div>
             </div>
@@ -314,12 +365,18 @@
     </div>
   </div>
 </div>
-      <div class="footer">
-        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2024 Copyright</span><span
-                class="pull-right"><span>Generated by </span><a
-                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
-      </div>
+    <div class="footer">
+        <a href="#content" id="go-to-top-link" class="footer--button footer--button_go-to-top"></a>
+        <span>© 2021-2025 Copyright KNF Apps</span>
+        <span class="pull-right">
+            <span>Generated by </span>
+            <a class="footer--link footer--link_external" href="https://github.com/Kotlin/dokka">
+                <span>dokka</span>
+            </a>
+        </span>
     </div>
-</div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
