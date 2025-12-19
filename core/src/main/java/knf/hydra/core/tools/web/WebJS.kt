@@ -12,6 +12,7 @@ import android.os.Looper
 import android.webkit.CookieManager
 import android.webkit.JavascriptInterface
 import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.annotation.Keep
@@ -21,8 +22,8 @@ import androidx.annotation.Keep
  *
  * @param context Context to create webview
  */
-class WebJS(context: Context) {
-    private val webView = WebView(context)
+class WebJS(context: Context, wb: WebView? = null) {
+    private val webView = wb ?: WebView(context)
     /** @suppress */
     val defaultUserAgent: String = webView.settings.userAgentString
     private var callback: ((String) -> Unit)? = null
@@ -94,6 +95,71 @@ class WebJS(context: Context) {
             }
         }
         webView.loadUrl(link, headers)
+    }
+
+    /**
+     * Listen for network resources while loading a page and return the first one that matches the filter.
+     *
+     * This function loads the specified [link] in a WebView and intercepts network requests.
+     * It uses the provided [filter] to identify a target resource. Once the page loading is
+     * finished (or the [timeout] is reached), the [callback] is invoked with the URL and headers
+     * of the first matched resource.
+     *
+     * @param link The URL to load in the WebView
+     * @param userAgent The user agent string to use for the request
+     * @param headers A map of additional headers to include in the main request.
+     * @param timeout The maximum time in milliseconds to wait after the page has finished loading
+     *                before invoking the callback. This ensures that any delayed or asynchronous
+     *                resource requests are captured
+     * @param executeOnFinish Optional JavaScript code to execute after the page has finished
+     *                        loading (javascript:`<code>`)
+     * @param filter A lambda function that takes a resource URL (as a `String?`) and returns `true`
+     *               if it's the desired resource, `false` otherwise
+     * @param callback A lambda function to be invoked with the URL and headers of the matched resource.
+     *                 It receives the resource URL (`String?`) and its response headers (`Map<String, String>`).
+     *                 If no resource matches the filter before the timeout, `null` and an empty map are returned.
+     */
+    fun listenResources(
+        link: String,
+        userAgent: String,
+        headers: Map<String, String>,
+        timeout: Long,
+        executeOnFinish: String? = null,
+        filter: (String?, Map<String, String>?) -> Boolean,
+        callback: (String?, Map<String, String>) -> Unit
+    ) {
+        val handler = Handler(Looper.getMainLooper())
+        var result: String? = null
+        var headersResult: Map<String, String> = emptyMap()
+        val runnable = kotlinx.coroutines.Runnable {
+            callback(result, headersResult)
+            reset()
+        }
+        webView.settings.userAgentString = userAgent
+        webView.settings.blockNetworkImage = true
+        webView.webViewClient = object : DefaultClient(){
+            override fun shouldInterceptRequest(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): WebResourceResponse? {
+                if (filter(request?.url?.toString(), request?.requestHeaders)) {
+                    result = request?.url?.toString()
+                    headersResult = request?.requestHeaders ?: emptyMap()
+                    runnable.run()
+                    handler.removeCallbacks(runnable)
+                }
+                return super.shouldInterceptRequest(view, request)
+            }
+
+            override fun onPageFinished(view: WebView?, url: String?) {
+                if (executeOnFinish != null) {
+                    webView.loadUrl(executeOnFinish)
+                }
+                super.onPageFinished(view, url)
+            }
+        }
+        webView.loadUrl(link, headers)
+        handler.postDelayed(runnable, timeout)
     }
 
     /**
