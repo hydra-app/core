@@ -3,7 +3,7 @@
 In order for the main app to detect and use the module it need to have a class named **Module** extending **HeadModule** in the root of the project
 
 ### Example
-Inside the project root **(src/main/java|kotlin/&lt;package&#62;/&lt;here&#62;)** create a class named **Module** that extends [HeadModule](https://docs.knf-hydra.app/core/-hydra%20core/knf.hydra.core/-head-module).
+Inside the project root **(src/main/java|kotlin/&lt;package&#62;/Module.kt)** create a class named **Module** that extends [HeadModule](https://docs.knf-hydra.app/core/-hydra%20core/knf.hydra.core/-head-module).
 - For more settings check [HeadConfig](https://docs.knf-hydra.app/core/-hydra%20core/knf.hydra.core/-head-config)
 - For more information about the data repository check [HeadRepository](https://docs.knf-hydra.app/core/-hydra%20core/knf.hydra.core/-head-repository)
 
