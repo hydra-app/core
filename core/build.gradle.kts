@@ -62,7 +62,7 @@ dependencies {
     api("com.google.code.gson:gson:2.13.2")
     api("com.github.jordyamc:Gson-ktx:1.0")
     api("com.github.jordyamc.oasis-jsbridge-android:oasis-jsbridge-quickjs:1.0.2")
-    dokkaPlugin("org.jetbrains.dokka:android-documentation-plugin:2.0.0")
+    dokkaPlugin("org.jetbrains.dokka:android-documentation-plugin:2.1.0")
 }
 
 tasks.register<Jar>("dokkaHtmlJar") {
@@ -80,17 +80,17 @@ tasks.register<Jar>("dokkaJavadocJar") {
 dokka {
     moduleName.set("Hydra core")
     dokkaSourceSets.main {
-        includes.from("${rootProject.projectDir}/core/README.md")
+        includes.from("${rootDir}/core/README.md")
         enableAndroidDocumentationLink = false
         suppressGeneratedFiles = true
         sourceLink {
-            localDirectory.set(file("${rootProject.projectDir}/core/src"))
+            localDirectory.set(file("${rootDir}/core/src"))
             remoteUrl("https://github.com/hydra-app/core/tree/master/core/src")
             remoteLineSuffix.set("#L")
         }
     }
     pluginsConfiguration.html {
-        customAssets.from("${rootProject.projectDir}/logo-icon.svg")
+        customAssets.from("${rootDir}/logo-icon.svg")
         footerMessage = "© 2021-${Calendar.getInstance().get(Calendar.YEAR)} Copyright KNF Apps"
     }
     dokkaPublications.html {
