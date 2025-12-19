@@ -79,10 +79,15 @@ tasks.register<Jar>("dokkaJavadocJar") {
 
 dokka {
     moduleName.set("Hydra core")
+    dokkaSourceSets.debug {
+        suppress.set(true)
+    }
+    dokkaSourceSets.release {
+        suppress.set(true)
+    }
     dokkaSourceSets.main {
         includes.from("${rootDir}/core/README.md")
-        enableAndroidDocumentationLink = false
-        suppressGeneratedFiles = true
+        enableAndroidDocumentationLink.set(false)
         sourceLink {
             localDirectory.set(file("${rootDir}/core/src"))
             remoteUrl("https://github.com/hydra-app/core/tree/master/core/src")

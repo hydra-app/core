@@ -53,7 +53,6 @@ $dokka.location:knf.hydra.core.models/RecentModel.Notify///PointingToDeclaration
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.Error///PointingToDeclaration/knf/hydra/core/tools/web/SimpleOKHttp.Result.Error.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result.OK///PointingToDeclaration/knf/hydra/core/tools/web/SimpleOKHttp.Result.OK.html
 $dokka.location:knf.hydra.core.tools.web/SimpleOKHttp.Result///PointingToDeclaration/knf/hydra/core/tools/web/SimpleOKHttp.Result.html
-$dokka.location:knf.hydra.core.tools/ModulePreferenceDao_Impl.Companion///PointingToDeclaration/knf/hydra/core/tools/ModulePreferenceDao_Impl.Companion.html
 knf.hydra.core
 knf.hydra.core.models
 knf.hydra.core.models.analytics

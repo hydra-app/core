@@ -91,7 +91,22 @@ var pathtoroot = "";
     </div>
         <div class="header">
             <div class="subtitle">
-                <div class="block"></div>
+                <div class="block"><p>In order for the main app to detect and use the module it need to have a class named Module extending HeadModule in the root of the project</p><p>Inside the project root (src/main/java|kotlin/&lt;package&gt;/&lt;here&gt;) create a class named Module that extends <a href=https://docs.knf-hydra.app/core/-hydra%20core/knf.hydra.core/-head-module.html>HeadModule</a>.</p><ul><li><p>For more settings check <a href=https://docs.knf-hydra.app/core/-hydra%20core/knf.hydra.core/-head-config.html>HeadConfig</a></p></li><li><p>For more information about the data repository check <a href=https://docs.knf-hydra.app/core/-hydra%20core/knf.hydra.core/-head-repository.html>HeadRepository</a></p></li></ul><pre><code>class Module: HeadModule() { // Needs to be named Module and extend HeadModule
+    override val baseUrl: String = &quot;https://example.com/&quot;
+    override val config: HeadConfig = object : HeadConfig(){ // Check HeadConfig for more settings
+        init {
+            isRecentsAvailable = true
+            isDirectoryAvailable = true
+            isSearchAvailable = true
+            searchBarText = &quot;Search here&quot;
+            customDecoders = listOf()
+        }
+    }
+    override val dataRepository: HeadRepository = ExampleRepository() // Check HeadRepository
+    override val moduleName: String = &quot;Example module&quot;
+    override val moduleVersionCode: Int = BuildConfig.VERSION_CODE
+    override val moduleVersionName: String = BuildConfig.VERSION_NAME
+}</code></pre></div>
             </div>
             <p>See: <a href="#overview_description">Description</a></p>
         </div>
