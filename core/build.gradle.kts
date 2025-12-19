@@ -84,8 +84,8 @@ dokka {
         enableAndroidDocumentationLink = false
         suppressGeneratedFiles = true
         sourceLink {
-            localDirectory.set(file("${rootProject.projectDir}/core/src/main/java"))
-            remoteUrl("https://github.com/hydra-app/core/tree/master/core/src/main/java")
+            localDirectory.set(file("${rootProject.projectDir}/core/src"))
+            remoteUrl("https://github.com/hydra-app/core/tree/master/core/src")
             remoteLineSuffix.set("#L")
         }
     }
