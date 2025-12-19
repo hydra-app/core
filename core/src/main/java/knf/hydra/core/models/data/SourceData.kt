@@ -42,7 +42,6 @@ sealed class SourceItem(val name: String, val link: String)
  * @param quality Optional quality type (icon in the source list)
  * @param needDecoder Specify if this link needs to be processed before playing or it can be played instantly, default is **true**
  * @param canDownload Specify if this link can be downloaded
- * @param isExternal Specify if the link is an external link, use [ExternalVideoItem]
  * @param payload Optional payload for custom decoders
  */
 open class VideoItem(

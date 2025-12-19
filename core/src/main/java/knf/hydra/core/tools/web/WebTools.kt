@@ -37,7 +37,7 @@ object WebTools {
     }
 
     /** Search packed functions in the [link] html and decode ONE defined by [packedSelector], by default the first packed found will be decoded.
-     *  Packed functions will be searched using this regex: eval\((function\(p,a,c,k,e,?[dr]?\).*.split\('\|'\).*)\)
+     *  Packed functions will be searched using this regex: eval\((function\(p,a,c,k,e,?\&#91;dr&#93;?\).*.split\('\|'\).*)\)
      *
      *  @param link The link used to search the packed functions
      *  @param headers Optional additional headers
@@ -51,7 +51,7 @@ object WebTools {
     }
 
     /** Search packed functions in the [link] html and decode all.
-     *  Packed functions will be searched using this regex: eval\((function\(p,a,c,k,e,?[dr]?\).*.split\('\|'\).*)\)
+     *  Packed functions will be searched using this regex: eval\((function\(p,a,c,k,e,?\&#91;dr&#93;?\).*.split\('\|'\).*)\)
      *
      *  @param link The link used to search the packed functions
      *  @param headers Optional additional headers

@@ -24,8 +24,8 @@ import kotlin.reflect.KClass
  *
  * The modules are limited in the permission they can declare, if the main app detects any other
  * permission besides those, the module will be ignored, the admitted permissions are:
- * - [android.permission.INTERNET]
- * - [android.permission.ACCESS_WIFI_STATE]
+ * - android.permission.INTERNET
+ * - android.permission.ACCESS_WIFI_STATE
  *
  * To create a module you need to create a new Application project, once created you need to create
  * a class named **Module** that extends [HeadModule], because the core is based in abstract

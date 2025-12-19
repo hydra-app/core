@@ -8,15 +8,14 @@ package knf.hydra.core.models.data
 
 import knf.hydra.core.HeadRepository
 import knf.hydra.core.models.InfoModel
-import knf.hydra.core.models.data.ClickAction.*
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.intellij.lang.annotations.Pattern
-import kotlin.coroutines.coroutineContext
 
 /**
  * Represents a section with data
@@ -31,7 +30,7 @@ data class ExtraSection(val title: String, val dataFlow: Flow<ExtraData?>) {
     suspend fun retrieveData(): Flow<ExtraData?> {
         if (data.value is DummyData && !isLoading) {
             isLoading = true
-            CoroutineScope(coroutineContext).launch {
+            CoroutineScope(currentCoroutineContext()).launch {
                 data.value =
                     try {
                         dataFlow.catch { it.printStackTrace() }.first()
@@ -104,7 +103,7 @@ class YoutubeItem(@Pattern("[\\w-]+") videoId: String) : MediaItem(videoId)
  *
  * @property text Media text
  * @property subtext Media subtext
- * @property media [Vertical][VerticalImageItem] or [Horizontal][HorizontalImageItem] image item
+ * @property media [`Vertical`][VerticalImageItem] or [Horizontal][HorizontalImageItem] image item
  * @property clickAction Click behaviour
  */
 data class CollectionItem(
@@ -167,7 +166,7 @@ sealed class ClickAction {
      * Opens a directory screen using the specified payload.
      *
      * @property title Screen title
-     * @property payload Payload to be used in the [repository][HeadRepository.extraDirectoryPager]
+     * @property payload Payload to be used in the [repository][HeadRepository.extraDirectoryPagerData]
      */
     class ExtraDirectory(val title: String, val payload: String) : ClickAction()
 
@@ -224,7 +223,7 @@ data class ChipsData(val list: List<ChipItem>) : ExtraData()
  *
  * @property videoId Id of the youtube video, usually the last part of the link
  */
-data class YoutubeData(@Pattern("[\\w-]+") val videoId: String) : ExtraData()
+data class YoutubeData(@param:Pattern("[\\w-]+") val videoId: String) : ExtraData()
 
 /**
  * Represents a list of music tracks.

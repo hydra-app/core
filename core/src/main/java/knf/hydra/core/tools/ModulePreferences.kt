@@ -15,14 +15,13 @@ import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.RoomDatabase
-import knf.hydra.core.HeadConfig
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
-/** Object used to access the module preferences defined in [HeadConfig.settingsPage] */
+/** Object used to access the module preferences defined in [HeadConfig.settingsPage][knf.hydra.core.HeadConfig.settingsPage] */
 object ModulePreferences {
     private lateinit var manager: ModulePreferenceDao
     private lateinit var pkg: String
@@ -71,7 +70,7 @@ object ModulePreferences {
             is Long -> manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_LONG))
             is Float -> manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_FLOAT))
             else -> if (value == null){
-                manager.insert(ModulePreference(createKey(key), value?.toString(), ModulePreference.TYPE_STRING))
+                manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_STRING))
             }
         }
     }
@@ -139,21 +138,20 @@ object ModulePreferences {
                 is Long -> manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_LONG))
                 is Float -> manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_FLOAT))
                 else -> if (value == null){
-                    manager.insert(ModulePreference(createKey(key), value?.toString(), ModulePreference.TYPE_STRING))
+                    manager.insert(ModulePreference(createKey(key), value.toString(), ModulePreference.TYPE_STRING))
                 }
             }
         }
         /** @suppress */
         fun listenAll(list: List<ModulePreference>): Flow<List<ModulePreference>> {
-            var currentList = list
             return manager.listenAll(pkg.replace(".","|")).map { nList ->
                 nList.mapNotNull { nItem ->
-                    val found = currentList.find { it.key == nItem.key }
+                    val found = list.find { it.key == nItem.key }
                     if (found != null && found.value == nItem.value && found.type == nItem.type)
                         null
                     else
                         nItem
-                }.also { currentList = nList }
+                }
             }
         }
 

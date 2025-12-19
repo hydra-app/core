@@ -34,7 +34,7 @@ import knf.hydra.core.models.data.VideoDecoder
 abstract class HeadConfig {
 
     /**
-     * Enable the recents feature, this will call [HeadRepository.recentsPager] in order to get the
+     * Enable the recents feature, this will call [HeadRepository.recentsPagerData] in order to get the
      * latest recents.
      *
      * If [isNotifyRecentsEnabled] is enabled, the main app will check the recents periodically
@@ -43,14 +43,14 @@ abstract class HeadConfig {
     var isRecentsAvailable: Boolean = false
 
     /**
-     * Enable the directory section, this will call [HeadRepository.directoryPager]
+     * Enable the directory section, this will call [HeadRepository.directoryPagerData]
      * when the user enters the directory section, this also could be called multiple times
      * if [HeadRepository.directoryFilters] is used.
      */
     var isDirectoryAvailable: Boolean = false
 
     /**
-     * Enable the search feature, this will call [HeadRepository.searchPager]
+     * Enable the search feature, this will call [HeadRepository.searchPagerData]
      * every time a user uses the search feature, this can also include custom filters using
      * [HeadRepository.searchFilters].
      */
@@ -63,7 +63,7 @@ abstract class HeadConfig {
     var isSearchSuggestionsAvailable: Boolean = false
 
     /**
-     * Enable the calendar feature, this will call [HeadRepository.calendarList] when the main app
+     * Enable the calendar feature, this will call [HeadRepository.calendarByDayData] when the main app
      * loads the "Today" section in Home, this also will be called when the user enters the Calendar
      * Activity.
      *
@@ -120,7 +120,7 @@ abstract class HeadConfig {
      * - YourUpload
      * - ZippyShare
      *
-     * Direct video files needs to be specified in [SourceItem.needDecoder][knf.hydra.core.models.data.SourceItem.needDecoder]
+     * Direct video files needs to be specified in [VideoDecoder.needDecoder][knf.hydra.core.models.data.VideoDecoder]
      */
     var customDecoders: List<VideoDecoder>? = null
 

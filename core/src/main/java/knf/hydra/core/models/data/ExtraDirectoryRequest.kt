@@ -12,7 +12,7 @@ import knf.hydra.core.models.InfoModel
 import kotlinx.parcelize.Parcelize
 
 /**
- * Extra directory request used to load [HeadRepository.extraDirectoryPager]
+ * Extra directory request used to load [HeadRepository.extraDirectoryPagerData]
  *
  * @property title The title of the screen
  * @property payload The payload used to load the directory
