@@ -8,7 +8,6 @@ package knf.hydra.core.models
 
 import androidx.recyclerview.widget.DiffUtil
 import knf.hydra.core.HeadRepository
-import knf.hydra.core.models.DirectoryModel.Orientation.HORIZONTAL
 import knf.hydra.core.models.DirectoryModel.Orientation.VERTICAL
 import knf.hydra.core.models.data.Category
 import knf.hydra.core.models.data.LayoutType
@@ -27,7 +26,7 @@ abstract class DirectoryModel {
     /** Content category */
     abstract var category: Category
     /** Layout type to be used when loading the info, [LayoutType.SINGLE] for single items like [Category.MOVIE], or [LayoutType.MULTIPLE] for multiple items like [Category.SERIES], by default the
-     * system uses the [category] to decide wich one to use */
+     * system uses the [category] to decide which one to use */
     open var infoLayoutType: LayoutType = if (category in listOf(Category.PORN, Category.MOVIE)) LayoutType.SINGLE else LayoutType.MULTIPLE
     /** Image orientation to be used */
     open var orientation: Orientation = VERTICAL

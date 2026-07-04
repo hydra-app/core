@@ -110,7 +110,7 @@ class SimpleOKHttp(url: String) {
     suspend fun getAsString(): Result<String> {
         return get().let {
             when(it) {
-                is Result.OK -> Result.OK(it.data?.body?.string())
+                is Result.OK -> Result.OK(withContext(Dispatchers.IO) { it.data?.body?.string() })
                 is Result.Error -> Result.Error(it.error)
             }
         }
@@ -125,7 +125,7 @@ class SimpleOKHttp(url: String) {
     suspend fun postAsString(body: RequestBody): Result<String> {
         return post(body).let {
             when(it) {
-                is Result.OK -> Result.OK(it.data?.body?.string())
+                is Result.OK -> Result.OK(withContext(Dispatchers.IO) { it.data?.body?.string() })
                 is Result.Error -> Result.Error(it.error)
             }
         }

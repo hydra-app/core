@@ -16,7 +16,6 @@ import knf.hydra.core.models.analytics.Analytics.Action.FROM_SEARCH
 import knf.hydra.core.models.analytics.Analytics.Action.OPEN_CONTENT
 import knf.hydra.core.models.analytics.Analytics.Action.OPEN_INFO
 import knf.hydra.core.models.analytics.Analytics.Action.REMOVE_FAV
-import knf.hydra.core.models.analytics.Analytics.Type.INFO
 import knf.hydra.core.models.analytics.Analytics.Type.TAG
 import org.json.JSONObject
 

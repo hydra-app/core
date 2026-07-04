@@ -12,7 +12,12 @@ import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import knf.hydra.core.HeadRepository
-import knf.hydra.core.models.data.*
+import knf.hydra.core.models.data.Category
+import knf.hydra.core.models.data.ClickAction
+import knf.hydra.core.models.data.ExtraSection
+import knf.hydra.core.models.data.LayoutType
+import knf.hydra.core.models.data.Music
+import knf.hydra.core.models.data.RankingData
 import kotlinx.parcelize.Parcelize
 
 /** Represents the info of a directory item */
@@ -41,7 +46,7 @@ abstract class InfoModel {
     @Ignore
     /**
      * Layout type to be used when loading the info, [LayoutType.SINGLE] for single items like [Category.MOVIE], or [LayoutType.MULTIPLE]
-     * for multiple items like [Category.SERIES], by default the system uses the [category] to decide wich one to use
+     * for multiple items like [Category.SERIES], by default the system uses the [category] to decide which one to use
      */
     open var layoutType: LayoutType = if (category in listOf(Category.PORN, Category.MOVIE)) LayoutType.SINGLE else LayoutType.MULTIPLE
 
@@ -176,11 +181,11 @@ abstract class InfoModel {
 
         /** State type */
         enum class Type(val value: Int) {
-            EMISSION(0), COMPLETED(1), HIATUS(2), UNKNOWN(3);
+            EMISSION(0), COMPLETED(1), HIATUS(2), SOON(3), UNKNOWN(4);
 
             companion object {
                 /** @suppress */
-                fun fromValue(value: Int) = values().find { it.value == value } ?: UNKNOWN
+                fun fromValue(value: Int) = entries.find { it.value == value } ?: UNKNOWN
             }
         }
     }

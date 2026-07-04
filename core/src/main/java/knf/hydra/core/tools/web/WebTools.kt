@@ -163,4 +163,26 @@ object WebTools {
             }
         }
     }
+
+    suspend fun listenResources(
+        link: String,
+        filter: (String?, Map<String, String>?) -> Boolean,
+        executeOnFinish: String? = null,
+        userAgent: String = webJs.defaultUserAgent,
+        headers: Map<String, String> = emptyMap(),
+        followRedirects: Boolean = false,
+        timeout: Long = 5000
+    ): Pair<String?, Map<String, String>> {
+        return withContext(Dispatchers.Main) {
+            suspendCoroutine { continuation ->
+                var isResponded = false
+                webJs.listenResources(link, userAgent, headers, timeout, executeOnFinish, followRedirects, filter) { url, headers ->
+                    if (!isResponded){
+                        isResponded = true
+                        continuation.resume(url to headers)
+                    }
+                }
+            }
+        }
+    }
 }

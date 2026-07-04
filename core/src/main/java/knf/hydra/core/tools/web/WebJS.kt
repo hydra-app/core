@@ -125,6 +125,7 @@ class WebJS(context: Context, wb: WebView? = null) {
         headers: Map<String, String>,
         timeout: Long,
         executeOnFinish: String? = null,
+        followRedirects: Boolean = false,
         filter: (String?, Map<String, String>?) -> Boolean,
         callback: (String?, Map<String, String>) -> Unit
     ) {
@@ -138,6 +139,13 @@ class WebJS(context: Context, wb: WebView? = null) {
         webView.settings.userAgentString = userAgent
         webView.settings.blockNetworkImage = true
         webView.webViewClient = object : DefaultClient(){
+            override fun shouldOverrideUrlLoading(
+                view: WebView?,
+                request: WebResourceRequest?
+            ): Boolean {
+                return followRedirects
+            }
+
             override fun shouldInterceptRequest(
                 view: WebView?,
                 request: WebResourceRequest?
